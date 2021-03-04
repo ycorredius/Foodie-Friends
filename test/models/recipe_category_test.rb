@@ -1,11 +1,15 @@
 # == Schema Information
 #
-# Table name: categories
+# Table name: recipe_categories
 #
 #  id         :integer          not null, primary key
-#  tag        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Category < ApplicationRecord
+require "test_helper"
+
+class RecipeCategoryTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

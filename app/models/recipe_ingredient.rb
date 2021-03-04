@@ -1,11 +1,11 @@
 # == Schema Information
 #
-# Table name: categories
+# Table name: recipe_ingredients
 #
 #  id         :integer          not null, primary key
-#  tag        :string
+#  quantity   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Category < ApplicationRecord
+class RecipeIngredient < ApplicationRecord
 end
