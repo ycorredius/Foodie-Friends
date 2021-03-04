@@ -2,23 +2,24 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem 'rails', '~> 6.1.3'
-gem 'sqlite3', '~> 1.4'
-gem 'puma', '~> 5.0'
-gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.0'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.7'
-# gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
-gem 'image_processing', '~> 1.2'
-gem 'foreman', '~> 0.87.1'
-gem 'fast_jsonapi'
+# gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'fast_jsonapi'
+gem 'foreman', '~> 0.87.1'
+gem 'image_processing', '~> 1.2'
+gem 'jbuilder', '~> 2.7'
+gem 'puma', '~> 5.0'
 gem 'rack-cors'
+gem 'rails', '~> 6.1.3'
+gem 'sass-rails', '>= 6'
+gem 'sqlite3', '~> 1.4'
+gem 'turbolinks', '~> 5'
+gem 'typhoeus', '~> 1.4'
+gem 'webpacker', '~> 5.0'
 
 group :development, :test do
-  gem 'pry-rails'
+  gem 'pry-rails', '~> 0.3.9'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 

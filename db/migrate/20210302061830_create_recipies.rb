@@ -5,6 +5,7 @@ class CreateRecipies < ActiveRecord::Migration[6.1]
       t.string :photo_url
       t.string :link
       t.string :instruction
+      t.string :idMeal
 
       t.timestamps
     end

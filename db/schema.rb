@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_061830) do
     t.string "photo_url"
     t.string "link"
     t.string "instruction"
+    t.string "idMeal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
