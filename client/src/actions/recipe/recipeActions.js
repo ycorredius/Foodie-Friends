@@ -24,10 +24,10 @@ export const fetchRecipes = () =>{
     }
 }
 
-export const fetcheRecipe = (recipeData) =>{
+export const fetchRecipe = (recipeData) =>{
     return dispatch =>{
         return axios.get(`${END_POINT}/recipes/${recipeData}`)
             .then(response => response.data)
-            .then(res => {dispatch(showRecipe(res))})
+            .then(res => {dispatch(showRecipe)})
     }
 }

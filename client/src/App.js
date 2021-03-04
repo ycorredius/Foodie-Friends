@@ -1,13 +1,19 @@
+import React from 'react'
 import NavBar from "./components /Navbar"
-import Recipes from "./containers/Recipe";
+import RecipeContainer from "./containers/RecipeContainer";
+import {connect} from 'react-redux'
+import { fetchRecipes } from './actions/recipe/recipeActions';
+import {BrowserRouter as Router} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <NavBar/>
-      <Recipes/>
+      <Router>
+        <NavBar/>
+        <RecipeContainer/>
+      </Router>
     </div>
   );
 }
 
-export default App;
+export default connect(null,fetchRecipes)(App);

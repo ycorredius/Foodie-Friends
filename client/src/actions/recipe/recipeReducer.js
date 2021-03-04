@@ -1,11 +1,19 @@
 import * as types from './recipeActionTypes';
 
-export default (state = [], action) => {
+export const recipeReducer = (state = [], action) => {
     switch (action.type){
         case types.LOADRECIPES:
             return{
                 ...state,
-                recipes: acti
+                recipes: action.recipes,
+
             }
+        case types.SHOW_RECIPE:
+            return{
+                ...state,
+                recipe: action.recipe
+            }
+        default:
+            return state
     }
 }
