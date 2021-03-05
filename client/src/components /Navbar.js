@@ -4,16 +4,16 @@ const NavBar = () => (
     <div>
         <ul>
             <div>
-                <p>Item 1</p>
+                <p>Search Recipes</p>
             </div>
             <div>
-                <p>Item 2</p>
+                <p>Find Recipe</p>
             </div>
             <div>
-                <p>Item 2</p>
+                <p>Create New Recipe</p>
             </div>
             <div>
-                <p>Item 2</p>
+                <p>My Saved Recipes</p>
             </div>
 
         </ul>

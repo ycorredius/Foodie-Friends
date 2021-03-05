@@ -15,13 +15,11 @@ class RecipeContainer extends Component{
            if(!this.props.recipes){
                return(
                    <div>
-                       <h1>If you can see this its broken</h1>
                    </div>
                )
            } else{
                return(
                    <div>
-                       {console.log(this.props.recipes)}
                        <Recipes recipes={this.props.recipes.data} handleClick={this.handleClick}/>
                    </div>
                )
