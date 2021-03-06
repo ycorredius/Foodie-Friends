@@ -1,19 +1,30 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
+import END_POINT from '../actions/recipe/endpoint';
 
 function NewRecipeForm() {
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
   const { register, handleSubmit } = useForm();
 
+  const [ingredientIndexes, setIngredientIndexes] = React.useState([]);
+  const [ingredientCounter, setIngredientCounter] = React.useState(0);
+
   const addCategory = () => {
     setIndexes((prevIndexes) => [...prevIndexes, counter]);
     setCounter((prevCounter) => prevCounter + 1);
   };
 
+  const addIngredient = () => {
+    setIngredientIndexes((prevIngredientIndexes) => [...prevIngredientIndexes, ingredientCounter]);
+    setIngredientCounter((prevIngredientCounter) => prevIngredientCounter + 1);
+  };
+
   const onSubmit = (data) => {
-    console.log(data);
+    axios.post(`${END_POINT}/recipes`,{data},{withCredentials:true})
+      .then(respone =>console.log(respone)
+      )
   };
 
   const removeCategory = (index) => () => {
@@ -23,10 +34,20 @@ function NewRecipeForm() {
     setCounter((prevCounter) => prevCounter - 1);
   };
 
+  const removeIngredient = (index) => () => {
+    setIngredientIndexes((prevIngredientIndexes) => [
+      ...prevIngredientIndexes.filter((item) => item !== index),
+    ]);
+    setIngredientCounter((prevCounter) => prevCounter - 1);
+  };
+
   const clearCategories = () => {
     setIndexes([]);
   };
 
+  const clearIngredient = () => {
+    setIngredientIndexes([]);
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -38,7 +59,7 @@ function NewRecipeForm() {
         return (
           <fieldset name={fieldName} key={fieldName}>
             <label>
-              First Name {index}:
+              Tag:  
               <input
                 type="text"
                 name={`${fieldName}.tag`}
@@ -56,10 +77,48 @@ function NewRecipeForm() {
       <button type="button" onClick={addCategory}>
         Add Category
       </button>
+
       <button type="button" onClick={clearCategories}>
         Clear Categories
       </button>
-      <input type="submit" />
+
+      {ingredientIndexes.map((index) => {
+        const fieldName = `ingredients[${index}]`;
+        return (
+          <fieldset name={fieldName} key={fieldName}>
+            <label>
+              Name:  
+              <input
+                type="text"
+                name={`${fieldName}.name`}
+                ref={register}
+              />
+            </label>
+
+            <label>
+              quantiy:
+              <input
+                type="text"
+                name={`${fieldName}.quantiy`}
+                ref={register}
+              />
+            </label>
+            <button type="button" onClick={removeIngredient(index)}>
+              Remove
+            </button>
+          </fieldset>
+        );
+      })}
+      <button type="button" onClick={addIngredient}>
+        Add Ingredient
+      </button>
+
+      <button type="button" onClick={clearIngredient}>
+        Clear Ingredients
+      </button>
+      
+
+      <input type="submit" />      
     </form>
   );
 }
