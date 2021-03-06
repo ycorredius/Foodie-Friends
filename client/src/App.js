@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import { fetchRecipes } from './actions/recipe/recipeActions';
 import {BrowserRouter as Router} from "react-router-dom";
 import Banner from './components /Banner';
+import Routes from './components /Routes';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Router>
         <NavBar/>
         <Banner/>
-        <RecipeContainer/>
+        <Routes/>
       </Router>
     </div>
   );

@@ -1,21 +1,21 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const NavBar = () => (
     <div>
         <ul>
-            <div>
+            <Link to="/recipes">
                 <p>Search Recipes</p>
-            </div>
-            <div>
+            </Link>
+            <Link>                
                 <p>Find Recipe</p>
-            </div>
-            <div>
+            </Link>
+            <Link to="/new_recipe">
                 <p>Create New Recipe</p>
-            </div>
-            <div>
+            </Link>
+            <Link>
                 <p>My Saved Recipes</p>
-            </div>
-
+            </Link>
         </ul>
     </div>
 )
