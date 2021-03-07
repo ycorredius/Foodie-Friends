@@ -7,8 +7,9 @@ class RecipesController < ApplicationController
     end
 
     def create
+      #FIX_ME: this is just boiler plate needs customized finish
         @recipe = Recipe.new(name:params[:recipe][:name])
-      
+        @recipe.
         if @recipe.save
           flash[:success] = "Recipe successfully created"
           
@@ -20,7 +21,7 @@ class RecipesController < ApplicationController
     end
 
     private 
-
+    #Currently does not accept categories,ingredients,instruction params
     def create_recipe_params
       params.require(:recipe).permit(:name,:categories,:ingredients,:instructions)
     end

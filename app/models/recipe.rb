@@ -9,10 +9,13 @@
 #  updated_at :datetime         not null
 #
 class Recipe < ApplicationRecord
+    #Fix recipe_ingredients and ingredients association
     has_many :recipe_ingredients
     has_many :ingredients, through: :recipe_ingredient
+    #Catgories association works.
     has_many :recipe_categories
     has_many :categories, through: :recipe_categories
+    #This association has not been touched or examined.
     has_many :instructions
 
 
