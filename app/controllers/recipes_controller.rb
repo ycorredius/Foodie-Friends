@@ -1,19 +1,27 @@
 class RecipesController < ApplicationController
-    def index
+    before_action :create_recipe_params, only: :create  
+  
+  def index
         recipes = Recipe.all
         render json: RecipeSerializer.new(recipes).serialized_json
     end
+
     def create
-        
-        binding.pry
-        
-        @recipe = Recipe.new(params[:recipe])
+        @recipe = Recipe.new(name:params[:recipe][:name])
+      
         if @recipe.save
           flash[:success] = "Recipe successfully created"
-          redirect_to @recipe
+          
+          render json: RecipeSerializer.new(@Recipe).serialized_json
         else
           flash[:error] = "Something went wrong"
-          render 'new'
+          # render json
         end
+    end
+
+    private 
+
+    def create_recipe_params
+      params.require(:recipe).permit(:name,:categories,:ingredients,:instructions)
     end
 end

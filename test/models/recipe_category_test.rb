@@ -2,9 +2,11 @@
 #
 # Table name: recipe_categories
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer
+#  recipe_id   :integer
 #
 require "test_helper"
 

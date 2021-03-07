@@ -4,6 +4,8 @@ import axios from 'axios';
 import END_POINT from '../actions/recipe/endpoint';
 
 function NewRecipeForm() {
+  const recipeName = React.useState("");
+
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
   const { register, handleSubmit } = useForm();
@@ -11,9 +13,17 @@ function NewRecipeForm() {
   const [ingredientIndexes, setIngredientIndexes] = React.useState([]);
   const [ingredientCounter, setIngredientCounter] = React.useState(0);
 
+  const [instructionIndexes, setInstructionIndexes]= React.useState([]);
+  const [instructionCounter, setInstructionCounter]= React.useState(0);
+
   const addCategory = () => {
     setIndexes((prevIndexes) => [...prevIndexes, counter]);
     setCounter((prevCounter) => prevCounter + 1);
+  };
+
+  const addInstruction = () => {
+    setInstructionIndexes((prevInstructionIndexes) => [...prevInstructionIndexes, instructionCounter]);
+    setInstructionCounter((prevCounter) => prevCounter + 1);
   };
 
   const addIngredient = () => {
@@ -21,8 +31,8 @@ function NewRecipeForm() {
     setIngredientCounter((prevIngredientCounter) => prevIngredientCounter + 1);
   };
 
-  const onSubmit = (data) => {
-    axios.post(`${END_POINT}/recipes`,{data},{withCredentials:true})
+  const onSubmit = (recipe) => {
+    axios.post(`${END_POINT}/recipes`,{recipe},{withCredentials:true})
       .then(respone =>console.log(respone)
       )
   };
@@ -32,6 +42,13 @@ function NewRecipeForm() {
       ...prevIndexes.filter((item) => item !== index),
     ]);
     setCounter((prevCounter) => prevCounter - 1);
+  };
+
+  const removeInstruction = (index) => () => {
+    setInstructionIndexes((prevInstructionIndexes) => [
+      ...prevInstructionIndexes.filter((item) => item !== index),
+    ]);
+    setInstructionCounter((prevCounter) => prevCounter - 1);
   };
 
   const removeIngredient = (index) => () => {
@@ -45,15 +62,49 @@ function NewRecipeForm() {
     setIndexes([]);
   };
 
+  const clearInstructions = () => {
+    setInstructionIndexes([]);
+  };
+
   const clearIngredient = () => {
     setIngredientIndexes([]);
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <fieldset name={recipeName}>
         <label>Name: </label>
-        <input type="text" name="name" placeholder="e.g. Spaghetti" />
-      </div>
+        <input type="text" ref={register} name="name" placeholder="e.g. Spaghetti" />
+      </fieldset>
+      
+      {instructionIndexes.map((index) => {
+        const fieldname = `instructions[${index}]`;
+        return (
+          <fieldset name={fieldname} key={fieldname}>
+            <label>
+              Step {index +1}: 
+              <input
+                type="text"
+                name={`${fieldname}.step`}
+                ref={register}
+              />
+            </label>
+
+            <button type="button" onClick={removeInstruction(index)}>
+              remove
+            </button>
+          </fieldset>
+        );
+      })}
+      
+      <button type="button" onClick={addInstruction}>
+        Add Instruction
+      </button>
+
+      <button type="button" onClick={clearInstructions}>
+        Clear Instructions
+      </button>
+
       {indexes.map((index) => {
         const fieldName = `categories[${index}]`;
         return (
