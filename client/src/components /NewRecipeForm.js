@@ -85,7 +85,7 @@ function NewRecipeForm() {
               Step {index +1}: 
               <input
                 type="text"
-                name={`${fieldname}.step`}
+                name={`${fieldname}`}
                 ref={register}
               />
             </label>

@@ -1,6 +1,6 @@
-class CreateInsturctions < ActiveRecord::Migration[6.1]
+class CreateInstructions < ActiveRecord::Migration[6.1]
   def change
-    create_table :insturctions do |t|
+    create_table :instructions do |t|
       t.string :stepNumber
       t.string :content
 

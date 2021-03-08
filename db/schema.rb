@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_094638) do
+ActiveRecord::Schema.define(version: 2021_03_08_002410) do
 
   create_table "categories", force: :cascade do |t|
     t.string "tag"
@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(version: 2021_03_07_094638) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "insturctions", force: :cascade do |t|
+  create_table "instructions", force: :cascade do |t|
     t.string "stepNumber"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "recipe_id"
   end
 
   create_table "recipe_categories", force: :cascade do |t|

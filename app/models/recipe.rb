@@ -11,7 +11,7 @@
 class Recipe < ApplicationRecord
     #Fix recipe_ingredients and ingredients association
     has_many :recipe_ingredients
-    has_many :ingredients, through: :recipe_ingredient
+    has_many :ingredients, through: :recipe_ingredients
     #Catgories association works.
     has_many :recipe_categories
     has_many :categories, through: :recipe_categories

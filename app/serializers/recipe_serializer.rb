@@ -9,6 +9,11 @@
 #  updated_at :datetime         not null
 #
 class RecipeSerializer
-  include FastJsonapi::ObjectSerializer
-  attributes :name, :instruction, :photo_url
+  # include FastJsonapi::ObjectSerializer
+    include JSONAPI::Serializer
+  attributes :name, :instructions, :photo_url,:categories,:ingredients
+  has_many :instructions
+  has_many :categories
+  has_many :ingredients
 end
+

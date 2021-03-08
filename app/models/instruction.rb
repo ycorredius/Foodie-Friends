@@ -8,6 +8,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Insturction < ApplicationRecord
-    belongs_to :recipe, class_name: "recipe", foreign_key: "recipe_id"
+class Instruction < ApplicationRecord
+    belongs_to :recipe
 end

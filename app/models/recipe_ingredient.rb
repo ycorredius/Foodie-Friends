@@ -10,6 +10,6 @@
 #  recipe_id     :integer
 #
 class RecipeIngredient < ApplicationRecord
-    belongs_to :recipe, class_name: "recipe", foreign_key: "recipe_id"
-    belongs_to :ingredient, class_name: "ingredient", foreign_key: "ingredient_id"
+    belongs_to :ingredient
+    belongs_to :recipe
 end
