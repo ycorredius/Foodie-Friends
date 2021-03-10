@@ -8,24 +8,22 @@ class RecipesController < ApplicationController
     def create
       #FIX_ME: this is just boiler plate needs customized finish
         @recipe = Recipe.new(name: params[:recipe][:name])
-        
-        binding.pry
-        
         params[:recipe][:ingredients].each do |f|
-          @recipe.ingredients.new(name: f.name, quantity: f.quantity)
+          @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
         end 
         params[:recipe][:categories].each do |f|
-          @recipe.categories.new(tag: f.tag)
+          @recipe.categories.new(tag: f[:tag])
         end 
-        params[:recipe][:instructions].each do |x,v|
-          @recipe.instructions.new(stepNumber: x,content:v)
+        params[:recipe][:instructions].each_with_index do |x,v|
+          @recipe.instructions.new(stepNumber: v,content:x)
         end 
+        
         if @recipe.save
           flash[:success] = "Recipe successfully created"
-          render json: RecipeSerializer.new(@Recipe).serializable_hash
+          render json: RecipeSerializer.new(@recipe).serializable_hash.to_json
         else
           flash[:error] = "Something went wrong"
-          # render json
+          render json: flash
         end
 
     end
