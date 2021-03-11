@@ -5,6 +5,7 @@ import END_POINT from '../actions/recipe/endpoint';
 
 function NewRecipeForm() {
   const recipeName = React.useState("");
+  const recipePhotoUrl = React.useState("");
 
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
@@ -33,8 +34,10 @@ function NewRecipeForm() {
 
   const onSubmit = (recipe) => {
     axios.post(`${END_POINT}/recipes`,{recipe},{withCredentials:true})
-      .then(respone =>console.log(respone)
-      )
+      .then(respone =>respone.json)
+      .then(()=>{
+        this.props.history.push("/recipes")
+      })
   };
 
   const removeCategory = (index) => () => {
@@ -75,6 +78,11 @@ function NewRecipeForm() {
       <fieldset name={recipeName}>
         <label>Name: </label>
         <input type="text" ref={register} name="name" placeholder="e.g. Spaghetti" />
+      </fieldset>
+
+      <fieldset name={recipePhotoUrl}>
+        <label>Photo URL: </label>
+        <input type="text" ref={register} name="photo_url" placeholder="http://www.unsplash.com" />
       </fieldset>
       
       {instructionIndexes.map((index) => {
@@ -150,7 +158,7 @@ function NewRecipeForm() {
               quantiy:
               <input
                 type="text"
-                name={`${fieldName}.quantiy`}
+                name={`${fieldName}.quantity`}
                 ref={register}
               />
             </label>

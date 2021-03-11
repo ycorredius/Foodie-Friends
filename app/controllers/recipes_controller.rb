@@ -20,7 +20,9 @@ class RecipesController < ApplicationController
         
         if @recipe.save
           flash[:success] = "Recipe successfully created"
-          render json: RecipeSerializer.new(@recipe).serializable_hash.to_json
+          options = {}
+          options[:include] =[:instructions, :'instructions.stepNumber',:'instructions.content',:ingredients,:'ingredients.quantity',:'ingredients.name'] 
+          render json: RecipeSerializer.new(@recipe,options).serialized_json
         else
           flash[:error] = "Something went wrong"
           render json: flash

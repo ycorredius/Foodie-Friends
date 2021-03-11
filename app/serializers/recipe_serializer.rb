@@ -10,10 +10,13 @@
 #
 class RecipeSerializer
   # include FastJsonapi::ObjectSerializer
-    include JSONAPI::Serializer
-  attributes :id, :name, :instructions, :photo_url,:categories,:ingredients
-  has_many :instructions
-  has_many :categories
-  has_many :ingredients
+    include FastJsonapi::ObjectSerializer
+  attributes :id,:name, :instructions, :photo_url,:categories,:ingredients
+
+    has_many :recipe_ingredients
+    has_many :ingredients, through: :recipe_ingredients
+    has_many :recipe_categories
+    has_many :categories, through: :recipe_categories
+    has_many :instructions
 end
 

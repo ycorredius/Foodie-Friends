@@ -15,5 +15,5 @@ class Recipe < ApplicationRecord
     has_many :categories, through: :recipe_categories
     has_many :instructions
 
-
+    # validates :name, presence :true 
 end
