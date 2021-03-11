@@ -9,7 +9,7 @@ class RecipeContainer extends Component{
     }
 
     handleClick = (e) =>{
-        this.props.fetchRecipe(e.target.dataset.target)
+        this.props.fetchRecipe(e.target.dataset.target);
     }
     render(){
            if(!this.props.recipes){

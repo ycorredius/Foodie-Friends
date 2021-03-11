@@ -11,7 +11,7 @@ export const recipeReducer = (state = [], action) => {
         case types.SHOW_RECIPE:
             return{
                 ...state,
-                recipe: action.recipe
+                recipe: action.showRecipe
             }
         default:
             return state

@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from 'axios';
-import END_POINT from '../actions/recipe/endpoint';
+import axios from "axios";
+import END_POINT from "../actions/recipe/endpoint";
+import { useHistory } from "react-router-dom";
 
 function NewRecipeForm() {
+  const history = useHistory();
+
   const recipeName = React.useState("");
   const recipePhotoUrl = React.useState("");
 
@@ -14,8 +17,8 @@ function NewRecipeForm() {
   const [ingredientIndexes, setIngredientIndexes] = React.useState([]);
   const [ingredientCounter, setIngredientCounter] = React.useState(0);
 
-  const [instructionIndexes, setInstructionIndexes]= React.useState([]);
-  const [instructionCounter, setInstructionCounter]= React.useState(0);
+  const [instructionIndexes, setInstructionIndexes] = React.useState([]);
+  const [instructionCounter, setInstructionCounter] = React.useState(0);
 
   const addCategory = () => {
     setIndexes((prevIndexes) => [...prevIndexes, counter]);
@@ -23,21 +26,26 @@ function NewRecipeForm() {
   };
 
   const addInstruction = () => {
-    setInstructionIndexes((prevInstructionIndexes) => [...prevInstructionIndexes, instructionCounter]);
+    setInstructionIndexes((prevInstructionIndexes) => [
+      ...prevInstructionIndexes,
+      instructionCounter,
+    ]);
     setInstructionCounter((prevCounter) => prevCounter + 1);
   };
 
   const addIngredient = () => {
-    setIngredientIndexes((prevIngredientIndexes) => [...prevIngredientIndexes, ingredientCounter]);
+    setIngredientIndexes((prevIngredientIndexes) => [
+      ...prevIngredientIndexes,
+      ingredientCounter,
+    ]);
     setIngredientCounter((prevIngredientCounter) => prevIngredientCounter + 1);
   };
 
   const onSubmit = (recipe) => {
-    axios.post(`${END_POINT}/recipes`,{recipe},{withCredentials:true})
-      .then(respone =>respone.json)
-      .then(()=>{
-        this.props.history.push("/recipes")
-      })
+    axios
+      .post(`${END_POINT}/recipes`, { recipe }, { withCredentials: true })
+      .then((response) => response.json)
+      .then(history.push("/recipes"));
   };
 
   const removeCategory = (index) => () => {
@@ -77,25 +85,31 @@ function NewRecipeForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset name={recipeName}>
         <label>Name: </label>
-        <input type="text" ref={register} name="name" placeholder="e.g. Spaghetti" />
+        <input
+          type="text"
+          ref={register}
+          name="name"
+          placeholder="e.g. Spaghetti"
+        />
       </fieldset>
 
       <fieldset name={recipePhotoUrl}>
         <label>Photo URL: </label>
-        <input type="text" ref={register} name="photo_url" placeholder="http://www.unsplash.com" />
+        <input
+          type="text"
+          ref={register}
+          name="photo_url"
+          placeholder="http://www.unsplash.com"
+        />
       </fieldset>
-      
+
       {instructionIndexes.map((index) => {
         const fieldname = `instructions[${index}]`;
         return (
           <fieldset name={fieldname} key={fieldname}>
             <label>
-              Step {index +1}: 
-              <input
-                type="text"
-                name={`${fieldname}`}
-                ref={register}
-              />
+              Step {index + 1}:
+              <input type="text" name={`${fieldname}`} ref={register} />
             </label>
 
             <button type="button" onClick={removeInstruction(index)}>
@@ -104,7 +118,7 @@ function NewRecipeForm() {
           </fieldset>
         );
       })}
-      
+
       <button type="button" onClick={addInstruction}>
         Add Instruction
       </button>
@@ -118,12 +132,8 @@ function NewRecipeForm() {
         return (
           <fieldset name={fieldName} key={fieldName}>
             <label>
-              Tag:  
-              <input
-                type="text"
-                name={`${fieldName}.tag`}
-                ref={register}
-              />
+              Tag:
+              <input type="text" name={`${fieldName}.tag`} ref={register} />
             </label>
 
             <button type="button" onClick={removeCategory(index)}>
@@ -146,12 +156,8 @@ function NewRecipeForm() {
         return (
           <fieldset name={fieldName} key={fieldName}>
             <label>
-              Name:  
-              <input
-                type="text"
-                name={`${fieldName}.name`}
-                ref={register}
-              />
+              Name:
+              <input type="text" name={`${fieldName}.name`} ref={register} />
             </label>
 
             <label>
@@ -175,9 +181,8 @@ function NewRecipeForm() {
       <button type="button" onClick={clearIngredient}>
         Clear Ingredients
       </button>
-      
 
-      <input type="submit" />      
+      <input type="submit" />
     </form>
   );
 }
