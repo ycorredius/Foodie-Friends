@@ -18,11 +18,38 @@ export class RecipeShow extends Component {
                 <h1>Not there yet</h1>
             </div>
         )}else{
-            return(
-                <div>
-                    <h1>This should work</h1>
-                </div>
-            )
+            return (
+              <div>
+                <img
+                  src={this.props.recipe.data.attributes.photo_url}
+                  alt="food"
+                />
+                <h1>{this.props.recipe.data.attributes.name}</h1>
+
+                {/* {
+                this.props.recipe.data.attributes.cateogries.map((item) => {
+                  return (
+                    <p>
+                      {item.stepNumber}: {item.content}
+                    </p>
+                  );
+                })} */}
+                {this.props.recipe.data.attributes.instructions.map((item) => {
+                  return (
+                    <p>
+                      {item.stepNumber}: {item.content}
+                    </p>
+                  );
+                })}
+                {this.props.recipe.data.attributes.ingredients.map((item) => {
+                  return (
+                    <p>
+                      {item.stepNumber}: {item.content}
+                    </p>
+                  );
+                })}
+              </div>
+            );
         }
     }
 }
