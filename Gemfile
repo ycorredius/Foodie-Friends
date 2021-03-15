@@ -2,12 +2,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+# gem 'jsonapi-serializer'
 # gem 'redis', '~> 4.0'
 gem 'annotate', '~> 3.1', '>= 3.1.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'fast_jsonapi', '~> 1.5'
-# gem 'jsonapi-serializer'
 gem 'foreman', '~> 0.87.1'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder', '~> 2.7'

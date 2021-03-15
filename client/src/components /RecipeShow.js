@@ -25,15 +25,16 @@ export class RecipeShow extends Component {
                   alt="food"
                 />
                 <h1>{this.props.recipe.data.attributes.name}</h1>
-
-                {/* {
-                this.props.recipe.data.attributes.cateogries.map((item) => {
+              <ul>
+                {
+                this.props.recipe.data.attributes.categories.map((item) => {
                   return (
                     <p>
-                      {item.stepNumber}: {item.content}
+                      {item.tag}
                     </p>
                   );
-                })} */}
+                })}
+                </ul>
                 {this.props.recipe.data.attributes.instructions.map((item) => {
                   return (
                     <p>
@@ -44,7 +45,7 @@ export class RecipeShow extends Component {
                 {this.props.recipe.data.attributes.ingredients.map((item) => {
                   return (
                     <p>
-                      {item.stepNumber}: {item.content}
+                      {item.name}: {item.quantity}
                     </p>
                   );
                 })}

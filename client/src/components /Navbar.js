@@ -7,9 +7,6 @@ const NavBar = () => (
             <Link to="/recipes">
                 <p>Search Recipes</p>
             </Link>
-            <Link>                
-                <p>Find Recipe</p>
-            </Link>
             <Link to="/new_recipe">
                 <p>Create New Recipe</p>
             </Link>
