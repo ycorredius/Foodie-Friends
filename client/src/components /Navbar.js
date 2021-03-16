@@ -13,6 +13,9 @@ const NavBar = () => (
             <Link>
                 <p>My Saved Recipes</p>
             </Link>
+            <Link to='/sign_up'>
+                Signup
+            </Link> 
         </ul>
     </div>
 )
