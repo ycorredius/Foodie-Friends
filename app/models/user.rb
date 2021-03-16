@@ -10,6 +10,12 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-    #//TODO: find a simple and elegant user authentication path. 
+    has_secure_password
+
+    # validates :userName, presence: true
+    # validates :email, presence: true
+    # validates :email, uniqueness: true
+    # validates :password_digest, presence: true   
+    
     
 end

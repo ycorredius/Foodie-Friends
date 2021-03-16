@@ -10,9 +10,8 @@ class Signup extends React.Component {
             userName:'',
             email: '',
             password: '',
-            password_confirmation: '',
-            signUpErrors: ""
-        }
+            password_confirmation: ''
+         }
 
     }
 
@@ -26,7 +25,8 @@ class Signup extends React.Component {
     handleOnSubmit = (e) => {
         e.preventDefault();
         this.props.signup(this.state)
-            .then(() => {
+            .then((data) => {
+                debugger
                 this.props.history.push("/dashboard")
             })
     }

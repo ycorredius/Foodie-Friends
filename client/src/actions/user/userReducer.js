@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from './userTypes';
 
 const initialState = {
     logged_in: false,
@@ -6,7 +6,7 @@ const initialState = {
     errors: []
 }
 
-export default (state = initialState, action) => {
+export const userReducer =(state = initialState, action) => {
     switch (action.type) {
         case types.AUTHENTICATION_SUCCESS:
             return {
