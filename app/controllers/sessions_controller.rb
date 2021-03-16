@@ -3,9 +3,9 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
     if @user && @user.password_digest == session_params[:password]
       login!
+      @user = 
       render json: {
         logged_in: true,
-        user: @user
       }
     else
       render json: { 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   def is_logged_in?
       if logged_in? && current_user
         render json: {
-          user: current_user,
+          user: UserSerializer.new(current_user).serialized_json,
           logged_in: true
         }
       else

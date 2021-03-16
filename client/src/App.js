@@ -5,12 +5,13 @@ import { fetchRecipes } from './actions/recipe/recipeActions';
 import {BrowserRouter as Router} from "react-router-dom";
 import Banner from './components /Banner';
 import Routes from './components /Routes';
+import UserContainer from './containers/UserContainer';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <NavBar/>
+        <UserContainer/>
         <Banner/>
         <Routes/>
       </Router>

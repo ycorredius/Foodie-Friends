@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../../actions/user/userActions'
-
+//TODO: Incorporate field validations with error message alerts.
 class Signup extends React.Component {
     constructor(props) {
         super(props);
