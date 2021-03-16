@@ -42,8 +42,7 @@ function NewRecipeForm() {
   };
 
   const onSubmit = (recipe) => {
-    axios
-      .post(`${END_POINT}/recipes`, { recipe }, { withCredentials: true })
+    axios.post(`${END_POINT}/recipes`, { recipe }, { withCredentials: true })
       .then((response) => response.json)
       .then(history.push("/recipes"));
   };

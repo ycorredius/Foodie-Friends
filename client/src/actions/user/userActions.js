@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from './userTypes';
 import axios from 'axios';
 
 const API_URL = "http://localhost:3000"
@@ -33,7 +33,6 @@ const authSessionStatus = (user) => {
 }
 
 export const signup = (user) => {
-    const newUser = user
     return dispatch => {
         return axios.post(`${API_URL}/users`, { user }, { withCredentials: true })
             .then(({ data }) => {

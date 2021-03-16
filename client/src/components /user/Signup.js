@@ -1,46 +1,83 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { connect } from 'react-redux';
+import { signup } from '../../actions/user/userActions'
+
+class Signup extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userName:'',
+            email: '',
+            password: '',
+            password_confirmation: '',
+            signUpErrors: ""
+        }
+
+    }
+
+    handleOnChange = (event) => {
+        const { name, value } = event.target
+        this.setState({
+            [name]: value
+        })
+    }
+
+    handleOnSubmit = (e) => {
+        e.preventDefault();
+        this.props.signup(this.state)
+            .then(() => {
+                this.props.history.push("/dashboard")
+            })
+    }
 
 
-const SignupSchema = yup.object().shape({
-    userName: yup.string().required(),
-    email: yup.string().email().required(),
-    password_digest: yup.string().required('Password is required'),
-    password_confirmation: yup.string().oneOf([yup.ref('password_digest'),null],'Passwords must match')
-});
-
-export default function Signup() {
-    const { register, handleSubmit, errors } = useForm({
-        resolver: yupResolver(SignupSchema)
-    });
-
-    const onSubmit = (data) => {
-        console.log(data)
-    };
-
-    return (
-        <form onSubmit={handleSubmit(onSubmit)} >
-            <label>User Name: </label>
-            <input type="text" name="userName" ref={register} />
-            {errors.UserName && <p>{errors.userName.message}</p>}
-
-            <label>Email: </label>
-            <input type="text" name="email" ref={register} />
-            {errors.email && <p>{errors.email.message}</p>}
-
-            <label>Password: </label>
-            <input type="password" name="password_digest" ref={register}/>
-            {errors.password_digest && <p>{errors.password_digest.message}</p>}
-
-            <label>Password Confirmation</label>
-            <input type="password" name="password_confirmation" ref={register}/> 
-            {errors.password_confirmation && <p>{errors.password_confirmation.message}</p>}
-             
-            <input type="submit"/>
-        </form>
-    )
-
+    render() {
+        const { userName, email, password, password_confirmation } = this.state
+        return (
+            <div>
+                <h1>Signup Here!</h1>
+                <form onSubmit={this.handleOnSubmit}>
+                    <div>
+                        <label>User Name: </label>
+                        <input type="text"
+                            name="userName"
+                            value={userName}
+                            onChange={this.handleOnChange} />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Email: </label>
+                        <input type="text"
+                            name="email"
+                            value={email}
+                            onChange={this.handleOnChange}
+                        />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Password: </label>
+                        <input type="password"
+                            name="password"
+                            value={password}
+                            onChange={this.handleOnChange} />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Password Confirmation: </label>
+                        <input type="password"
+                            name="password_confirmation"
+                            value={password_confirmation}
+                            onChange={this.handleOnChange} />
+                    </div>
+                    <br />
+                    <div>
+                        <input type="submit" />
+                    </div>
+                </form>
+            </div>
+        )
+    }
 }
 
+export default connect(null, { signup })(Signup)
