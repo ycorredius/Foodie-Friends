@@ -1,8 +1,7 @@
 import { Component } from "react";
 import {fetchRecipes,fetchRecipe} from '../actions/recipe/recipeActions'
 import {connect} from 'react-redux'
-import { Recipes } from "../components /Recipes";
-
+import {Recipes} from '../components /recipes/Recipes'
 class RecipeContainer extends Component{
     componentDidMount(){
         this.props.fetchRecipes(this.state)

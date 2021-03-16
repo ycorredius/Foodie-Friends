@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import {fetchRecipe} from '../actions/recipe/recipeActions'
+import {fetchRecipe} from '../../actions/recipe/recipeActions'
 
 export class RecipeShow extends Component {
     constructor(props){

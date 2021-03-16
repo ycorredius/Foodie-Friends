@@ -1,0 +1,36 @@
+The purpose the application is to create a recipe album some can use to save recipes in one place.
+
+How to accomplish:
+
+User requierments
+    -Create a user interface that allow for recipe searches.
+        * make a search method in recipe class. 
+        * Ensure recipe search excludes private recipes. 
+    -Create a user interface to enter recipes.
+    -Create a user interface to search by main ingredients i.e. beef, chicken, broccolli...
+        *this should be predefined ingredients that are fed to the user. 
+        *if the ingredient exist and is not listed there should be some sort of process to all for it to be added. 
+    -Allow user to edit recipes.
+        *users should only be able to edit their own recipe. 
+    -Allow user to delete recipes
+        *when a recipe is deleted it should not be completely deleted if it is public.  
+    -Allow users to copy another recipe to their recipe book.
+        *This should create a recipe unique to the user. 
+    -Allow users to make recipes private.
+        *private recipes are unique to the user a should not be shown in a search result. 
+    -Users should be give a chronological list of posts people follow. 
+Recipe requierments
+    -Build a comment system for recipes. 
+    -Give user catgories or tags to label their recipes.
+    -Find a way to store data in the ingredient and category data in order no to constantly have to pull from the backend. 
+    -If there is a ingredient not listed give users a way to enter the ingredient into the database to be stored for later uses. 
+Comment requierments
+    -Allow users to comment on other peoples recipe.
+    -Allow the recipe owner the ability to moderate the recipe comments. 
+    -Allow users to respond to commments
+Follower requierments
+    -Followers should be able to curate the list of people's post they want to see. 
+    -Followers should be able to unfollow.
+Post requirements 
+    -User should be able to choose to post a recipe they have created.
+    -Post should be able to made private. 

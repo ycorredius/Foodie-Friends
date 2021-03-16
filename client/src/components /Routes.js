@@ -1,8 +1,8 @@
 import React from 'react'
 import RecipeContainer from '../containers/RecipeContainer'
 import {Switch,Route} from 'react-router-dom'
-import NewRecipeForm from './NewRecipeForm';
-import RecipeShow from './RecipeShow'
+import NewRecipeForm from './recipes/NewRecipeForm';
+import RecipeShow from './recipes/RecipeShow'
 
 export const Routes = () => ( 	
     <div>
