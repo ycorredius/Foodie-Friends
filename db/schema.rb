@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_051553) do
+ActiveRecord::Schema.define(version: 2021_03_17_062323) do
 
   create_table "categories", force: :cascade do |t|
     t.string "tag"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_051553) do
     t.string "photo_url", default: "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8Zm9vZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "sessions", force: :cascade do |t|

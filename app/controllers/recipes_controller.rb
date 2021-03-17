@@ -7,8 +7,6 @@ class RecipesController < ApplicationController
     end
 
     def create
-      #FIX_ME: this is just boiler plate needs customized finish
-      #
         @recipe = Recipe.new(name: params[:recipe][:name],photo_url: params[:recipe][:photo_url])
         
         if params[:recipe][:ingredients]
