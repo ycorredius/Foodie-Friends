@@ -17,8 +17,6 @@ export const userReducer =(state = initialState, action) => {
         case types.AUTHENTICATION_FAILURE:
             return {
                 ...state,
-                logged_in: action.logged_in,
-                currentUser: {},
                 errors: action.errors || []
             }
         case types.AUTHENTICATION_SESSION_STATUS:

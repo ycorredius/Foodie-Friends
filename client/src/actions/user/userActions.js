@@ -12,7 +12,6 @@ export const authRequest = () => {
 export const authSuccess = (user) => {
     return {
         type: types.AUTHENTICATION_SUCCESS,
-        user: user.user,
         logged_in: user.logged_in
     }
 }
@@ -20,7 +19,7 @@ export const authSuccess = (user) => {
 const authFailure = (errors) => {
     return {
         type: types.AUTHENTICATION_FAILURE,
-        errors: errors
+        errors: errors.response.data
     }
 }
 

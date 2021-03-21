@@ -8,7 +8,6 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = Recipe.new(name: params[:recipe][:name],photo_url: params[:recipe][:photo_url])
-        
         if params[:recipe][:ingredients]
           params[:recipe][:ingredients].each do |f|
             @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
@@ -26,8 +25,9 @@ class RecipesController < ApplicationController
             @recipe.instructions.new(stepNumber: v,content:x)
           end 
         end
-        
+        binding.pry
         if @recipe.save
+          binding.pry
           flash[:success] = "Recipe successfully created"
           options = {}
           options[:include] =[:instructions, :'instructions.stepNumber',:'instructions.content',:ingredients,:'ingredients.quantity',:'ingredients.name'] 

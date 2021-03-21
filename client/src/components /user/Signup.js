@@ -5,14 +5,13 @@ import { signup } from '../../actions/user/userActions'
 class Signup extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             userName:'',
             email: '',
             password: '',
-            password_confirmation: ''
+            password_confirmation: '',
+            errors: []
          }
-
     }
 
     handleOnChange = (event) => {
@@ -26,11 +25,12 @@ class Signup extends React.Component {
         e.preventDefault();
         this.props.signup(this.state)
             .then((data) => {
-                debugger
-                this.props.history.push("/dashboard")
+                this.props.history.push("/recipes")
+            })
+            .catch( (errors) =>{
+               window.alert(this.props.errors)
             })
     }
-
 
     render() {
         const { userName, email, password, password_confirmation } = this.state
@@ -80,4 +80,9 @@ class Signup extends React.Component {
     }
 }
 
-export default connect(null, { signup })(Signup)
+const mapStateToProps = ({userReducer}) =>{
+    return{
+        error: userReducer.errors.errors
+    }
+}
+export default connect(mapStateToProps, { signup })(Signup)

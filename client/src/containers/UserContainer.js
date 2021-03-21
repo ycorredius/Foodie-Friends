@@ -26,7 +26,8 @@ class UserContainer extends React.Component {
 const mapStateToProps = ({ userReducer }) => {
     return {
         user: userReducer.currentUser,
-        logged_in: userReducer.logged_in
+        logged_in: userReducer.logged_in,
+        error: userReducer.errors
     }
 }
 
