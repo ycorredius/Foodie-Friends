@@ -14,7 +14,8 @@ class User < ApplicationRecord
     has_many :recipes
 
     validates :userName, presence: true
+    validates :userName, uniqueness: true
     validates :email, presence: true
-    validates :email, uniqueness: true
+    validates :email, uniqueness: true	
     validates :password_digest, presence: true   
 end

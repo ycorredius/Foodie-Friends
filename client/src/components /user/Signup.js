@@ -22,15 +22,22 @@ class Signup extends React.Component {
     }
 
     handleOnSubmit = (e) => {
-        e.preventDefault();
+        debugger
+        e.preventDefault()
         this.props.signup(this.state)
             .then((data) => {
                 this.props.history.push("/recipes")
             })
             .catch( (errors) =>{
-               window.alert(this.props.errors)
+               alert(this.props.error)
+               this.props.history.push("/sign_up")
             })
     }
+    // handleErrors = (errors) => {
+    //     <ul>
+    //         this.props.error.map( error => ( `<li>$[error]</li>`))
+    //     </ul>
+    // }
 
     render() {
         const { userName, email, password, password_confirmation } = this.state

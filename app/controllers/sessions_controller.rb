@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: session_params[:email])
-    binding.pry
     if @user && @user.password_digest == session_params[:password]
       login!
       @user = 
