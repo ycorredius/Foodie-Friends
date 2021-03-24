@@ -29,6 +29,7 @@ class SessionsController < ApplicationController
       end
     end
   def destroy
+      binding.pry 
       logout!
       render json: {
         status: 200,

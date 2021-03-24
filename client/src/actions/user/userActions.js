@@ -3,11 +3,11 @@ import axios from 'axios';
 
 const API_URL = "http://localhost:3000"
 
-export const authRequest = () => {
-    return {
-        type: types.AUTHENTICATION_REQUEST
-    }
-}
+// export const authRequest = () => {
+//     return {
+//         type: types.AUTHENTICATION_REQUEST
+//     }
+// }
 
 export const authSuccess = (user) => {
     return {
@@ -66,7 +66,7 @@ export const sessionStatus = () => {
         return axios.get(`${API_URL}/logged_in`, { withCredentials: true })
             .then(({ data }) => {
                 return dispatch(authSessionStatus(data))
-            })
+            }) 
             .catch((errors) => {
                 dispatch(authFailure(errors))
             })
@@ -75,9 +75,11 @@ export const sessionStatus = () => {
 
 export const logout = () => {
     return dispatch => {
-        localStorage.clear();
-        return dispatch({
-            type: types.LOGOUT
-        });
+        return axios.delete(`${API_URL}/logout`)
+        .then(() =>{
+            return dispatch({
+                type: types.LOGOUT
+            });
+        })
     }
 }
