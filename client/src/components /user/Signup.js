@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../../actions/user/userActions'
-//TODO: Incorporate field validations with error message alerts.
+
 class Signup extends React.Component {
     constructor(props) {
         super(props);
@@ -21,19 +21,15 @@ class Signup extends React.Component {
         })
     }
 
+    //TODO: CREATE AN ERROR MESSAGE FOR INVALID EMAIL. AND PASSWORD CONFIRMATION AND PASSWORD DONT MATCH
+    //POTENTIALLY INCORPORATE A HOOK TO HANDLE ERRORS FOR US. 
     handleOnSubmit = (e) => {
         e.preventDefault()
         this.props.signup(this.state)
-            .then((data) => {
-
+            .then(() => {
                 this.props.history.push("/recipes")
             })
     }
-    // handleErrors = (errors) => {
-    //     <ul>
-    //         this.props.error.map( error => ( `<li>$[error]</li>`))
-    //     </ul>
-    // }
 
     render() {
         const { userName, email, password, password_confirmation } = this.state

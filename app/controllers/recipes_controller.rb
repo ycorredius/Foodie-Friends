@@ -25,9 +25,7 @@ class RecipesController < ApplicationController
             @recipe.instructions.new(stepNumber: v,content:x)
           end 
         end
-        binding.pry
         if @recipe.save
-          binding.pry
           flash[:success] = "Recipe successfully created"
           options = {}
           options[:include] =[:instructions, :'instructions.stepNumber',:'instructions.content',:ingredients,:'ingredients.quantity',:'ingredients.name'] 

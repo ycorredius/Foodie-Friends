@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   def is_logged_in?
       if logged_in? && current_user
         render json: {
-          user: UserSerializer.new(current_user).serialized_json,
+          user: current_user,
           logged_in: true
         }
       else
@@ -29,7 +29,6 @@ class SessionsController < ApplicationController
       end
     end
   def destroy
-      binding.pry 
       logout!
       render json: {
         status: 200,

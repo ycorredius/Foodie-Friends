@@ -42,6 +42,7 @@ function NewRecipeForm() {
   };
 
   const onSubmit = (recipe) => {
+    recipe.preventDefault();
     axios.post(`${END_POINT}/recipes`, { recipe }, { withCredentials: true })
       .then((response) => response.json)
       .then(history.push("/recipes"));
@@ -81,7 +82,7 @@ function NewRecipeForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit((onSubmit)=>{})}>
       <fieldset name={recipeName}>
         <label>Name: </label>
         <input
@@ -180,7 +181,7 @@ function NewRecipeForm() {
       <button type="button" onClick={clearIngredient}>
         Clear Ingredients
       </button>
-
+      <input type="hidden" ref={register} name="user_id" />
       <input type="submit" />
     </form>
   );

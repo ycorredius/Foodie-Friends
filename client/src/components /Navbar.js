@@ -7,18 +7,12 @@ const NavBar = (props) => {
             <div>
                 <ul>
                     <Link to="/recipes">
-                        <p>Search Recipes</p>
-                    </Link>
-                    <Link to="/new_recipe">
-                        <p>Create New Recipe</p>
-                    </Link>
-                    <Link>
-                        <p>My Saved Recipes</p>
+                        <p>Recipes</p>
                     </Link>
                     <Link to="/sign_up">
                         Sign Up
                     </Link>
-                    <Link to="login">
+                    <Link to="/login">
                         Login
                     </Link>
                 </ul>
@@ -29,7 +23,7 @@ const NavBar = (props) => {
             <div>
                 <ul>
                     <Link to="/recipes">
-                        <p>Search Recipes</p>
+                        <p>Recipes</p>
                     </Link>
                     <Link to="/new_recipe">
                         <p>Create New Recipe</p>

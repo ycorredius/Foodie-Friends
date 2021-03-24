@@ -1,12 +1,12 @@
 import { Component } from "react";
-import {fetchRecipes,fetchRecipe} from '../actions/recipe/recipeActions'
-import {connect} from 'react-redux'
-import {Recipes} from '../components /recipes/Recipes'
+import {fetchRecipes,fetchRecipe} from '../actions/recipe/recipeActions';
+import {connect} from 'react-redux';
+import {Recipes} from '../components /recipes/Recipes';
+
 class RecipeContainer extends Component{
     componentDidMount(){
         this.props.fetchRecipes(this.state)
     }
-
     handleClick = (e) =>{
         this.props.fetchRecipe(e.target.dataset.target);
     }
@@ -26,6 +26,7 @@ class RecipeContainer extends Component{
     }
 }
 const mapStateToProps = (state) =>{
+  
     return{
         recipes: state.recipeReducer.recipes
     }
