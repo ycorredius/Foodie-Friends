@@ -22,15 +22,11 @@ class Signup extends React.Component {
     }
 
     handleOnSubmit = (e) => {
-        debugger
         e.preventDefault()
         this.props.signup(this.state)
             .then((data) => {
+
                 this.props.history.push("/recipes")
-            })
-            .catch( (errors) =>{
-               alert(this.props.error)
-               this.props.history.push("/sign_up")
             })
     }
     // handleErrors = (errors) => {
