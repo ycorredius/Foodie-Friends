@@ -5,7 +5,6 @@ import NewRecipeForm from './recipes/NewRecipeForm';
 import RecipeShow from './recipes/RecipeShow'
 import Signup from './user/Signup'
 import Login from './user/Login'
-import { connect } from 'react-redux';
 
 
 export const Routes = () => ( 	

@@ -7,7 +7,8 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = current_user.recipes.build(name: params[:recipe][:name],photo_url: params[:recipe][:photo_url])
+        binding.pry
+        @recipe = current_user.recipes.build(name: params[:recipe][:name])
         if params[:recipe][:ingredients]
           params[:recipe][:ingredients].each do |f|
             @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
@@ -44,5 +45,9 @@ class RecipesController < ApplicationController
 
     def set_recipe
       @recipe = Recipe.find_by_id(params[:id])
+    end
+
+    def recipe_params
+      params.require(:recipe).permit(:name,:image,:ingredients,:instructions,:categories)
     end
 end

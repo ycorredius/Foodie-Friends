@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'bcrypt', '~> 3.1.7'
+# gem "image_processing", "~> 1.0"
 # gem 'jsonapi-serializer'
 # gem 'redis', '~> 4.0'
 gem 'annotate', '~> 3.1', '>= 3.1.1'

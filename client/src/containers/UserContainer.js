@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sessionStatus,logout } from '../actions/user/userActions'
-import NavBar from "../components /Navbar"
+import NavBar from "../components/NavigationBar"
 
 class UserContainer extends React.Component {
     componentDidMount() {
