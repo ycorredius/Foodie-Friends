@@ -181,7 +181,6 @@ function NewRecipeForm() {
       <button type="button" onClick={clearIngredient}>
         Clear Ingredients
       </button>
-      <input type="hidden" ref={register} name="user_id" />
       <input type="submit" />
     </form>
   );

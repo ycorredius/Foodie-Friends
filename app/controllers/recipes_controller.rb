@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.new(name: params[:recipe][:name],photo_url: params[:recipe][:photo_url])
+        @recipe = current_user.recipes.build(name: params[:recipe][:name],photo_url: params[:recipe][:photo_url])
         if params[:recipe][:ingredients]
           params[:recipe][:ingredients].each do |f|
             @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
