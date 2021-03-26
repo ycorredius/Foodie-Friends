@@ -45,9 +45,12 @@ function NewRecipeForm() {
 
   const onSubmit = (e) => {
     let formData = new FormData();
-    formData.append('imageFile',imageFile)
-    formData.append('name',recipeName)
-    debugger
+    formData.append('imageFile',e.imageFile[0])
+    formData.append('name',e.name)
+    formData.append('ingredients',e.ingredients)
+    formData.append('instructions',e.intstructions)
+    formData.append('categories',e.categories)
+    
     axios.post(`${END_POINT}/recipes`,formData, { 
       withCredentials: true})
       .then((response) => response.json)

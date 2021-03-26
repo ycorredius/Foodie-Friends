@@ -7,22 +7,23 @@ class RecipesController < ApplicationController
     end
 
     def create
-        binding.pry
-        @recipe = current_user.recipes.build(name: params[:recipe][:name])
-        if params[:recipe][:ingredients]
-          params[:recipe][:ingredients].each do |f|
+      @recipe = current_user.recipes.build(name: params[:name])
+      @recipe.image.attach(params[:imageFile])
+      binding.pry
+        if params[:ingredients]
+          params[:ingredients].each do |f|
             @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
           end 
         end
 
-        if params[:recipe][:categories]
-          params[:recipe][:categories].each do |f|
+        if params[:categories]
+          params[:categories].each do |f|
             @recipe.categories.new(tag: f[:tag])
           end 
         end
 
-        if params[:recipe][:instructions]
-          params[:recipe][:instructions].each_with_index do |x,v|
+        if params[:instructions]
+          params[:instructions].each_with_index do |x,v|
             @recipe.instructions.new(stepNumber: v,content:x)
           end 
         end
