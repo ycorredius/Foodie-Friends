@@ -21,7 +21,7 @@ gem 'sqlite3', '~> 1.4'
 gem 'turbolinks', '~> 5'
 gem 'typhoeus', '~> 1.4'
 gem 'webpacker', '~> 5.0'
-
+ 
 group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

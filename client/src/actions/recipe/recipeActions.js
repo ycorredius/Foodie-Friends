@@ -29,7 +29,6 @@ export const fetchRecipe = (recipeData) =>{
         return axios.get(`${END_POINT}/recipes/${recipeData}`)
             .then(response => response.data)
             .then(res => {
-                debugger
                 dispatch(showRecipe(res))})
     }
 }
