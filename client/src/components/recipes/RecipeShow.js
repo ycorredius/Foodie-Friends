@@ -15,11 +15,10 @@ export class RecipeShow extends Component {
         </div>
       )
     } else {
-      const{id,name,ingredients,instructions,categories,image} = this.props.recipe
       return (
         <div>
           <img
-            src={image}
+            src={this.props.recipe.data.attributes.avatar.record.image}
             alt="food"
           />
           <h1>{this.props.recipe.data.attributes.name}</h1>

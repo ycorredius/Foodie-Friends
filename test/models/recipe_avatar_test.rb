@@ -1,18 +1,14 @@
 # == Schema Information
 #
-# Table name: recipes
+# Table name: recipe_avatars
 #
 #  id         :integer          not null, primary key
-#  image      :string
-#  image_url  :string
-#  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
 #
 require "test_helper"
 
-class RecipeTest < ActiveSupport::TestCase
+class RecipeAvatarTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

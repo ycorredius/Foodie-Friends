@@ -67,6 +67,11 @@ ActiveRecord::Schema.define(version: 2021_03_30_062148) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recipe_avatars", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "recipe_categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -86,6 +91,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_062148) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "image_url"
     t.string "image"
   end
 

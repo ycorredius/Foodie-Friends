@@ -8,16 +8,15 @@ class RecipesController < ApplicationController
 
     def create
       @recipe = current_user.recipes.build(name: params[:name])
-      if params[:imagefile] != ''
-        @recipe.avatar.attach(params[:imageFile])
-        photo = url_for(@recipe.avatar)
-      end
+        
+        binding.pry
+        
         if params[:ingredients]
           params[:ingredients].each do |f|
             @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
           end 
         end
-
+        
         if params[:categories]
           params[:categories].each do |f|
             @recipe.categories.new(tag: f[:tag])
@@ -29,7 +28,7 @@ class RecipesController < ApplicationController
             @recipe.instructions.new(stepNumber: v,content:x)
           end 
         end
-        if @recipe.save && @recipe.update(image: photo)
+        if @recipe.save 
           flash[:success] = "Recipe successfully created"
           options = {}
           options[:include] =[:instructions, :'instructions.stepNumber',:'instructions.content',:ingredients,:'ingredients.quantity',:'ingredients.name'] 

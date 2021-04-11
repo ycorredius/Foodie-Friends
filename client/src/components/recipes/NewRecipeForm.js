@@ -44,16 +44,26 @@ function NewRecipeForm() {
   };
 
   const onSubmit = (e) => {
+    // debugger
     let formData = new FormData();
     formData.append('imageFile',e.imageFile[0])
-    formData.append('name',e.name)
-    formData.append('ingredients',e.ingredients)
-    formData.append('instructions',e.intstructions)
-    formData.append('categories',e.categories)
+    // formData.append('name',e.name)
+    // formData.append('ingredients',e.ingredients.map(ingredient => {
+    //   return ingre
+    // }))
+    // formData.append('instructions',e.instructions.map(instruction =>(instruction)))
+    // formData.append('categories',e.categories.map(category =>(category)))
     
-    axios.post(`${END_POINT}/recipes`,formData, { 
-      withCredentials: true})
+    axios
+      .post(`${END_POINT}/recipes`, e, {
+        withCredentials: true,
+      })
       .then((response) => response.json)
+      .then(
+        axios.post(`${END_POINT}/recipes/${response.id}`, e, {
+          withCredentials: true,
+        })
+      )
       .then(history.push("/recipes"));
   };
 
