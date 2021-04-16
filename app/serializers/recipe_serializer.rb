@@ -12,7 +12,7 @@
 #
 class RecipeSerializer
     include FastJsonapi::ObjectSerializer
-	attributes :id,:name, :instructions,:categories,:ingredients,:avatar,:image_url
+	attributes :id,:name, :instructions,:categories,:ingredients,:avatar,:image_url,:user_id
     
     has_many :recipe_ingredients
     has_many :ingredients, through: :recipe_ingredients

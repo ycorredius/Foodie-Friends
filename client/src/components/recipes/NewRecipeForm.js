@@ -12,6 +12,7 @@ function NewRecipeForm() {
 
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
+  
   const { register, handleSubmit } = useForm();
 
   const [ingredientIndexes, setIngredientIndexes] = React.useState([]);

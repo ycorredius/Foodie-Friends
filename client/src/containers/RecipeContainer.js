@@ -3,6 +3,7 @@ import {fetchRecipes,fetchRecipe} from '../actions/recipe/recipeActions';
 import {connect} from 'react-redux';
 import {Recipes} from '../components/recipes/Recipes';
 
+//TODO: Build out user recipe retrieveal front end work. 
 class RecipeContainer extends Component{
     componentDidMount(){
         this.props.fetchRecipes(this.state)
@@ -26,7 +27,6 @@ class RecipeContainer extends Component{
     }
 }
 const mapStateToProps = (state) =>{
-  
     return{
         recipes: state.recipeReducer.recipes
     }

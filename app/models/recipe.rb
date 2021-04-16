@@ -10,6 +10,8 @@
 #  updated_at :datetime         not null
 #  user_id    :integer
 #
+
+#TODO: Build out a recipe search for category and ingredients separately.
 class Recipe < ApplicationRecord
     belongs_to :user
     has_many :recipe_ingredients

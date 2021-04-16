@@ -10,19 +10,19 @@ class RecipesController < ApplicationController
       @recipe = current_user.recipes.build(name: params[:name])
         if params[:ingredients]
           params[:ingredients].each do |f|
-            @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
+            @recipe.ingredients.build(name: f[:name], quantity: f[:quantity])
           end 
         end
         
         if params[:categories]
           params[:categories].each do |f|
-            @recipe.categories.new(tag: f[:tag])
+            @recipe.categories.build(tag: f)
           end 
         end
 
         if params[:instructions]
           params[:instructions].each_with_index do |x,v|
-            @recipe.instructions.new(stepNumber: v,content:x)
+            @recipe.instructions.build(stepNumber: v+1,content:x)
           end 
         end
 
@@ -33,30 +33,45 @@ class RecipesController < ApplicationController
           render json: RecipeSerializer.new(@recipe,options).serialized_json
         else
           flash[:error] = "Something went wrong"
-          render json: flash
+          render json: flash,status:500
         end
     end
     
     def show
       options = {}
-      options[:include] =[:instructions,:ingredients,:categories,:image_url] 
-      render json: RecipeSerializer.new(@recipe,options).serialized_json
+      render json: RecipeSerializer.new(@recipe).serialized_json
     end
 
     def update
       
       binding.pry
       
-      @recipe = Reciepe
-      Reciepe.find(params[:id])
+      @recipe = Recipe.find_by_id(params[:id])
         if @recipe.update_attributes(params[:recipe])
           flash[:success] = "Reciepe was successfully updated"
           render json: RecipeSerializer.new(@recipe).serialized_json
         else
           flash[:error] = "Something went wrong"
-          render 'edit'
         end
     end
+  def upload_image
+    @recipe = Recipe.find_by_id(params[:id])
+    if @recipe.image_url
+      @recipe.avatar.purge
+      @recipe.avatar.attach(params[:image])
+      photo = url_for(@recipe.avatar)  
+    else
+      @recipe.avatar.attach(params[:image])
+      photo = url_for(@recipe.avatar)  
+    end
+
+    if @recipe.update(image_url: photo)
+      render json: RecipeSerializer.new(@recipe).serialized_json
+    else
+      flash[:error] = "Something went wrong"
+      render json: flash,status:500
+    end
+  end
     
     private
 

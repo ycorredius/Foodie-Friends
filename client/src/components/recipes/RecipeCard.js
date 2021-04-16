@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom'
 const RecipeCard = (props) =>{
     
     const {id} = props.recipe
-    const{name,photo_url} = props.recipe.attributes
+    const{name,image_url} = props.recipe.attributes
     return(
         <div>
             <ul>
-                <img src={photo_url} alt="food"/>
+                <img src={image_url} alt="food"/>
                 <p> Name: {name}</p>
                 <Link to={`/recipes/${id}`}>
                     <button data-target={id} onClick={props.handleClick}> 
