@@ -4,13 +4,10 @@ class RecipesController < ApplicationController
   def index
         recipes = Recipe.all
         render json: RecipeSerializer.new(recipes).serializable_hash
-    end
+    end 
 
     def create
       @recipe = current_user.recipes.build(name: params[:name])
-        
-        binding.pry
-        
         if params[:ingredients]
           params[:ingredients].each do |f|
             @recipe.ingredients.new(name: f[:name], quantity: f[:quantity] )
@@ -28,10 +25,11 @@ class RecipesController < ApplicationController
             @recipe.instructions.new(stepNumber: v,content:x)
           end 
         end
+
         if @recipe.save 
           flash[:success] = "Recipe successfully created"
           options = {}
-          options[:include] =[:instructions, :'instructions.stepNumber',:'instructions.content',:ingredients,:'ingredients.quantity',:'ingredients.name'] 
+          options[:include] =[:instructions,:ingredients,:categories] 
           render json: RecipeSerializer.new(@recipe,options).serialized_json
         else
           flash[:error] = "Something went wrong"
@@ -40,9 +38,26 @@ class RecipesController < ApplicationController
     end
     
     def show
-      render json: RecipeSerializer.new(@recipe).serialized_json
+      options = {}
+      options[:include] =[:instructions,:ingredients,:categories,:image_url] 
+      render json: RecipeSerializer.new(@recipe,options).serialized_json
     end
 
+    def update
+      
+      binding.pry
+      
+      @recipe = Reciepe
+      Reciepe.find(params[:id])
+        if @recipe.update_attributes(params[:recipe])
+          flash[:success] = "Reciepe was successfully updated"
+          render json: RecipeSerializer.new(@recipe).serialized_json
+        else
+          flash[:error] = "Something went wrong"
+          render 'edit'
+        end
+    end
+    
     private
 
     def set_recipe

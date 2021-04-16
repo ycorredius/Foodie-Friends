@@ -4,13 +4,11 @@ import axios from "axios";
 import END_POINT from "../../actions/recipe/endpoint";
 import { useHistory } from "react-router-dom";
 import { Form,Button } from 'bootstrap-4-react';
-import FormData from 'form-data'
 
 function NewRecipeForm() {
   const history = useHistory();
 
   const recipeName = React.useState("");
-  const imageFile = React.useState("");
 
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
@@ -44,26 +42,11 @@ function NewRecipeForm() {
   };
 
   const onSubmit = (e) => {
-    // debugger
-    let formData = new FormData();
-    formData.append('imageFile',e.imageFile[0])
-    // formData.append('name',e.name)
-    // formData.append('ingredients',e.ingredients.map(ingredient => {
-    //   return ingre
-    // }))
-    // formData.append('instructions',e.instructions.map(instruction =>(instruction)))
-    // formData.append('categories',e.categories.map(category =>(category)))
-    
     axios
-      .post(`${END_POINT}/recipes`, e, {
-        withCredentials: true,
+      .post(`${END_POINT}/recipes`,e, {
+        withCredentials: true
       })
       .then((response) => response.json)
-      .then(
-        axios.post(`${END_POINT}/recipes/${response.id}`, e, {
-          withCredentials: true,
-        })
-      )
       .then(history.push("/recipes"));
   };
 
@@ -90,14 +73,17 @@ function NewRecipeForm() {
 
   const clearCategories = () => {
     setIndexes([]);
+    setCounter(0);
   };
 
   const clearInstructions = () => {
     setInstructionIndexes([]);
+    setInstructionCounter(0);
   };
 
   const clearIngredient = () => {
     setIngredientIndexes([]);
+    setIngredientCounter();
   };
 
   return (
@@ -147,7 +133,7 @@ function NewRecipeForm() {
             <fieldset name={fieldName} key={fieldName}>
               <label>
                 Tag:
-                <input type="text" name={`${fieldName}.tag`} ref={register} />
+                <input type="text" name={`${fieldName}`} ref={register} />
               </label>
 
               <button type="button" onClick={removeCategory(index)}>
@@ -168,7 +154,8 @@ function NewRecipeForm() {
 
         <Form.Group>
         {ingredientIndexes.map((index) => {
-          const fieldName = `ingredients[${index}]`;
+          const fieldName = `ingredients[${index}]`
+          ;
           return (
             <fieldset name={fieldName} key={fieldName}>
               <label>
@@ -198,12 +185,7 @@ function NewRecipeForm() {
         <Button type="button" onClick={clearIngredient}>
           Clear Ingredients
         </Button>
-        <fieldset name={imageFile}>
-          <Form.Group>
-            <label htmlFor="exampleControlsFile1">Image</label>
-            <input type="file" ref={register} name="imageFile" />
-          </Form.Group>
-        </fieldset>
+        
         <Button type="submit"> Create </Button>
      </Form>
   );

@@ -32,3 +32,8 @@ export const fetchRecipe = (recipeData) =>{
                 dispatch(showRecipe(res))})
     }
 }
+ 
+export const updateRecipe = (recipeData) =>{
+    debugger
+    axios.patch(`${END_POINT}/recipes/${recipeData}`)
+}
