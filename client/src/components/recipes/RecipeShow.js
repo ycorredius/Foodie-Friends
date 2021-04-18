@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchRecipe } from '../../actions/recipe/recipeActions'
 import {sessionStatus} from '../../actions/user/userActions'
+import UpdateRecipeForm from './UpdateRecipeForm';
 
 //BUG: Whenever a user logs out and logs back in clicks on show recipe. current user state shows as undefines. 
 // it then works when you refersh. 
 export class RecipeShow extends Component {
+  state = {editMode: false}
 
+  handleclick = (e) => {
+    this.props.fetchRecipe(e.target.value)
+  }
   componentDidMount() {
     this.props.sessionStatus();
     this.props.fetchRecipe(this.props.match.params.recipeId)
@@ -20,6 +25,7 @@ export class RecipeShow extends Component {
         </div>
       )
     } else {
+      if(!this.editMode){
       return (
         <div>
           <img
@@ -54,14 +60,20 @@ export class RecipeShow extends Component {
 
           {this.props.recipe.data.attributes.user_id == this.props.currentUserId?
           <div>
-            <Link to={`/recipe/${this.props.recipe.data.attributes.id}/upload_image`}>
+            <Link to={`/recipes/${this.props.recipe.data.attributes.id}/upload_image`}>
               <button>Upload Image</button>
             </Link>
-            <button>edit</button>
+            <Link to={`/recipes/${this.props.recipe.data.attributes.id}/edit`}>
+              <button value={this.props.recipe.data.attributes.id} onClick={this.handleclick}>
+                Edit
+              </button>
+            </Link>
           </div>:<div></div>}
          
         </div>
-      );
+      )} else{
+        <UpdateRecipeForm recipe={this.props.recipe}/>
+      }
     }
   }
 }
