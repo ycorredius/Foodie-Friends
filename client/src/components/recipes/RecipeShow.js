@@ -8,8 +8,24 @@ import UpdateRecipeForm from './UpdateRecipeForm';
 //BUG: Whenever a user logs out and logs back in clicks on show recipe. current user state shows as undefines. 
 // it then works when you refersh. 
 export class RecipeShow extends Component {
-  state = {editMode: false}
+  constructor(props){
+    super(props);
+    this.state = {
+      showEdit:false,
+      showUpload:false
+      // ingredients: this.props.ingredients,
+      // categories: this.props.categories,
+      // instructions: this.props.instructions
+    }
+    this.toggleEdit.bind(this)
+  }
 
+  toggleEdit= (e) => {
+    e.preventDefault();
+    this.setState({
+      showEdit: !this.state.showEdit
+    })
+  }
   handleclick = (e) => {
     this.props.fetchRecipe(e.target.value)
   }
@@ -25,60 +41,66 @@ export class RecipeShow extends Component {
         </div>
       )
     } else {
-      if(!this.editMode){
       return (
         <div>
-          <img
-            src={this.props.recipe.data.attributes.image_url}
-            alt="food"
-          />
-          <h1>{this.props.recipe.data.attributes.name}</h1>
-          <ul>
-            {
-              this.props.recipe.data.attributes.categories.map((item) => {
+          {this.state.showEdit ? (
+            <div>
+              <UpdateRecipeForm recipe={this.props.recipe}/>
+            </div>
+          ) : (
+            <div>
+              <img
+                src={this.props.recipe.data.attributes.image_url}
+                alt="food"
+              />
+              <h1>{this.props.recipe.data.attributes.name}</h1>
+              <ul>
+                {this.props.recipe.data.attributes.categories.map((item) => {
+                  return <p>{item.tag}</p>;
+                })}
+              </ul>
+              {this.props.recipe.data.attributes.instructions.map((item) => {
                 return (
                   <p>
-                    {item.tag}
+                    {item.stepNumber}: {item.content}
                   </p>
                 );
               })}
-          </ul>
-          {this.props.recipe.data.attributes.instructions.map((item) => {
-            return (
-              <p>
-                {item.stepNumber}: {item.content}
-              </p>
-            );
-          })}
-          {this.props.recipe.data.attributes.ingredients.map((item) => {
-            return (
-              <p>
-                {item.name}: {item.quantity}
-              </p>
-            );
-          })}
-
-          {this.props.recipe.data.attributes.user_id == this.props.currentUserId?
-          <div>
-            <Link to={`/recipes/${this.props.recipe.data.attributes.id}/upload_image`}>
-              <button>Upload Image</button>
-            </Link>
-            <Link to={`/recipes/${this.props.recipe.data.attributes.id}/edit`}>
-              <button value={this.props.recipe.data.attributes.id} onClick={this.handleclick}>
-                Edit
+              {this.props.recipe.data.attributes.ingredients.map((item) => {
+                return (
+                  <p>
+                    {item.name}: {item.quantity}
+                  </p>
+                );
+              })}
+            </div>
+          )}
+          {this.props.recipe.data.attributes.user_id ==
+          this.props.currentUserId ? (
+            <div>
+              <Link
+                to={`/recipes/${this.props.recipe.data.attributes.id}/upload_image`}
+              >
+                <button>Upload Image</button>
+              </Link>
+              <button
+                value={this.props.recipe.data.attributes.id}
+                onClick={this.toggleEdit}
+              >
+                {this.state.showEdit ? <div>Cancel</div> : <div>Edit</div>}
               </button>
-            </Link>
-          </div>:<div></div>}
-         
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
-      )} else{
-        <UpdateRecipeForm recipe={this.props.recipe}/>
-      }
+      );
     }
   }
 }
 
 const mapStateToProps = (state) => {
+
     return {
       recipe: state.recipeReducer.recipe,
       currentUserId: state.userReducer.currentUser.id?state.userReducer.currentUser.id:"none"

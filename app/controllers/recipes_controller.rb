@@ -21,8 +21,8 @@ class RecipesController < ApplicationController
         end
 
         if params[:instructions]
-          params[:instructions].each_with_index do |x,v|
-            @recipe.instructions.build(stepNumber: v+1,content:x)
+          params[:instructions].each_with_index do |x|
+            @recipe.instructions.build(content:x)
           end 
         end
 

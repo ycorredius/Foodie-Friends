@@ -89,7 +89,7 @@ function NewRecipeForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group>
+      <Form.Group>
         <fieldset name={recipeName}>
           <label>Name: </label>
           <input
@@ -99,38 +99,12 @@ function NewRecipeForm() {
             placeholder="e.g. Spaghetti"
           />
         </fieldset>
-        </Form.Group>
-        
-        {instructionIndexes.map((index) => {
-          const fieldname = `instructions[${index}]`;
-          return (
-            <Form.Group>
-            <fieldset name={fieldname} key={fieldname}>
-              <label>
-                Step {index + 1}:
-                <input type="text" name={`${fieldname}`} ref={register} />
-              </label>
+      </Form.Group>
 
-              <button type="button" onClick={removeInstruction(index)}>
-                remove
-              </button>
-            </fieldset>
-            </Form.Group>
-          );
-        })}
-
-        <Button type="button" onClick={addInstruction}>
-          Add Instruction
-        </Button>
-
-        <Button type="button" onClick={clearInstructions}>
-          Clear Instructions
-        </Button>
-
-        {indexes.map((index) => {
-          const fieldName = `categories[${index}]`;
-          return (
-            <Form.Group>
+      {indexes.map((index) => {
+        const fieldName = `categories[${index}]`;
+        return (
+          <Form.Group>
             <fieldset name={fieldName} key={fieldName}>
               <label>
                 Tag:
@@ -141,22 +115,21 @@ function NewRecipeForm() {
                 Remove
               </button>
             </fieldset>
-            </Form.Group>
-          );
-        })}
+          </Form.Group>
+        );
+      })}
 
-        <Button type="button" onClick={addCategory}>
-          Add Category
-        </Button>
+      <Button type="button" onClick={addCategory}>
+        Add Category
+      </Button>
 
-        <Button type="button" onClick={clearCategories}>
-          Clear Categories
-        </Button>
+      <Button type="button" onClick={clearCategories}>
+        Clear Categories
+      </Button>
 
-        <Form.Group>
+      <Form.Group>
         {ingredientIndexes.map((index) => {
-          const fieldName = `ingredients[${index}]`
-          ;
+          const fieldName = `ingredients[${index}]`;
           return (
             <fieldset name={fieldName} key={fieldName}>
               <label>
@@ -176,19 +149,45 @@ function NewRecipeForm() {
                 Remove
               </Button>
             </fieldset>
-            );
-          })}
-          </Form.Group>
-          <Button type="button" onClick={addIngredient} >
-            Add Ingredient
-          </Button>
+          );
+        })}
+      </Form.Group>
+      <Button type="button" onClick={addIngredient}>
+        Add Ingredient
+      </Button>
 
-        <Button type="button" onClick={clearIngredient}>
-          Clear Ingredients
-        </Button>
-        
-        <Button type="submit"> Create </Button>
-     </Form>
+      <Button type="button" onClick={clearIngredient}>
+        Clear Ingredients
+      </Button>
+
+      {instructionIndexes.map((index) => {
+        const fieldname = `instructions[${index}]`;
+        return (
+          <Form.Group>
+            <fieldset name={fieldname} key={fieldname}>
+              <label>
+                Step {index + 1}:
+                <input type="text" name={`${fieldname}`} ref={register} />
+              </label>
+
+              <button type="button" onClick={removeInstruction(index)}>
+                remove
+              </button>
+            </fieldset>
+          </Form.Group>
+        );
+      })}
+
+      <Button type="button" onClick={addInstruction}>
+        Add Instruction
+      </Button>
+
+      <Button type="button" onClick={clearInstructions}>
+        Clear Instructions
+      </Button>
+
+      <Button type="submit"> Create </Button>
+    </Form>
   );
 }
 
