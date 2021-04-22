@@ -43,17 +43,52 @@ class RecipesController < ApplicationController
     end
 
     def update
-      
-      binding.pry
-      
       @recipe = Recipe.find_by_id(params[:id])
-        if @recipe.update_attributes(params[:recipe])
-          flash[:success] = "Reciepe was successfully updated"
-          render json: RecipeSerializer.new(@recipe).serialized_json
-        else
-          flash[:error] = "Something went wrong"
+      @recipe.update(name: params[:name])
+        if params[:ingredients]
+          params[:ingredients].each do |f|
+            @ingredient = Ingredient.find_by_id(f[:id])
+            if @ingredient
+              @ingredient.update(name: f[:name], quantity: f[:quantity])
+            else
+              @recipe.ingredients.build(name: f[:name], quantity: f[:quantity])
+            end
+          end
         end
+        
+        if params[:categories]
+          params[:categories].each do |f|
+            @category = Category.find_by_id(f[:id])
+            if @category
+              @category.update(tag:f[:tag])
+            else
+              @recipe.categories.build(tag: f[:tag])
+            end
+          end
+        end
+
+        if params[:instructions]
+          params[:instructions].each do |f|
+            @instruction = Instruction.find_by_id(f[:id])
+            if @instruction
+              @instruction.update(content: f[:content])
+            else
+              @recipe.instructions.build()
+            end
+          end 
+        end 
+
+        if @recipe.save
+          options = {}
+          options[:include] =[:instructions,:ingredients,:categories] 
+          render json: RecipeSerializer.new(@recipe,options).serialized_json
+        else
+           flash[:error] = "Something went wrong"
+            render json: flash,status:500
+        end 
     end
+
+
   def upload_image
     @recipe = Recipe.find_by_id(params[:id])
     if @recipe.image_url

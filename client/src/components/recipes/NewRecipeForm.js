@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import axios from "axios";
 import END_POINT from "../../actions/recipe/endpoint";
 import { useHistory } from "react-router-dom";
@@ -131,24 +131,30 @@ function NewRecipeForm() {
         {ingredientIndexes.map((index) => {
           const fieldName = `ingredients[${index}]`;
           return (
-            <fieldset name={fieldName} key={fieldName}>
-              <label>
-                Name:
-                <input type="text" name={`${fieldName}.name`} ref={register} />
-              </label>
+            <Form>
+              <fieldset name={fieldName} key={fieldName}>
+                <label>
+                  Name:
+                  <input
+                    type="text"
+                    name={`${fieldName}.name`}
+                    ref={register}
+                  />
+                </label>
 
-              <label>
-                quantiy:
-                <input
-                  type="text"
-                  name={`${fieldName}.quantity`}
-                  ref={register}
-                />
-              </label>
-              <Button type="button" onClick={removeIngredient(index)}>
-                Remove
-              </Button>
-            </fieldset>
+                <label>
+                  quantiy:
+                  <input
+                    type="text"
+                    name={`${fieldName}.quantity`}
+                    ref={register}
+                  />
+                </label>
+                <Button type="button" onClick={removeIngredient(index)}>
+                  Remove
+                </Button>
+              </fieldset>
+            </Form>
           );
         })}
       </Form.Group>

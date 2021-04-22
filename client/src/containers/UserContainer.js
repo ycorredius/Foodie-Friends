@@ -2,14 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { sessionStatus,logout } from '../actions/user/userActions'
 import NavBar from "../components/NavigationBar"
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 
 
 class UserContainer extends React.Component {
-    constructor(props){
-        super(props)
-    }
-
     componentDidMount() {
         this.props.sessionStatus()
     }

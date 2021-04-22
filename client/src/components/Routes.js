@@ -11,7 +11,7 @@ import UpdateRecipeForm from './recipes/UpdateRecipeForm'
 export const Routes = () => (
   <div>
     <Switch>
-      <Route exact path={"/recipes"} render={() => <RecipeContainer />} />
+      
       <Route
         exact
         path={"/recipes/:recipeId"}
@@ -35,13 +35,17 @@ export const Routes = () => (
           <UploadImage props={props} recipeId={props.match.params.recipeId} />
         )}
       />
-      <Route
-        exaact
+
+      \\TODO: Fix routing between edit and recpie show
+      {/* <Route
+        exact
         path={"/recipes/:recipeId/edit"}
         render={(props) => (
           <UpdateRecipeForm props={props} />
         )}
-      />
+      /> */}
+
+      <Route path={"/"} render={() => <RecipeContainer />} />
     </Switch>
   </div>
 );

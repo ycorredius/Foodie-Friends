@@ -13,9 +13,6 @@ export class RecipeShow extends Component {
     this.state = {
       showEdit:false,
       showUpload:false
-      // ingredients: this.props.ingredients,
-      // categories: this.props.categories,
-      // instructions: this.props.instructions
     }
     this.toggleEdit.bind(this)
   }
@@ -26,18 +23,16 @@ export class RecipeShow extends Component {
       showEdit: !this.state.showEdit
     })
   }
-  handleclick = (e) => {
-    this.props.fetchRecipe(e.target.value)
-  }
+ 
   componentDidMount() {
-    this.props.sessionStatus();
     this.props.fetchRecipe(this.props.match.params.recipeId)
   }
+   
   render() {
     if (!this.props.recipe) {
       return (
         <div>
-          <h1></h1>
+         
         </div>
       )
     } else {
@@ -45,7 +40,10 @@ export class RecipeShow extends Component {
         <div>
           {this.state.showEdit ? (
             <div>
-              <UpdateRecipeForm recipe={this.props.recipe}/>
+              <UpdateRecipeForm
+                recipe={this.props.recipe}
+                toggleEdit={this.toggleEdit}
+              />
             </div>
           ) : (
             <div>
@@ -54,28 +52,40 @@ export class RecipeShow extends Component {
                 alt="food"
               />
               <h1>{this.props.recipe.data.attributes.name}</h1>
+              <h5>Categories</h5>
               <ul>
-                {this.props.recipe.data.attributes.categories.map((item) => {
-                  return <p>{item.tag}</p>;
-                })}
+                {this.props.recipe.data.attributes.categories.map(
+                  (item, index) => {
+                    const fieldName = `categories[${index}]`;
+                    return <p key={fieldName}>{item.tag}</p>;
+                  }
+                )}
               </ul>
-              {this.props.recipe.data.attributes.instructions.map((item) => {
-                return (
-                  <p>
-                    {item.stepNumber}: {item.content}
-                  </p>
-                );
-              })}
-              {this.props.recipe.data.attributes.ingredients.map((item) => {
-                return (
-                  <p>
-                    {item.name}: {item.quantity}
-                  </p>
-                );
-              })}
+              <h5>Instructions</h5>
+              {this.props.recipe.data.attributes.instructions.map(
+                (item, index) => {
+                  const fieldName = `instructions[${index}]`;
+                  return (
+                    <p key={fieldName}>
+                      {item.stepNumber}: {item.content}
+                    </p>
+                  );
+                }
+              )}
+              <h5>Ingredients</h5>
+              {this.props.recipe.data.attributes.ingredients.map(
+                (item, index) => {
+                  const fieldName = `ingredients[${index}]`;
+                  return (
+                    <p key={fieldName}>
+                      {item.name}: {item.quantity}
+                    </p>
+                  );
+                }
+              )}
             </div>
           )}
-          {this.props.recipe.data.attributes.user_id ==
+          {this.props.recipe.data.attributes.user_id ===
           this.props.currentUserId ? (
             <div>
               <Link

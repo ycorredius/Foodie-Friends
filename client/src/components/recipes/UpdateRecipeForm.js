@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import axios from "axios";
 import END_POINT from "../../actions/recipe/endpoint";
 import { useHistory } from "react-router-dom";
@@ -8,12 +8,16 @@ import { Form, Button } from "bootstrap-4-react";
 function UpdateRecipeForm(props) {
   const history = useHistory();
 
-  const recipeName = React.useState("");
+  const recipeName = React.useState(props.recipe.data.attributes.name);
 
-  const [indexes, setIndexes] = React.useState([]);
-  const [counter, setCounter] = React.useState(0);
+  const [indexes, setIndexes] = React.useState(
+    props.recipe.data.attributes.categories
+  );
+  const [counter, setCounter] = React.useState(
+    props.recipe.data.attributes.categories.length
+  );
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit} = useForm();
 
   const [ingredientIndexes, setIngredientIndexes] = React.useState(
     props.recipe.data.attributes.ingredients
@@ -48,192 +52,138 @@ function UpdateRecipeForm(props) {
     setIngredientCounter((prevIngredientCounter) => prevIngredientCounter + 1);
   };
 
-  const removeCategory = (id, index) => () => {
-    if (id) {
-      setIndexes((prevIndexes) => [
-        ...prevIndexes.filter((item) => item.id !== id),
-      ]);
-      setCounter((prevCounter) => prevCounter - 1);
-    } else {
-      setIndexes((prevIndexes) => [
-        ...prevIndexes.filter((item) => item !== index),
-      ]);
-      setCounter((prevCounter) => prevCounter - 1);
-    }
-  };
-
-  const removeInstruction = (id, index) => () => {
-    if (id) {
-      setInstructionIndexes((prevInstructionIndexes) => [
-        ...prevInstructionIndexes.filter((item) => item.id !== id),
-      ]);
-      setInstructionCounter((prevCounter) => prevCounter - 1);
-    } else {
-      setInstructionIndexes((prevInstructionIndexes) => [
-        ...prevInstructionIndexes.filter((item) => item !== index),
-      ]);
-      setInstructionCounter((prevCounter) => prevCounter - 1);
-    }
-  };
-
-  const removeIngredient = (id, index) => () => {
-    if (id) {
-      setIngredientIndexes((prevIngredientIndexes) => [
-        ...prevIngredientIndexes.filter((item) => item !== id),
-      ]);
-      setIngredientCounter((prevCounter) => prevCounter - 1);
-    } else {
-      setIngredientIndexes((prevIngredientIndexes) => [
-        ...prevIngredientIndexes.filter((item) => item !== index),
-      ]);
-      setIngredientCounter((prevCounter) => prevCounter - 1);
-    }
-  };
-
-  const clearCategories = () => {
-    setIndexes([]);
-    setCounter(0);
-  };
-
-  const clearInstructions = () => {
-    setInstructionIndexes([]);
-    setInstructionCounter(0);
-  };
-
-  const clearIngredient = () => {
-    setIngredientIndexes([]);
-    setIngredientCounter();
-  };
-
-  const onSubmit = (e) =>{
-      e.preventDefault();
-      debugger
+  const onSubmit = (e) => {
+    axios
+      .patch(`${END_POINT}/recipes/${props.recipe.data.attributes.id}`,e,{withCredentials:true})
+      .then(res => res.json)
+      .then(history.push('/recipes'))
   }
+  
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <img src={props.recipe.data.attributes.image_url} />
-        <form>
+        <img src={props.recipe.data.attributes.image_url} alt="food"/>
+        <input
+          type="hidden"
+          name="id"
+          value={props.recipe.data.attributes.id}
+        />
+        <div>
           <label htmlFor="name">Name</label>
-          <input type="text" value={props.recipe.data.attributes.name} />
+          <input
+            type="text"
+            name={`${recipeName}`}
+            value={props.recipe.data.attributes.name}
+          />
+        </div>
+        <h4>Categories</h4>
+        {indexes.map((category, index) => {
+          const fieldName = `categories[${index}]`;
+          return (
+            <Form.Group>
+              <fieldset name={fieldName} key={fieldName}>
+                <input
+                  type="hidden"
+                  name={`${fieldName}.id`}
+                  ref={register}
+                  defaultValue={category.id}
+                />
+                <input type="hidden" defaultValue={category}></input>
+                <label>
+                  Tag:
+                  <input
+                    type="text"
+                    ref={register}
+                    name={`${fieldName}.tag`}
+                    defaultValue={category.tag}
+                  />
+                </label>
+              </fieldset>
+            </Form.Group>
+          );
+        })}
 
-          <h4>Categories</h4>
-          {indexes.map((category, index) => {
-            const fieldName = `${category.tag}`;
+        <Button type="button" onClick={addCategory}>
+          Add Category
+        </Button>
+
+        <h4>Ingredients</h4>
+        <Form.Group>
+          {ingredientIndexes.map((ingredient, index) => {
+            const fieldName = `ingredients[${index}]`;
             return (
-              <Form.Group>
+              <Form>
                 <fieldset name={fieldName} key={fieldName}>
-                  <label>
-                    Tag:
-                    <input
-                      type="text"
-                      name={`${fieldName}`}
-                      ref={register}
-                      value={category.tag}
-                    />
-                  </label>
-
-                  <button type="button" onClick={removeCategory(category.id)}>
-                    Remove
-                  </button>
-                </fieldset>
-              </Form.Group>
-            );
-          })}
-
-          <Button type="button" onClick={addCategory}>
-            Add Category
-          </Button>
-
-          <Button type="button" onClick={clearCategories}>
-            Clear Categories
-          </Button>
-
-          <h4>Ingredients</h4>
-          <Form.Group>
-            {ingredientIndexes.map((ingredient, index) => {
-              const fieldName = `${ingredient.name}`;
-              return (
-                <fieldset
-                  name={fieldName}
-                  key={fieldName}
-                  value={ingredient.name}
-                >
+                  <input
+                    type="hidden"
+                    name={`${fieldName}.id`}
+                    ref={register}
+                    defaultValue={ingredient.id}
+                  />
                   <label>
                     Name:
                     <input
                       type="text"
                       name={`${fieldName}.name`}
                       ref={register}
-                      value={ingredient.name}
+                      defaultValue={ingredient.name}
                     />
                   </label>
 
                   <label>
-                    quantity:
+                    quantiy:
                     <input
                       type="text"
                       name={`${fieldName}.quantity`}
                       ref={register}
-                      value={ingredient.quantity}
+                      defaultValue={ingredient.quantity}
                     />
                   </label>
-                  <Button
-                    type="button"
-                    onClick={removeIngredient(ingredient.id)}
-                  >
-                    Remove
-                  </Button>
                 </fieldset>
-              );
-            })}
-          </Form.Group>
-          <Button type="button" onClick={addIngredient}>
-            Add Ingredient
-          </Button>
-
-          <Button type="button" onClick={clearIngredient}>
-            Clear Ingredients
-          </Button>
-
-          <h4>Instructions</h4>
-
-          {instructionIndexes.map((instruction, index) => {
-            const fieldname = `${instruction.content}`;
-            return (
-              <Form.Group>
-                <fieldset name={fieldname} key={fieldname}>
-                  <label>
-                    Step {index + 1}:
-                    <input
-                      type="text"
-                      name={`${fieldname}`}
-                      ref={register}
-                      value={instruction.content}
-                    />
-                  </label>
-
-                  <button
-                    type="button"
-                    onClick={removeInstruction(instruction.id, index)}
-                  >
-                    remove
-                  </button>
-                </fieldset>
-              </Form.Group>
+              </Form>
             );
           })}
+        </Form.Group>
+        <Button type="button" onClick={addIngredient}>
+          Add Ingredient
+        </Button>
+        <h4>Instructions</h4>
 
-          <Button type="button" onClick={addInstruction}>
-            Add Instruction
-          </Button>
+        {instructionIndexes.map((instruction, index) => {
+          const fieldName = `instructions[${index}]`;
+          return (
+            <Form.Group>
+              <fieldset name={fieldName} key={fieldName}>
+                <input
+                  type="hidden"
+                  name={`${fieldName}.id`}
+                  ref={register}
+                  defaultValue={instruction.id}
+                />
+                <label>
+                  Step {index + 1}:
+                  <input
+                    type="text"
+                    name={`${fieldName}.content`}
+                    ref={register}
+                    defaultValue={instruction.content}
+                  />
+                  <input
+                    type="hidden"
+                    name={`${fieldName}.id`}
+                    defaultValue={instruction.id}
+                  />
+                </label>
 
-          <Button type="button" onClick={clearInstructions}>
-            Clear Instructions
-          </Button>
+              </fieldset>
+            </Form.Group>
+          );
+        })}
 
-          <button type="submit">Update</button>
-        </form>
+        <Button type="button" onClick={addInstruction}>
+          Add Instruction
+        </Button>
+        <Button type="submit">Update</Button>
       </Form>
     </div>
   );
