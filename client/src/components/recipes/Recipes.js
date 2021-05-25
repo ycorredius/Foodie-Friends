@@ -9,12 +9,12 @@ export const Recipes = (props) =>{
             </div>
         )
     } else {
-        return(
-            <div>
-                {
-                    props.recipes.map(recipe => <RecipeCard recipe={recipe} handClick={props.handClick}/>)
-                }
-            </div>
-        )
+        return (
+          <div>
+            {props.recipes.map((recipe) => (
+              <RecipeCard recipe={recipe} />
+            ))}
+          </div>
+        );
     }
 }

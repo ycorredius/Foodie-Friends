@@ -37,6 +37,12 @@ class RecipesController < ApplicationController
         end
     end
     
+    def search_recipe
+      
+      binding.pry
+      
+    end
+
     def show
       options = {}
       render json: RecipeSerializer.new(@recipe).serialized_json
