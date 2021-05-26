@@ -18,7 +18,7 @@ class UserContainer extends React.Component {
     render() {
         return (
             <div>
-                <NavBar logged_in={this.props.logged_in} handleLogout={this.handleLogout}/>
+                <NavBar logged_in={this.props.logged_in} handleLogout={this.handleLogout} userId={this.props.user.id}/>
             </div>
         )
     }

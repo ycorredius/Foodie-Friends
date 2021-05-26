@@ -1,3 +1,4 @@
 export const UPDATERECIPE = 'UPDATERECIPE'
 export const LOADRECIPES = 'LOADRECIPES'
 export const SHOW_RECIPE = 'SHOW_RECIPE'
+export const USER_RECIPE = 'USER_RECIPE'

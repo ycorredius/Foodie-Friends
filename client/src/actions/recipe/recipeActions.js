@@ -16,6 +16,13 @@ export const showRecipe = (showRecipe) =>{
     }
 }
 
+export const userRecipes = (userRecipe) =>{
+    return{
+        type: types.USER_RECIPE,
+        userRecipe: userRecipe
+    }
+}
+
 export const fetchRecipes = () =>{
     return dispatch =>{
         return axios.get(`${END_POINT}/recipes`)
@@ -39,5 +46,12 @@ export const updateRecipe = (recipeData) =>{
 }
 
 export const fetchUserRecipes = (recipeData) => {
-    debugger
+    const id = recipeData
+    return dispatch =>{
+        return axios.get(`${END_POINT}/users/${id}/recipes`)
+            .then(response => response.data)
+            .then(res => {
+                dispatch(userRecipes(res))
+            })
+    }
 }
