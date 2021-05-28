@@ -2,6 +2,7 @@ import { Component } from "react";
 import {fetchRecipes,fetchRecipe} from '../actions/recipe/recipeActions';
 import {connect} from 'react-redux';
 import {Recipes} from '../components/recipes/Recipes';
+import SearchRecipes from "../components/recipes/SearchRecipes";
 
 //TODO: Build out user recipe retrieveal front end work. 
 class RecipeContainer extends Component{
@@ -11,6 +12,7 @@ class RecipeContainer extends Component{
     handleClick = (e) =>{
         this.props.fetchRecipe(e.target.dataset.target);
     }
+
     render(){
            if(!this.props.recipes){
                return(
@@ -18,11 +20,17 @@ class RecipeContainer extends Component{
                    </div>
                )
            } else{
-               return(
+               return (
+                 <div>
                    <div>
-                       <Recipes recipes={this.props.recipes.data} handleClick={this.handleClick}/>
+                     <SearchRecipes/>
                    </div>
-               )
+                   <Recipes
+                     recipes={this.props.recipes.data}
+                     handleClick={this.handleClick}
+                   />
+                 </div>
+               );
            }
     }
 }

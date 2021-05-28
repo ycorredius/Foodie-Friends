@@ -35,7 +35,11 @@ export const Routes = () => (
           <UploadImage props={props} recipeId={props.match.params.recipeId} />
         )}
       />
-
+      {/* <Route
+      exact
+      path={"/recipes/search"}
+      
+      /> */}
       \\TODO: Fix routing between edit and recpie show
       {/* <Route
         exact

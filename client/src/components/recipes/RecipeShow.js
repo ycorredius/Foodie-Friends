@@ -7,6 +7,8 @@ import UpdateRecipeForm from './UpdateRecipeForm';
 
 //BUG: Whenever a user logs out and logs back in clicks on show recipe. current user state shows as undefines. 
 // it then works when you refersh. 
+
+//TODO: Refactor to edit to point to a route instead of triggering a boolean.
 export class RecipeShow extends Component {
   constructor(props){
     super(props);
@@ -57,7 +59,7 @@ export class RecipeShow extends Component {
                 {this.props.recipe.data.attributes.categories.map(
                   (item, index) => {
                     const fieldName = `categories[${index}]`;
-                    return <p key={fieldName}>{item.tag}</p>;
+                    return <li key={fieldName}>{item.tag}</li>;
                   }
                 )}
               </ul>
@@ -67,7 +69,7 @@ export class RecipeShow extends Component {
                   const fieldName = `instructions[${index}]`;
                   return (
                     <p key={fieldName}>
-                      {item.stepNumber}: {item.content}
+                      Step {index +1} : {item.content}
                     </p>
                   );
                 }
