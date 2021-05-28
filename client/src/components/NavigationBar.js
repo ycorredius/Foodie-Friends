@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {Navbar,Nav,Button,Collapse} from 'bootstrap-4-react'
+import {Navbar,Nav,Button,Collapse,Form,FormControl} from 'bootstrap-4-react'
 
 const NavigationBar = (props) => {
     if(!props.logged_in){
@@ -29,7 +29,7 @@ const NavigationBar = (props) => {
         return (
           <React.Fragment>
             <Navbar expand="lg" dark bg="dark" mb="3">
-              <Navbar.Brand href="#">My Recipe Cookbook</Navbar.Brand>
+              <Navbar.Brand href="/recipes">My Recipe Cookbook</Navbar.Brand>
               <Navbar.Toggler target="#navbarColor1" />
               <Collapse navbar id="navbarColor1">
                 <Navbar.Nav mr="auto">
@@ -39,8 +39,8 @@ const NavigationBar = (props) => {
                   <Link to="/new_recipe">
                     <Nav.Link>Create New Recipe</Nav.Link>
                   </Link>
-                  <Link>
-                    <Nav.Link>My Saved Recipes</Nav.Link>
+                  <Link to={`/users/${props.userId}/recipes`}>
+                    <Nav.Link>My Recipes</Nav.Link>
                   </Link>
                 </Navbar.Nav>
                 <Button onClick={props.handleLogout}>Logout</Button>

@@ -112,10 +112,15 @@ export class RecipeShow extends Component {
 }
 
 const mapStateToProps = (state) => {
-
+  if (state.userReducer.logged_id){
     return {
       recipe: state.recipeReducer.recipe,
       currentUserId: state.userReducer.currentUser.id?state.userReducer.currentUser.id:"none"
     }
+  } else{
+    return{
+      recipe:state.recipeReducer.recipe
+    }
+  }
 }
 export default connect(mapStateToProps, { fetchRecipe,sessionStatus })(RecipeShow)

@@ -36,6 +36,17 @@ class UsersController < ApplicationController
    end
   end
 
+  def recipes
+    @user = User.find_by_id(params[:userId])
+    if @user.recipes
+      recipes = @user.recipes
+      render json: RecipeSerializer.new(recipes).serializable_hash
+    else
+      errors = "No recipes availabe"
+      render json: errors
+    end
+  end
+
   private
 
     def set_user

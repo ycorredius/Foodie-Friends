@@ -7,6 +7,7 @@ import RecipeShow from './recipes/RecipeShow'
 import Signup from './user/Signup'
 import Login from './user/Login'
 import UpdateRecipeForm from './recipes/UpdateRecipeForm'
+import UserRecipes from './recipes/UserRecipes';
 
 export const Routes = () => (
   <div>
@@ -35,11 +36,13 @@ export const Routes = () => (
           <UploadImage props={props} recipeId={props.match.params.recipeId} />
         )}
       />
-      {/* <Route
-      exact
-      path={"/recipes/search"}
-      
-      /> */}
+      <Route 
+        exact
+        path={"/users/:userId/recipes"}
+        render={(props) => 
+          (<UserRecipes props={props} userId={props.match.params.userId}/>)
+        }
+      />
       \\TODO: Fix routing between edit and recpie show
       {/* <Route
         exact

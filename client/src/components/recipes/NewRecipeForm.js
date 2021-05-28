@@ -108,7 +108,7 @@ function NewRecipeForm() {
             <fieldset name={fieldName} key={fieldName}>
               <label>
                 Tag:
-                <input type="text" name={`${fieldName}`} ref={register} />
+                <input type="text" name={`${fieldName}`} ref={register} required/>
               </label>
 
               <button type="button" onClick={removeCategory(index)}>
@@ -139,6 +139,7 @@ function NewRecipeForm() {
                     type="text"
                     name={`${fieldName}.name`}
                     ref={register}
+                    required
                   />
                 </label>
 
@@ -148,6 +149,7 @@ function NewRecipeForm() {
                     type="text"
                     name={`${fieldName}.quantity`}
                     ref={register}
+                    required
                   />
                 </label>
                 <Button type="button" onClick={removeIngredient(index)}>
@@ -173,7 +175,7 @@ function NewRecipeForm() {
             <fieldset name={fieldname} key={fieldname}>
               <label>
                 Step {index + 1}:
-                <input type="text" name={`${fieldname}`} ref={register} />
+                <input type="text" name={`${fieldname}`} ref={register} required/>
               </label>
 
               <button type="button" onClick={removeInstruction(index)}>
