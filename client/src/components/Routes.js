@@ -44,13 +44,13 @@ export const Routes = () => (
         }
       />
       \\TODO: Fix routing between edit and recpie show
-      {/* <Route
+      <Route
         exact
         path={"/recipes/:recipeId/edit"}
         render={(props) => (
           <UpdateRecipeForm props={props} />
         )}
-      /> */}
+      />
 
       <Route path={"/"} render={() => <RecipeContainer />} />
     </Switch>

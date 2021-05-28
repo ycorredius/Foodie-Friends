@@ -16,10 +16,10 @@ export const showRecipe = (showRecipe) =>{
     }
 }
 
-export const userRecipes = (userRecipe) =>{
+export const userRecipes = (userRecipes) =>{
     return{
-        type: types.USER_RECIPE,
-        userRecipe: userRecipe
+        type: types.USER_RECIPES,
+        userRecipes: userRecipes
     }
 }
 

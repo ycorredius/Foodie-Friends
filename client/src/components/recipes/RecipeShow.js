@@ -110,7 +110,7 @@ export class RecipeShow extends Component {
 }
 
 const mapStateToProps = (state) => {
-  if (state.userReducer.logged_id){
+  if (state.userReducer.logged_in){
     return {
       recipe: state.recipeReducer.recipe,
       currentUserId: state.userReducer.currentUser.id?state.userReducer.currentUser.id:"none"

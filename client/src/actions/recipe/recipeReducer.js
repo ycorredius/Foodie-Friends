@@ -13,7 +13,7 @@ export const recipeReducer = (state = [], action) => {
                 ...state,
                 recipe: action.showRecipe
             }
-        case types.USER_RECIPE:
+        case types.USER_RECIPES:
             return{
                 ...state,
                 userRecipes: action.userRecipes

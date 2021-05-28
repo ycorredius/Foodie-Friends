@@ -12,15 +12,24 @@ class UserContainer extends React.Component {
 
     handleLogout = () =>{
        this.props.logout()
-       return <Redirect to="/recipes"/>
+        return <Redirect push to="/recipes"/>
     }
 
     render() {
+        if(this.props.logged_in && this.props.user){
         return (
             <div>
                 <NavBar logged_in={this.props.logged_in} handleLogout={this.handleLogout} userId={this.props.user.id}/>
             </div>
-        )
+        )} else{
+           return (
+             <div>
+               <NavBar
+                 logged_in={this.props.logged_in}
+               />
+             </div>
+           ); 
+        }
     }
 
 }

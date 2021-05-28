@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {Navbar,Nav,Button,Collapse,Form,FormControl} from 'bootstrap-4-react'
+import {Navbar,Nav,Button,Collapse} from 'bootstrap-4-react'
 
 const NavigationBar = (props) => {
-    if(!props.logged_in){
+    if(!props.logged_in && !props.userId){
         return(<React.Fragment>
                 <Navbar expand="lg"  dark bg="dark" mb="3">
-                <Navbar.Brand href="#">My Recipe Cookbook</Navbar.Brand>
+                <Navbar.Brand href="/">My Recipe Cookbook</Navbar.Brand>
                 <Navbar.Toggler target="#navbarColor1" />
                 <Collapse navbar id="navbarColor1">
                     <Navbar.Nav mr="auto">

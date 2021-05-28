@@ -12,6 +12,7 @@ class Login extends React.Component {
     }
   }
 
+  componentDidCatch
   handleOnChange = (event) => {
     const {name,value} =  event.target
     this.setState({
