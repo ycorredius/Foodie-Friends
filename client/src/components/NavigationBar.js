@@ -1,8 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
+import {END_POINT} from "../actions/recipe/endpoint";
 import {Navbar,Nav,Button,Collapse} from 'bootstrap-4-react'
+import axios from 'axios'
 
 const NavigationBar = (props) => {
+
+    const history = useHistory();
+
+    const handleLogout = () => {
+      axios.delete(`${END_POINT}/logout`)
+        .then(history.push('/login'))
+    }
+
     if(!props.logged_in && !props.userId){
         return(<React.Fragment>
                 <Navbar expand="lg"  dark bg="dark" mb="3">
@@ -42,7 +52,7 @@ const NavigationBar = (props) => {
                     <Nav.Link>My Recipes</Nav.Link>
                   </Link>
                 </Navbar.Nav>
-                <Button onClick={props.handleLogout}>Logout</Button>
+                <Button onClick={handleLogout}>Logout</Button>
               </Collapse>
             </Navbar>
           </React.Fragment>

@@ -5,16 +5,16 @@ export const Recipes = (props) =>{
   console.log(props)
     if(!props.recipes){
         return(
-            <div>
-                <h1> Apparently there are not any recipes</h1>
+            
+                <div>
             </div>
         )
     } else {
         return (
           <div>
-            {props.recipes.map((recipe) => (
-              <RecipeCard recipe={recipe} />
-            ))}
+              {props.recipes.map((recipe) => (
+                <RecipeCard recipe={recipe} handClick={props.handClick} />
+              ))}
           </div>
         );
     }

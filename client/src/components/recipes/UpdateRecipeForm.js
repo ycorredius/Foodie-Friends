@@ -5,10 +5,12 @@ import END_POINT from "../../actions/recipe/endpoint";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "bootstrap-4-react";
 
+
+//TODO: Refactor to create a smaller file and faster experience.
 function UpdateRecipeForm(props) {
   const history = useHistory();
 
-  const recipeName = React.useState(props.recipe.data.attributes.name);
+  const name = React.useState(props.recipe.data.attributes.name);
 
   const [indexes, setIndexes] = React.useState(
     props.recipe.data.attributes.categories
@@ -56,7 +58,7 @@ function UpdateRecipeForm(props) {
     axios
       .patch(`${END_POINT}/recipes/${props.recipe.data.attributes.id}`,e,{withCredentials:true})
       .then(res => res.json)
-      .then(history.push('/recipes'))
+      .then(window.location.reload())
   }
   
   return (
@@ -66,14 +68,16 @@ function UpdateRecipeForm(props) {
         <input
           type="hidden"
           name="id"
+          ref={register}
           value={props.recipe.data.attributes.id}
         />
         <div>
           <label htmlFor="name">Name</label>
           <input
             type="text"
-            name={`${recipeName}`}
-            value={props.recipe.data.attributes.name}
+            name='name'
+            ref={register}
+            defaultValue={props.recipe.data.attributes.name}
           />
         </div>
         <h4>Categories</h4>

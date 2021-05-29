@@ -12,6 +12,7 @@ class RecipeContainer extends Component{
     handleClick = (e) =>{
         this.props.fetchRecipe(e.target.dataset.target);
     }
+
     render(){
            if(!this.props.recipes){
                return(
@@ -19,11 +20,14 @@ class RecipeContainer extends Component{
                    </div>
                )
            } else{
-               return(
+               return (
+                 <div>
                    <div>
                         <Recipes recipes={this.props.recipes.data} handleClick={this.handleClick}/>
                    </div>
-               )
+                   
+                 </div>
+               );
            }
     }
 }

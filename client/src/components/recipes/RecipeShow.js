@@ -7,6 +7,8 @@ import UpdateRecipeForm from './UpdateRecipeForm';
 
 //BUG: Whenever a user logs out and logs back in clicks on show recipe. current user state shows as undefines. 
 // it then works when you refersh. 
+
+//TODO: Refactor to edit to point to a route instead of triggering a boolean.
 export class RecipeShow extends Component {
   constructor(props){
     super(props);
@@ -26,6 +28,7 @@ export class RecipeShow extends Component {
  
   componentDidMount() {
     this.props.fetchRecipe(this.props.match.params.recipeId)
+    this.props.sessionStatus()
   }
    
   render() {
@@ -57,7 +60,7 @@ export class RecipeShow extends Component {
                 {this.props.recipe.data.attributes.categories.map(
                   (item, index) => {
                     const fieldName = `categories[${index}]`;
-                    return <p key={fieldName}>{item.tag}</p>;
+                    return <li key={fieldName}>{item.tag}</li>;
                   }
                 )}
               </ul>
@@ -67,7 +70,7 @@ export class RecipeShow extends Component {
                   const fieldName = `instructions[${index}]`;
                   return (
                     <p key={fieldName}>
-                      {item.stepNumber}: {item.content}
+                      Step {index +1} : {item.content}
                     </p>
                   );
                 }
@@ -110,15 +113,15 @@ export class RecipeShow extends Component {
 }
 
 const mapStateToProps = (state) => {
-  if (state.userReducer.logged_in){
+  if (state.userReducer.logged_in && state.userReducer.currentUser){
     return {
       recipe: state.recipeReducer.recipe,
       currentUserId: state.userReducer.currentUser.id?state.userReducer.currentUser.id:"none"
     }
   } else{
-    return{
-      recipe:state.recipeReducer.recipe
-    }
+      return{
+        recipe:state.recipeReducer.recipe
+      }
   }
 }
 export default connect(mapStateToProps, { fetchRecipe,sessionStatus })(RecipeShow)
