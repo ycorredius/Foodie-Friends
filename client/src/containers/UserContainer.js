@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { sessionStatus,logout } from '../actions/user/userActions'
 import NavigationBar from "../components/NavigationBar";
-import { Redirect} from "react-router-dom";
 
 class UserContainer extends React.Component {
     componentDidMount() {

@@ -1,12 +1,9 @@
 import React from 'react';
-import {Link,useHistory} from 'react-router-dom'
-import {END_POINT} from "../actions/recipe/endpoint";
+import {Link} from 'react-router-dom'
 import {Navbar,Nav,Button,Collapse} from 'bootstrap-4-react'
-import axios from 'axios'
 
 const NavigationBar = (props) => {
 
-    const history = useHistory();
 
     if(!props.logged_in && !props.userId){
         return(<React.Fragment>
