@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {authenticate} from '../../actions/user/userActions'
+import {authenticate,sessionStatus} from '../../actions/user/userActions'
 
 class Login extends React.Component {
   constructor(props){
@@ -12,7 +12,10 @@ class Login extends React.Component {
     }
   }
 
-  componentDidCatch
+  componentDidMount(){
+    this.props.sessionStatus()
+  }
+
   handleOnChange = (event) => {
     const {name,value} =  event.target
     this.setState({
@@ -62,4 +65,4 @@ class Login extends React.Component {
     )
   }
 }
- export default connect(null,{authenticate})(Login);
+ export default connect(null,{authenticate,sessionStatus})(Login);

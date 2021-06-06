@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { fetchUserRecipes } from '../../actions/recipe/recipeActions';
-import RecipeCard from './RecipeCard';
+import {sessionStatus} from '../../actions/user/userActions'
 import {Recipes} from './Recipes';
 
 class UserRecipes extends Component {
     componentDidMount(){
         this.props.fetchUserRecipes(this.props.props.match.params.userId);
+        this.props.sessionStatus()
     }
     
     render() {
@@ -26,9 +27,11 @@ class UserRecipes extends Component {
 }
 
 const mapStateToProps = (state) =>{
-    return{
-        userId: state.userReducer.currentUser.id,
-        userRecipes: state.recipeReducer.userRecipes
+    if(state.userReducer.currentUser.id){
+        return{
+            userId: state.userReducer.currentUser.id,
+            userRecipes: state.recipeReducer.userRecipes
+        }
     }
 }
-export default connect(mapStateToProps,{fetchUserRecipes})(UserRecipes)
+export default connect(mapStateToProps,{fetchUserRecipes,sessionStatus})(UserRecipes)

@@ -8,11 +8,6 @@ const NavigationBar = (props) => {
 
     const history = useHistory();
 
-    const handleLogout = () => {
-      axios.delete(`${END_POINT}/logout`)
-        .then(history.push('/login'))
-    }
-
     if(!props.logged_in && !props.userId){
         return(<React.Fragment>
                 <Navbar expand="lg"  dark bg="dark" mb="3">
@@ -52,7 +47,7 @@ const NavigationBar = (props) => {
                     <Nav.Link>My Recipes</Nav.Link>
                   </Link>
                 </Navbar.Nav>
-                <Button onClick={handleLogout}>Logout</Button>
+                <Button onClick={props.handleLogout}>Logout</Button>
               </Collapse>
             </Navbar>
           </React.Fragment>

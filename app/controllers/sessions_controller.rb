@@ -29,12 +29,16 @@ class SessionsController < ApplicationController
       end
     end
   def destroy
-      logout!
-      render json: {
-        status: 200,
-        logged_out: true
-      }
+      user = User.find_by_id(session[:user_id])
+      if user && session.clear
+        render json: {
+          status: 200,
+          logged_in: false,
+          user: current_user
+        }  
+      end
     end
+    
   private
   def session_params
       params.require(:credentials).permit(:email, :password)

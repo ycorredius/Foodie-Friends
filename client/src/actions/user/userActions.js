@@ -76,9 +76,10 @@ export const sessionStatus = () => {
 export const logout = () => {
     return dispatch => {
         return axios.delete(`${API_URL}/logout`)
-        .then(() =>{
-            return dispatch(sessionStatus());
-        })
+        .then((res) => res.json())
+        .then(dispatch({
+            type: types.LOGOUT
+        }))
 
     }
 }

@@ -8,10 +8,6 @@ import { Form, Button } from "bootstrap-4-react";
 
 //TODO: Refactor to create a smaller file and faster experience.
 function UpdateRecipeForm(props) {
-  const history = useHistory();
-
-  const name = React.useState(props.recipe.data.attributes.name);
-
   const [indexes, setIndexes] = React.useState(
     props.recipe.data.attributes.categories
   );
@@ -63,7 +59,7 @@ function UpdateRecipeForm(props) {
   
   return (
     <div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <img src={props.recipe.data.attributes.image_url} alt="food"/>
         <input
           type="hidden"
@@ -84,7 +80,6 @@ function UpdateRecipeForm(props) {
         {indexes.map((category, index) => {
           const fieldName = `categories[${index}]`;
           return (
-            <Form.Group>
               <fieldset name={fieldName} key={fieldName}>
                 <input
                   type="hidden"
@@ -102,21 +97,20 @@ function UpdateRecipeForm(props) {
                     defaultValue={category.tag}
                   />
                 </label>
+                
               </fieldset>
-            </Form.Group>
           );
         })}
 
-        <Button type="button" onClick={addCategory}>
+        <button type="button" onClick={addCategory}>
           Add Category
-        </Button>
+        </button>
 
         <h4>Ingredients</h4>
-        <Form.Group>
           {ingredientIndexes.map((ingredient, index) => {
             const fieldName = `ingredients[${index}]`;
             return (
-              <Form>
+
                 <fieldset name={fieldName} key={fieldName}>
                   <input
                     type="hidden"
@@ -144,19 +138,16 @@ function UpdateRecipeForm(props) {
                     />
                   </label>
                 </fieldset>
-              </Form>
             );
           })}
-        </Form.Group>
-        <Button type="button" onClick={addIngredient}>
+        <button type="button" onClick={addIngredient}>
           Add Ingredient
-        </Button>
+        </button>
         <h4>Instructions</h4>
 
         {instructionIndexes.map((instruction, index) => {
           const fieldName = `instructions[${index}]`;
           return (
-            <Form.Group>
               <fieldset name={fieldName} key={fieldName}>
                 <input
                   type="hidden"
@@ -180,15 +171,14 @@ function UpdateRecipeForm(props) {
                 </label>
 
               </fieldset>
-            </Form.Group>
           );
         })}
-
-        <Button type="button" onClick={addInstruction}>
+        <button type="button" onClick={addInstruction}>
           Add Instruction
-        </Button>
-        <Button type="submit">Update</Button>
-      </Form>
+        </button>
+        <button type="submit">Update</button>
+        <button type="button" onclick>Delete</button>
+      </form>
     </div>
   );
 }
