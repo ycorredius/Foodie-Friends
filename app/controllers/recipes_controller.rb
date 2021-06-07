@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
             @recipe.instructions.build(content:x)
           end 
         end
-
+        @recipe.image_url =  "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6094cedb67cb21a66a2b1d6daeef7d4b93aac13a/nishaan-ahmed-Mh087eDe_qA-unsplash.jpg"
         if @recipe.save 
           flash[:success] = "Recipe successfully created"
           options = {}

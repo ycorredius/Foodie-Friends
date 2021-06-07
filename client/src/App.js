@@ -7,10 +7,12 @@ import UserContainer from './containers/UserContainer';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App max-h-full justify-center bg-gray-200">
       <Router>
-        <UserContainer/>
-        <Routes/>
+        <div class="item-center">
+          <UserContainer />
+        </div>
+        <Routes />
       </Router>
     </div>
   );
