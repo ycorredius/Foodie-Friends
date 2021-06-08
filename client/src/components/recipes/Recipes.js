@@ -13,7 +13,9 @@ export const Recipes = (props) =>{
         return (
           <div class="grid grid-cols-3 gap-3">
             {props.recipes.map((recipe) => (
-              <RecipeCard recipe={recipe} handClick={props.handClick} />
+              <div class="box-content">
+                <RecipeCard recipe={recipe} handClick={props.handClick} />
+              </div>
             ))}
           </div>
         );
