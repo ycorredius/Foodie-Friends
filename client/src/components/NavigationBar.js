@@ -6,48 +6,72 @@ const NavigationBar = (props) => {
 
 
     if(!props.logged_in && !props.userId){
-        return(<React.Fragment>
-                <Navbar expand="lg"  dark bg="dark" mb="3">
-                <Navbar.Brand href="/">My Recipe Cookbook</Navbar.Brand>
-                <Navbar.Toggler target="#navbarColor1" />
-                <Collapse navbar id="navbarColor1">
-                    <Navbar.Nav mr="auto">
-                        <Link to="/recipes">
-                            <Nav.Link> Recipes</Nav.Link>
-                        </Link>
-                        <Link to="/sign_up">
-                            <Nav.Link>Sign Up</Nav.Link>
-                        </Link>
-                        <Link to="/login">
-                           <Nav.Link>Login</Nav.Link>
-                        </Link>
-                    </Navbar.Nav>
-                </Collapse>
-                </Navbar>
-            </React.Fragment>
-        )
-    }else{
         return (
           <React.Fragment>
-            <Navbar expand="lg" dark bg="dark" mb="3">
-              <Navbar.Brand href="/recipes">My Recipe Cookbook</Navbar.Brand>
+            <div class="bg-blue-dark">
+              <Navbar expand="lg" mb="3">
+                <div class="mr-8">
+                  <Navbar.Brand>
+                    <div class="text-white">My Recipe Cookbook</div>
+                  </Navbar.Brand>
+                </div>
+                <Navbar.Toggler target="#navbarColor1" />
+                <div class="ml-8">
+                  <Collapse navbar id="navbarColor1">
+                    <Navbar.Nav mr="auto">
+                      <Link to="/recipes">
+                        <Nav.Link><div class="text-white">Recipes</div></Nav.Link>
+                      </Link>
+                      <Link to="/sign_up">
+                       <Nav.Link><div class="text-white">Sign Up</div></Nav.Link>
+                      </Link>
+                      <Link to="/login">
+                        <Nav.Link><div class="text-white">Login</div></Nav.Link>
+                      </Link>
+                    </Navbar.Nav>
+                  </Collapse>
+                </div>
+              </Navbar>
+            </div>
+          </React.Fragment>
+        );
+    }else{
+        return (
+          <div class="bg-blue-dark">
+            <Navbar expand="lg" mb="3">
+              <div class="mr-8">
+                <Navbar.Brand>
+                  <div class="text-white">My Recipe Cookbook</div>
+                </Navbar.Brand>
+              </div>
               <Navbar.Toggler target="#navbarColor1" />
+
               <Collapse navbar id="navbarColor1">
-                <Navbar.Nav mr="auto">
-                  <Link to="/recipes">
-                    <Nav.Link>Recipe</Nav.Link>
-                  </Link>
-                  <Link to="/new_recipe">
-                    <Nav.Link>Create New Recipe</Nav.Link>
-                  </Link>
-                  <Link to={`/users/${props.userId}/recipes`}>
-                    <Nav.Link>My Recipes</Nav.Link>
-                  </Link>
-                </Navbar.Nav>
-                <Button onClick={props.handleLogout}>Logout</Button>
+                <div class="ml-8">
+                  <Navbar.Nav mr="auto">
+                    <Link to="/recipes">
+                      <Nav.Link>
+                        <div class="text-white">Recipes</div>
+                      </Nav.Link>
+                    </Link>
+                    <Link to="/new_recipe">
+                      <Nav.Link>
+                        <div class="text-white">Create Recipe</div>
+                      </Nav.Link>
+                    </Link>
+                    <Link to={`/users/${props.userId}/recipes`}>
+                      <Nav.Link>
+                        <div class="text-white">My Recipes</div>
+                      </Nav.Link>
+                    </Link>
+                  </Navbar.Nav>
+                </div>
+                <div class="text-white ">
+                  <Button onClick={props.handleLogout}>Logout</Button>
+                </div>
               </Collapse>
             </Navbar>
-          </React.Fragment>
+          </div>
         );
         
     }

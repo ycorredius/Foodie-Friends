@@ -19,7 +19,7 @@ export const authSuccess = (user) => {
 const authFailure = (errors) => {
     return {
         type: types.AUTHENTICATION_FAILURE,
-        errors: errors.response.data
+        errors: errors
     }
 }
 
@@ -34,7 +34,8 @@ const authSessionStatus = (user) => {
 export const signup = (user) => {
     return dispatch => {
         return axios.post(`${API_URL}/users`, { user }, { withCredentials: true })
-            .then(({ data }) => {
+            .then(res => res.json)
+            .then(( data ) => {
                 const { email, password } = data.data.attributes
                 return dispatch(
                     authenticate({
@@ -52,11 +53,15 @@ export const signup = (user) => {
 export const authenticate = (credentials) => {
     return dispatch => {
         return axios.post(`${API_URL}/login`, { credentials }, { withCredentials: true })
-            .then(({ data }) => {
-                return dispatch(authSuccess(data))
+            .then(({data}) => {
+                if(data.user){
+                    return dispatch(authSuccess(data));
+                } else{
+                   return dispatch(authFailure(data.errors))
+                }  
             })
-            .catch((errors) => {
-                dispatch(authFailure(errors))
+            .catch((data) => {
+                dispatch(authFailure(data))
             })
     }
 }
@@ -76,7 +81,7 @@ export const sessionStatus = () => {
 export const logout = () => {
     return dispatch => {
         return axios.delete(`${API_URL}/logout`)
-        .then((res) => res.json())
+        .then((res) => res.json)
         .then(dispatch({
             type: types.LOGOUT
         }))

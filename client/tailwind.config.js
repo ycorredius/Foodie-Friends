@@ -5,6 +5,13 @@ module.exports = {
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extends:{
+      colors:{
+        blue:{
+        850: ' #000044'
+      }
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',
@@ -22,7 +29,10 @@ module.exports = {
       red: colors.red,
       yellow: colors.amber,
       green: colors.emerald,
-      blue: colors.blue,
+      blue: {
+        DEFAULT: colors.blue,
+        'dark': " #000026"
+      },
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,

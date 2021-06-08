@@ -8,7 +8,7 @@ class Login extends React.Component {
     this.state = {
       email:'',
       password:'',
-      errors:''
+      errors:[]
     }
   }
 
@@ -28,24 +28,42 @@ class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.authenticate(this.state)
-      .then(() => {
-        this.props.history.push("/recipes")})
+      .then((result) => {
+        if(result.type === 'AUTHENTICATION_FAILURE'){
+          this.setState({
+            errors: result.errors
+          })
+        }else{
+          this.props.history.push("/recipes")}
+        }
+      )
   }
 
   render(){
     const {email,password} = this.state
     return (
-      <div class="container w-full max-w-xs">
+      <div class="container w-full max-w-xs object-center mt-32 mb-64 pb-64">
         <div class="flex flex-col justify-center items-center">
-          <div class="flex font-bold text-gray-700 justify-center">
+          <div class="flex font-bold text-blue-dark justify-center">
             <h1>Login Here!</h1>
           </div>
           <div class="flex flex-col item-center">
             <div class="w-96 ">
               <form
-                class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
                 onSubmit={this.handleSubmit}
               >
+                {this.state.errors ? (
+                  this.state.errors.map((error) => (
+                    <div>
+                      <ul>
+                        <li>{error}</li>
+                      </ul>
+                    </div>
+                  ))
+                ) : (
+                  <div></div>
+                )}
                 <div class="mb-4">
                   <label class="block text-gray-700 text-sm font-bold mb-2 ">
                     Email:{" "}
@@ -76,7 +94,7 @@ class Login extends React.Component {
                 <br />
                 <div class="flex items-center justify-center">
                   <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    class="bg-blue-dark hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                   >
                     Login

@@ -9,12 +9,6 @@ export default class SearchRecipes extends Component {
       searchType:""
     };
   }
-
-  handleSearch(e) {
-      e.preventDefault()
-    debugger;
-  }
-
   handleOnChange = (event) => {
     const { name, value } = event.target;
     this.setState({

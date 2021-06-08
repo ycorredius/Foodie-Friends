@@ -41,7 +41,6 @@ export const fetchRecipe = (recipeData) =>{
 }
 
 export const updateRecipe = (recipeData) =>{
-    debugger
     axios.patch(`${END_POINT}/recipes/${recipeData}`)
 }
 
