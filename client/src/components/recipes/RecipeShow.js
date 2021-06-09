@@ -70,7 +70,7 @@ export class RecipeShow extends Component {
                   const fieldName = `instructions[${index}]`;
                   return (
                     <p key={fieldName}>
-                      Step {index +1} : {item.content}
+                      Step {index + 1} : {item.content}
                     </p>
                   );
                 }
@@ -86,25 +86,25 @@ export class RecipeShow extends Component {
                   );
                 }
               )}
+              {this.props.recipe.data.attributes.user_id ===
+              this.props.currentUserId ? (
+                <div>
+                  <Link
+                    to={`/recipes/${this.props.recipe.data.attributes.id}/upload_image`}
+                  >
+                    <button>Upload Image</button>
+                  </Link>
+                  <button
+                    value={this.props.recipe.data.attributes.id}
+                    onClick={this.toggleEdit}
+                  >
+                    {this.state.showEdit ? <div>Cancel</div> : <div>Edit</div>}
+                  </button>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
-          )}
-          {this.props.recipe.data.attributes.user_id ===
-          this.props.currentUserId ? (
-            <div>
-              <Link
-                to={`/recipes/${this.props.recipe.data.attributes.id}/upload_image`}
-              >
-                <button>Upload Image</button>
-              </Link>
-              <button
-                value={this.props.recipe.data.attributes.id}
-                onClick={this.toggleEdit}
-              >
-                {this.state.showEdit ? <div>Cancel</div> : <div>Edit</div>}
-              </button>
-            </div>
-          ) : (
-            <div></div>
           )}
         </div>
       );
