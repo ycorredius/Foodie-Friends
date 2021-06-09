@@ -54,7 +54,7 @@ const NavigationBar = (props) => {
                         <div class="text-white">Recipes</div>
                       </Nav.Link>
                     </Link>
-                    <Link to="/new_recipe">
+                    <Link to={`/users/${props.userId}/recipes/new_recipe`}>
                       <Nav.Link>
                         <div class="text-white">Create Recipe</div>
                       </Nav.Link>

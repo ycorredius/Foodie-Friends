@@ -36,13 +36,13 @@ class Signup extends React.Component {
         return (
           <div class="container object-center mt-36 mb-32pb-64">
             <div class="flex flex-col justify-center items-center">
-              <div class="flex font-bold text-white justify-center">
+              <div class="flex font-bold text-blue-dark justify-center">
                 <h1>Signup Here!</h1>
               </div>
               <div class="flex flex-col item-center">
                 <div class="w-96 ">
                   <form
-                    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                    class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
                     onSubmit={this.handleOnSubmit}
                   >
                     <div>
@@ -99,7 +99,7 @@ class Signup extends React.Component {
                     <br />
                     <div class="flex items-center justify-center">
                       <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit"
                       >
                         Login

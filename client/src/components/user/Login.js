@@ -22,7 +22,6 @@ class Login extends React.Component {
       [name]: value
     })
   }
-  //TODO: Create a way to display errors when loging fail.
   //TODO: Create a password recovery or reset system.
   
   handleSubmit = (e) => {
@@ -94,7 +93,7 @@ class Login extends React.Component {
                 <br />
                 <div class="flex items-center justify-center">
                   <button
-                    class="bg-blue-dark hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                   >
                     Login

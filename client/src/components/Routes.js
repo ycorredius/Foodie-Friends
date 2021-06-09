@@ -12,13 +12,16 @@ import UserRecipes from './recipes/UserRecipes';
 export const Routes = () => (
   <div>
     <Switch>
-      
       <Route
         exact
         path={"/recipes/:recipeId"}
         render={(showProps) => <RecipeShow {...showProps} />}
       />
-      <Route exact path={"/new_recipe"} render={() => <NewRecipeForm />} />
+      <Route
+        exact
+        path={"/users/:userId/recipes/new_recipe"}
+        render={(props) => <NewRecipeForm userId={props.match.params.userId} />}
+      />
       <Route
         exact
         path={"/sign_up"}
@@ -36,22 +39,19 @@ export const Routes = () => (
           <UploadImage props={props} recipeId={props.match.params.recipeId} />
         )}
       />
-      <Route 
+      <Route
         exact
         path={"/users/:userId/recipes"}
-        render={(props) => 
-          (<UserRecipes props={props} userId={props.match.params.userId}/>)
-        }
+        render={(props) => (
+          <UserRecipes props={props} userId={props.match.params.userId} />
+        )}
       />
       \\TODO: Fix routing between edit and recpie show
       <Route
         exact
         path={"/recipes/:recipeId/edit"}
-        render={(props) => (
-          <UpdateRecipeForm props={props} />
-        )}
+        render={(props) => <UpdateRecipeForm props={props} />}
       />
-
       <Route path={"/"} render={() => <RecipeContainer />} />
     </Switch>
   </div>

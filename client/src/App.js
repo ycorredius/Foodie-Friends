@@ -7,7 +7,7 @@ import UserContainer from './containers/UserContainer';
 
 function App() {
   return (
-    <div className="App min-h-screen justify-center bg-gray-500">
+    <div class="App min-h-screen justify-center bg-gray-500 font-serif">
       <Router>
         <UserContainer />
         <Routes />

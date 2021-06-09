@@ -7,16 +7,22 @@ const RecipeCard = (props) =>{
     const{name,image_url} = props.recipe.attributes
     return (
       <div>
-        <div class="flex border-2 border-gray-600 border-opacity-20 w-full">
-          <div class="floats-right">
-            <img class= "float-left object-conatain" src={image_url} alt="food" />
+        <div class="container w-full max-w-xs">
+          <div class="flex flex-col justify-center items-center">
+            <div class="bg-gray-500">
+              <img
+                class="object-conatain rounded h-64"
+                src={image_url}
+                alt="food"
+              />
+                <p> Name: {name}</p>
+                <Link to={`/recipes/${id}`}>
+                  <button data-target={id} onClick={props.handleClick}>
+                    Show Recipe
+                  </button>
+                </Link>
+            </div>
           </div>
-          <p> Name: {name}</p>
-          <Link to={`/recipes/${id}`}>
-            <button data-target={id} onClick={props.handleClick}>
-              Show Recipe
-            </button>
-          </Link>
         </div>
       </div>
     );

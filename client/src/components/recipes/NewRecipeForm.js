@@ -5,9 +5,11 @@ import END_POINT from "../../actions/recipe/endpoint";
 import { useHistory } from "react-router-dom";
 import { Form,Button } from 'bootstrap-4-react';
 
-function NewRecipeForm() {
+function NewRecipeForm(props) {
   const history = useHistory();
-
+  if(!props.userId){
+    history.push('/recipes')
+  }
   const recipeName = React.useState("");
 
   const [indexes, setIndexes] = React.useState([]);
@@ -88,114 +90,182 @@ function NewRecipeForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <Form.Group>
-        <fieldset name={recipeName}>
-          <label>Name: </label>
-          <input
-            type="text"
-            ref={register}
-            name="name"
-            placeholder="e.g. Spaghetti"
-          />
-        </fieldset>
-      </Form.Group>
-
-      {indexes.map((index) => {
-        const fieldName = `categories[${index}]`;
-        return (
-          <Form.Group>
-            <fieldset name={fieldName} key={fieldName}>
-              <label>
-                Tag:
-                <input type="text" name={`${fieldName}`} ref={register} required/>
-              </label>
-
-              <button type="button" onClick={removeCategory(index)}>
-                Remove
-              </button>
+    <div class="container w-full max-w-xs object-center">
+      <div class="flex flex-col justify-center items-center gap-4">
+        <form
+          class="bg-gray-300 shadow-md rounded p-12"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div class="grid grid-cols-1  ">
+            <fieldset name={recipeName}>
+              <label class="block text-gray-700 font-bold mb-2 ">Name</label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                ref={register}
+                name="name"
+                placeholder="e.g. Spaghetti"
+              />
             </fieldset>
-          </Form.Group>
-        );
-      })}
-
-      <Button type="button" onClick={addCategory}>
-        Add Category
-      </Button>
-
-      <Button type="button" onClick={clearCategories}>
-        Clear Categories
-      </Button>
-
-      <Form.Group>
-        {ingredientIndexes.map((index) => {
-          const fieldName = `ingredients[${index}]`;
-          return (
-            <Form>
-              <fieldset name={fieldName} key={fieldName}>
-                <label>
-                  Name:
-                  <input
-                    type="text"
-                    name={`${fieldName}.name`}
-                    ref={register}
-                    required
-                  />
-                </label>
-
-                <label>
-                  quantiy:
-                  <input
-                    type="text"
-                    name={`${fieldName}.quantity`}
-                    ref={register}
-                    required
-                  />
-                </label>
-                <Button type="button" onClick={removeIngredient(index)}>
-                  Remove
-                </Button>
-              </fieldset>
-            </Form>
-          );
-        })}
-      </Form.Group>
-      <Button type="button" onClick={addIngredient}>
-        Add Ingredient
-      </Button>
-
-      <Button type="button" onClick={clearIngredient}>
-        Clear Ingredients
-      </Button>
-
-      {instructionIndexes.map((index) => {
-        const fieldname = `instructions[${index}]`;
-        return (
-          <Form.Group>
-            <fieldset name={fieldname} key={fieldname}>
-              <label>
-                Step {index + 1}:
-                <input type="text" name={`${fieldname}`} ref={register} required/>
-              </label>
-
-              <button type="button" onClick={removeInstruction(index)}>
-                remove
+          </div>
+          <div>
+            {indexes.map((index) => {
+              const fieldName = `categories[${index}]`;
+              return (
+                <fieldset name={fieldName} key={fieldName}>
+                  <label class="block text-gray-700 font-bold mb-2 ">
+                    Tag
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      name={`${fieldName}`}
+                      ref={register}
+                      required
+                    />
+                  </label>
+                  <div class='flex items-center justify-center'>
+                    <button
+                      type="button"
+                      onClick={removeCategory(index)}
+                      class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </fieldset>
+              );
+            })}
+            <div class="grid grid-cols-2 items-center justify-center">
+              <button
+                type="button"
+                onClick={addCategory}
+                class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+              >
+                Add Category
               </button>
-            </fieldset>
-          </Form.Group>
-        );
-      })}
 
-      <Button type="button" onClick={addInstruction}>
-        Add Instruction
-      </Button>
+              <button
+                type="button"
+                onClick={clearCategories}
+                class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+              >
+                Clear Categories
+              </button>
+            </div>
+          </div>
+          <div>
+            {ingredientIndexes.map((index) => {
+              const fieldName = `ingredients[${index}]`;
+              return (
+                <fieldset name={fieldName} key={fieldName}>
+                  <div class="grid grid-cols-2 gap-2">
+                    <label class="block text-gray-700 font-bold mb-2 ">
+                      Item
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text"
+                        name={`${fieldName}.name`}
+                        ref={register}
+                        required
+                      />
+                    </label>
 
-      <Button type="button" onClick={clearInstructions}>
-        Clear Instructions
-      </Button>
+                    <label class="block text-gray-700 font-bold mb-2 ">
+                      Quantiy
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text"
+                        name={`${fieldName}.quantity`}
+                        ref={register}
+                        required
+                      />
+                    </label>
+                  </div>
+                  <div class="flex items-center justify-center">
+                    <button
+                      type="button"
+                      onClick={removeIngredient(index)}
+                      class="bg-blue-dark hover:bg-gray-700 text-white font-bold px-4 py-2 m-2 rounded focus:outline-none focus:shadow-outline items-center justify-center"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </fieldset>
+              );
+            })}
+            <div class="grid grid-cols-2 items-center justify-center">
+              <button
+                type="button"
+                onClick={addIngredient}
+                class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+              >
+                Add Ingredient
+              </button>
 
-      <Button type="submit"> Create </Button>
-    </Form>
+              <button
+                type="button"
+                onClick={clearIngredient}
+                class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+              >
+                Clear Ingredients
+              </button>
+            </div>
+          </div>
+          <div>
+            {instructionIndexes.map((index) => {
+              const fieldname = `instructions[${index}]`;
+              return (
+                <fieldset name={fieldname} key={fieldname}>
+                  <label class="block text-gray-700 font-bold mb-2 ">
+                    Step 
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      name={`${fieldname}`}
+                      ref={register}
+                      required
+                    />
+                  </label>
+
+                  <button
+                    type="button"
+                    onClick={removeInstruction(index)}
+                    class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    remove
+                  </button>
+                </fieldset>
+              );
+            })}
+            <div class="grid grid-cols-2 items-center justify-center">
+              <button
+                type="button"
+                onClick={addInstruction}
+                class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+              >
+                Add Instruction
+              </button>
+
+              <button
+                type="button"
+                onClick={clearInstructions}
+                class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+              >
+                Clear Instructions
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-center">
+            <button
+              class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
 

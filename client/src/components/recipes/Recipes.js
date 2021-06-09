@@ -11,11 +11,11 @@ export const Recipes = (props) =>{
         )
     } else {
         return (
-          <div class="grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-4 gap-3 justify-center">
             {props.recipes.map((recipe) => (
-              <div class="box-content">
+              <div>
                 <RecipeCard recipe={recipe} handClick={props.handClick} />
-              </div>
+                </div>
             ))}
           </div>
         );

@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
       }
     else
       render json: {
-        status: 401,
-        errors: ['no such user', 'verify credentials and try again or signup']
+        errors: ['User not found.', 'Verify info and try again or signup.']
       }
     end
   end

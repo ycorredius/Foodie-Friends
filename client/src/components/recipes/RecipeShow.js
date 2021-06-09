@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { fetchRecipe } from '../../actions/recipe/recipeActions'
 import {sessionStatus} from '../../actions/user/userActions'
 import UpdateRecipeForm from './UpdateRecipeForm';
