@@ -49,61 +49,76 @@ export class RecipeShow extends Component {
               />
             </div>
           ) : (
-            <div>
-              <img
-                src={this.props.recipe.data.attributes.image_url}
-                alt="food"
-              />
-              <h1>{this.props.recipe.data.attributes.name}</h1>
-              <h5>Categories</h5>
-              <ul>
-                {this.props.recipe.data.attributes.categories.map(
-                  (item, index) => {
-                    const fieldName = `categories[${index}]`;
-                    return <li key={fieldName}>{item.tag}</li>;
-                  }
-                )}
-              </ul>
-              <h5>Instructions</h5>
-              {this.props.recipe.data.attributes.instructions.map(
-                (item, index) => {
-                  const fieldName = `instructions[${index}]`;
-                  return (
-                    <p key={fieldName}>
-                      Step {index + 1} : {item.content}
-                    </p>
-                  );
-                }
-              )}
-              <h5>Ingredients</h5>
-              {this.props.recipe.data.attributes.ingredients.map(
-                (item, index) => {
-                  const fieldName = `ingredients[${index}]`;
-                  return (
-                    <p key={fieldName}>
-                      {item.name}: {item.quantity}
-                    </p>
-                  );
-                }
-              )}
-              {this.props.recipe.data.attributes.user_id ===
-              this.props.currentUserId ? (
-                <div>
-                  <Link
-                    to={`/recipes/${this.props.recipe.data.attributes.id}/upload_image`}
-                  >
-                    <button>Upload Image</button>
-                  </Link>
-                  <button
-                    value={this.props.recipe.data.attributes.id}
-                    onClick={this.toggleEdit}
-                  >
-                    {this.state.showEdit ? <div>Cancel</div> : <div>Edit</div>}
-                  </button>
+            <div class="container w-full max-w-xs">
+              <div class="flex flex-cols justify-evenly">
+                <div class="grid gap-4">
+                  <div class="grid grid-cols-2 items-center gap-4">
+                    <img
+                      class="rounded object-fit w-60"
+                      src={this.props.recipe.data.attributes.image_url}
+                      alt="food"
+                    />
+                    <h1>{this.props.recipe.data.attributes.name}</h1>
+                  </div>
+                  <div class='flex flex-cols items-center justify-center'>
+                  <div class=" items-center justify-center">
+                  <h5>Categories</h5>
+                  <ul>
+                    {this.props.recipe.data.attributes.categories.map(
+                      (item, index) => {
+                        const fieldName = `categories[${index}]`;
+                        return <li key={fieldName}>{item.tag}</li>;
+                      }
+                    )}
+                  </ul>
+                  <h5>Instructions</h5>
+                  {this.props.recipe.data.attributes.instructions.map(
+                    (item, index) => {
+                      const fieldName = `instructions[${index}]`;
+                      return (
+                        <p key={fieldName}>
+                          Step {index + 1} : {item.content}
+                        </p>
+                      );
+                    }
+                  )}
+                  <h5>Ingredients</h5>
+                  {this.props.recipe.data.attributes.ingredients.map(
+                    (item, index) => {
+                      const fieldName = `ingredients[${index}]`;
+                      return (
+                        <p key={fieldName}>
+                          {item.name}: {item.quantity}
+                        </p>
+                      );
+                    }
+                  )}
+                  {this.props.recipe.data.attributes.user_id ===
+                  this.props.currentUserId ? (
+                    <div>
+                      <Link
+                        to={`/recipes/${this.props.recipe.data.attributes.id}/upload_image`}
+                      >
+                        <button>Upload Image</button>
+                      </Link>
+                      <button
+                        value={this.props.recipe.data.attributes.id}
+                        onClick={this.toggleEdit}
+                      >
+                        {this.state.showEdit ? (
+                          <div>Cancel</div>
+                        ) : (
+                          <div>Edit</div>
+                        )}
+                      </button>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
-              ) : (
-                <div></div>
-              )}
+              </div>
+              </div>
+              </div>
             </div>
           )}
         </div>
