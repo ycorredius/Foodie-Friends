@@ -79,7 +79,7 @@ class RecipesController < ApplicationController
             if @instruction
               @instruction.update(content: f[:content])
             else
-              @recipe.instructions.build()
+              @recipe.instructions.build(content: f[:content])
             end
           end 
         end 

@@ -3,13 +3,10 @@ import {useForm} from "react-hook-form";
 import axios from "axios";
 import END_POINT from "../../actions/recipe/endpoint";
 import { useHistory } from "react-router-dom";
-import { Form,Button } from 'bootstrap-4-react';
 
 function NewRecipeForm(props) {
   const history = useHistory();
-  if(!props.userId){
-    history.push('/recipes')
-  }
+
   const recipeName = React.useState("");
 
   const [indexes, setIndexes] = React.useState([]);

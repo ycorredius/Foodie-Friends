@@ -1,6 +1,9 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   resources :users,only: [:show,:create]
   resources :recipes 
+  resources :categories, only:[:destroy]
+  resources :instructions, only:[:destroy]
+  resources :ingredients,only: [:destroy]
   post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
 	get '/logged_in', to: 'sessions#is_logged_in?'

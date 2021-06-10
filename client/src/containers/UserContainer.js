@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { sessionStatus,logout } from '../actions/user/userActions'
 import NavigationBar from "../components/NavigationBar";
 
+
 class UserContainer extends React.Component {
     componentDidMount() {
         this.props.sessionStatus()
@@ -10,6 +11,7 @@ class UserContainer extends React.Component {
 
     handleLogout = () =>{
        this.props.logout()
+       window.location.reload()
     }
 
     render() {
