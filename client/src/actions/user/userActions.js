@@ -34,15 +34,18 @@ const authSessionStatus = (user) => {
 export const signup = (user) => {
     return dispatch => {
         return axios.post(`${API_URL}/users`, { user }, { withCredentials: true })
-            .then(res => res.json)
-            .then(( data ) => {
-                const { email, password } = data.data.attributes
-                return dispatch(
-                    authenticate({
-                        email,
-                        password
-                    })
-                );
+            .then(( {data} ) => {
+                if(data.data){
+                    const { email, password } = data.data.attributes
+                    return dispatch(
+                        authenticate({
+                            email,
+                            password
+                        })
+                    )
+                } else{
+                    return dispatch(authFailure(data.errors));
+                }
             })
             .catch((errors) => {
                 dispatch(authFailure(errors));

@@ -11,7 +11,6 @@ class UserContainer extends React.Component {
 
     handleLogout = () =>{
        this.props.logout()
-       window.location.reload()
     }
 
     render() {

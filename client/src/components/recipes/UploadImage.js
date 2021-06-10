@@ -22,13 +22,30 @@ export default function UploadImage(props) {
         .then(res =>history.push(`/recipes/${res.data.id}`))
     }
     return (
-      <div>
-        <h3>Upload image</h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="file" ref={register} name="image"/>
-            <input type='hidden'value={props.recipeId} ref={register} name="recipeId"/>
-            <button type="submit">submit</button>
-        </form>
+      <div class="container w-full max-w-xs">
+        <div cdlass="flex flex-col justify-center items-center">
+          <div class="flex font-bold text-blue-dark justify-center">
+            <h3>Upload image</h3>
+          </div>
+          <form
+            class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 "
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <input type="file" ref={register} name="image" />
+            <input
+              type="hidden"
+              value={props.recipeId}
+              ref={register}
+              name="recipeId"
+            />
+            <button
+              class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              submit
+            </button>
+          </form>
+        </div>
       </div>
     );
 }

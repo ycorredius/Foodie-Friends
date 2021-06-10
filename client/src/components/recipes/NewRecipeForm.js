@@ -223,14 +223,17 @@ function NewRecipeForm(props) {
                       required
                     />
                   </label>
+                                  <div class="flex items-center justify-center">
 
                   <button
                     type="button"
                     onClick={removeInstruction(index)}
                     class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                   >
-                    remove
+                    
+                    Remove
                   </button>
+                  </div>
                 </fieldset>
               );
             })}

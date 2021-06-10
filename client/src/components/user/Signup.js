@@ -26,8 +26,14 @@ class Signup extends React.Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         this.props.signup(this.state)
-            .then(() => {
-                this.props.history.push("/recipes")
+            .then((result) => {
+                  if (result.type === "AUTHENTICATION_FAILURE") {
+                    this.setState({
+                      errors: result.errors,
+                    });
+                  } else {
+                    this.props.history.push("/recipes");
+                  }
             })
     }
 
@@ -45,6 +51,17 @@ class Signup extends React.Component {
                     class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
                     onSubmit={this.handleOnSubmit}
                   >
+                    {this.state.errors ? (
+                      this.state.errors.map((error) => (
+                        <div>
+                          <ul>
+                            <li>{error}</li>
+                          </ul>
+                        </div>
+                      ))
+                    ) : (
+                      <div></div>
+                    )}
                     <div>
                       <label class="block text-gray-700 text-sm font-bold mb-2 ">
                         User Name

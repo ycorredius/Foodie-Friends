@@ -6,7 +6,9 @@ class UsersController < ApplicationController
         if @user.valid? && @user.save
           render json: UserSerializer.new(@user).serialized_json
         else
-          render :json => {:errors => @user.errors.full_messages}, status: 400
+          render :json => {
+            errors: @user.errors.full_messages 
+          }
         end
     end
 
@@ -54,6 +56,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:userName,:email,:password, :password_confirmation)
+      params.require(:user).permit(:userName,:email,:password,:password_confirmation)
     end 
 end

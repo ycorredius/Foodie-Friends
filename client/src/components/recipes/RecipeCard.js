@@ -15,12 +15,16 @@ const RecipeCard = (props) =>{
                 src={image_url}
                 alt="food"
               />
-                <p> Name: {name}</p>
-                <Link to={`/recipes/${id}`}>
-                  <button data-target={id} onClick={props.handleClick}>
-                    Show Recipe
-                  </button>
-                </Link>
+              <p> Name: {name}</p>
+              <Link to={`/recipes/${id}`}>
+                <button
+                  class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  data-target={id}
+                  onClick={props.handleClick}
+                >
+                  Show Recipe
+                </button>
+              </Link>
             </div>
           </div>
         </div>
