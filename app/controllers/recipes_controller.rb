@@ -7,34 +7,20 @@ class RecipesController < ApplicationController
     end 
 
     def create
-      @recipe = current_user.recipes.build(name: params[:name])
-        if params[:ingredients]
-          params[:ingredients].each do |f|
-            @recipe.ingredients.build(name: f[:name], quantity: f[:quantity])
-          end 
-        end
-        
-        if params[:categories]
-          params[:categories].each do |f|
-            @recipe.categories.build(tag: f)
-          end 
-        end
-
-        if params[:instructions]
-          params[:instructions].each_with_index do |x|
-            @recipe.instructions.build(content:x)
-          end 
-        end
-        @recipe.image_url =  "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6094cedb67cb21a66a2b1d6daeef7d4b93aac13a/nishaan-ahmed-Mh087eDe_qA-unsplash.jpg"
-        if @recipe.save 
+      
+      @recipe = current_user.create_new_recipe(recipe_params)
+      
+      binding.pry
+      
+      if @recipe
           flash[:success] = "Recipe successfully created"
           options = {}
           options[:include] =[:instructions,:ingredients,:categories] 
           render json: RecipeSerializer.new(@recipe,options).serialized_json
-        else
+      else
           flash[:error] = "Something went wrong"
           render json: flash,status:500
-        end
+      end
     end
     
     def search_recipe

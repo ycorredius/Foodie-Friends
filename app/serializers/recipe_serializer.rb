@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  image      :string
 #  image_url  :string
+#  is_private :boolean          default(FALSE)
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
