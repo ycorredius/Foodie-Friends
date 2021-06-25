@@ -13,6 +13,7 @@
 #
 
 #TODO: Build out a recipe search for category and ingredients separately.
+#TODO: Building recipe associations to able to be use without manual iteration through each param
 class Recipe < ApplicationRecord
     belongs_to :user
     has_many :recipe_ingredients
@@ -21,5 +22,22 @@ class Recipe < ApplicationRecord
     has_many :categories, through: :recipe_categories
     has_many :instructions
     has_one_attached :avatar
-    # validates :name, presence :true 
+
+    accepts_nested_attributes_for :ingredients, allow_destroy: true
+    accepts_nested_attributes_for :categories, allow_destroy: true
+    accepts_nested_attributes_for :instructions, allow_destroy: true
+
+
+    def build_recipe_attributes(recipe,recipe_params)
+        recipe_params[:ingredients] ? recipe.ingredients_attributes=recipe_params[:ingredients] : nil
+        recipe_params[:categories] ? recipe.categories_attributes=recipe_params[:categories] : nil
+        recipe_params[:instructions] ? recipe.instructions_attributes=recipe_params[:instructions] : nil
+        return recipe
+    end
+
+    def update_recipe(recipe,recipe_params)
+        
+        binding.pry
+        
+    end
 end
