@@ -42,6 +42,7 @@ function NewRecipeForm(props) {
   };
 
   const onSubmit = (e) => {
+    debugger
     axios
       .post(`${END_POINT}/recipes`,e, {
         withCredentials: true
@@ -93,6 +94,7 @@ function NewRecipeForm(props) {
           class="bg-gray-300 shadow-md rounded p-12"
           onSubmit={handleSubmit(onSubmit)}
         >
+          <fieldset name="recipe" key="recipe">
           <div class="grid grid-cols-1  ">
             <fieldset name={recipeName}>
               <label class="block text-gray-700 font-bold mb-2 ">Name</label>
@@ -100,7 +102,7 @@ function NewRecipeForm(props) {
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 ref={register}
-                name="name"
+                name={`recipe[name]`}
                 placeholder="e.g. Spaghetti"
               />
             </fieldset>
@@ -109,13 +111,13 @@ function NewRecipeForm(props) {
             {indexes.map((index) => {
               const fieldName = `categories[${index}]`;
               return (
-                <fieldset name={fieldName} key={fieldName}>
+                <fieldset name={`recipe[${fieldName}]`} key={`recipe[${fieldName}]`}>
                   <label class="block text-gray-700 font-bold mb-2 ">
                     Tag
                     <input
                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
-                      name={`${fieldName}`}
+                      name={`recipe[${fieldName}.tag]`}
                       ref={register}
                       required
                     />
@@ -154,14 +156,14 @@ function NewRecipeForm(props) {
             {ingredientIndexes.map((index) => {
               const fieldName = `ingredients[${index}]`;
               return (
-                <fieldset name={fieldName} key={fieldName}>
+                <fieldset name={`recipe[${fieldName}]`} key={`recipe[${fieldName}]`}>
                   <div class="grid grid-cols-2 gap-2">
                     <label class="block text-gray-700 font-bold mb-2 ">
                       Item
                       <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
-                        name={`${fieldName}.name`}
+                        name={`recipe[${fieldName}.name]`}
                         ref={register}
                         required
                       />
@@ -172,7 +174,7 @@ function NewRecipeForm(props) {
                       <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
-                        name={`${fieldName}.quantity`}
+                        name={`recipe[${fieldName}.quantity]`}
                         ref={register}
                         required
                       />
@@ -210,20 +212,20 @@ function NewRecipeForm(props) {
           </div>
           <div>
             {instructionIndexes.map((index) => {
-              const fieldname = `instructions[${index}]`;
+              const fieldName = `instructions[${index}]`;
               return (
-                <fieldset name={fieldname} key={fieldname}>
+                <fieldset name={`recipe[${fieldName}]`} key={`recipe[${fieldName}]`}>
                   <label class="block text-gray-700 font-bold mb-2 ">
                     Step 
                     <input
                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
-                      name={`${fieldname}`}
+                      name={`recipe[${fieldName}].name`}
                       ref={register}
                       required
                     />
                   </label>
-                                  <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center">
 
                   <button
                     type="button"
@@ -263,6 +265,7 @@ function NewRecipeForm(props) {
               Create
             </button>
           </div>
+          </fieldset>
         </form>
       </div>
     </div>

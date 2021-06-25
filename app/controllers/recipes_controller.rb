@@ -7,10 +7,10 @@ class RecipesController < ApplicationController
     end 
 
     def create
-      
-      @recipe = current_user.create_new_recipe(recipe_params)
-      
       binding.pry
+
+      @recipe = current_user.recipes.build(name: recipe_params[:name])
+      
       
       if @recipe
           flash[:success] = "Recipe successfully created"
@@ -107,6 +107,6 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipe).permit(:name,:image,:ingredients,:instructions,:categories)
+      params.require(:recipe).permit(:name,:image,ingredients: [:name,:quantity],instructions: [:name],categories: [:tag])
     end
 end
