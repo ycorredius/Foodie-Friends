@@ -36,8 +36,18 @@ class Recipe < ApplicationRecord
     end
 
     def update_recipe(recipe,recipe_params)
-        
-        binding.pry
-        
+        recipe.update(name: recipe_params[:name])
+        recipe_params[:ingredients].each do |f|
+            ingredient = Ingredient.find_by_id(f[:id])
+            ingredient.update(name: f[:name], quantity: f[:quantity])
+        end 
+        recipe_params[:instructions].each do |f|
+            instruction = Instruction.find_by_id(f[:id])
+            instruction.update(content: f[:content])
+        end 
+        recipe_params[:categories].each do |f|
+            category = Category.find_by_id(f[:id])
+            category.update(tag: f[:tag])
+        end
     end
 end

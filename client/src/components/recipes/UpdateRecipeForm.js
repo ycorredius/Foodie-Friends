@@ -97,7 +97,7 @@ function UpdateRecipeForm(props) {
               >
                 <input
                   type="hidden"
-                  name="id"
+                  name={`recipe[id]`}
                   ref={register}
                   value={props.recipe.data.attributes.id}
                   required
@@ -112,7 +112,7 @@ function UpdateRecipeForm(props) {
                   <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    name="name"
+                    name={`recipe[name]`}
                     ref={register}
                     defaultValue={props.recipe.data.attributes.name}
                     required
@@ -126,7 +126,7 @@ function UpdateRecipeForm(props) {
                       <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="hidden"
-                        name={`${fieldName}.id`}
+                        name={`recipe[${fieldName}.id]`}
                         ref={register}
                         defaultValue={category.id}
                         required
@@ -138,7 +138,7 @@ function UpdateRecipeForm(props) {
                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           type="text"
                           ref={register}
-                          name={`${fieldName}.tag`}
+                          name={`recipe[${fieldName}.tag]`}
                           defaultValue={category.tag}
                           required
                         />
@@ -173,7 +173,7 @@ function UpdateRecipeForm(props) {
                     <fieldset name={fieldName} key={fieldName}>
                       <input
                         type="hidden"
-                        name={`${fieldName}.id`}
+                        name={`recipe[${fieldName}.id]`}
                         ref={register}
                         defaultValue={ingredient.id}
                         required
@@ -183,7 +183,7 @@ function UpdateRecipeForm(props) {
                         <input
                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           type="text"
-                          name={`${fieldName}.name`}
+                          name={`recipe[${fieldName}.name]`}
                           ref={register}
                           defaultValue={ingredient.name}
                           required
@@ -195,7 +195,7 @@ function UpdateRecipeForm(props) {
                         <input
                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           type="text"
-                          name={`${fieldName}.quantity`}
+                          name={`recipe[${fieldName}.quantity]`}
                           ref={register}
                           defaultValue={ingredient.quantity}
                           required
@@ -233,7 +233,7 @@ function UpdateRecipeForm(props) {
                     <fieldset name={fieldName} key={fieldName}>
                       <input
                         type="hidden"
-                        name={`${fieldName}.id`}
+                        name={`recipe[${fieldName}.id]`}
                         ref={register}
                         defaultValue={instruction.id}
                         required
@@ -243,15 +243,9 @@ function UpdateRecipeForm(props) {
                         <input
                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           type="text"
-                          name={`${fieldName}.content`}
+                          name={`recipe[${fieldName}.content]`}
                           ref={register}
                           defaultValue={instruction.content}
-                          required
-                        />
-                        <input
-                          type="hidden"
-                          name={`${fieldName}.id`}
-                          defaultValue={instruction.id}
                           required
                         />
                       </label>

@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :upload_image]
-  before_action :recipe_params, only: [:create, :update]
+  before_action :recipe_params, only: [:create]
+
   def index
     recipes = Recipe.all
     render json: RecipeSerializer.new(recipes).serializable_hash
@@ -28,12 +29,14 @@ class RecipesController < ApplicationController
     end
 
     def update
-      @recipe.update(name: recipe_params[:name])
-      @recpe.update_recipe(@recipe, recipe_params)
-      options = {}
-      options[:include] =[:instructions,:ingredients,:categories] 
-      render json: RecipeSerializer.new(@recipe,options).serialized_json
-        
+      if @recipe.update_recipe(@recipe, recipe_params)
+        options = {}
+        options[:include] =[:instructions,:ingredients,:categories] 
+        render json: RecipeSerializer.new(@recipe,options).serialized_json
+      else
+        flash[:error] = "Something went wrong"
+        render json: flash,status:500
+      end 
     end
 
 
@@ -62,6 +65,6 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipe).permit(:name,:image,ingredients: [:name,:quantity],instructions: [:content],categories: [:tag])
+      params.require(:recipe).permit(:id,:name,:image,ingredients: [:id,:name,:quantity],instructions: [:id,:content],categories: [:id,:tag])
     end
 end
