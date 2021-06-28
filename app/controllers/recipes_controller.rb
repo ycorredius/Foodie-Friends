@@ -41,6 +41,8 @@ class RecipesController < ApplicationController
 
 
   def upload_image
+    params[:images].each do |f|
+    end
     if @recipe.image_url
       @recipe.avatar.purge
       @recipe.avatar.attach(params[:image])
@@ -63,7 +65,6 @@ class RecipesController < ApplicationController
     def set_recipe
       @recipe = Recipe.find_by_id(params[:id])
     end
-
     def recipe_params
       params.require(:recipe).permit(:id,:name,:image,ingredients: [:id,:name,:quantity],instructions: [:id,:content],categories: [:id,:tag])
     end

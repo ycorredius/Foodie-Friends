@@ -21,7 +21,9 @@ class Recipe < ApplicationRecord
     has_many :recipe_categories
     has_many :categories, through: :recipe_categories
     has_many :instructions
-    has_one_attached :avatar
+    has_many :photos
+    has_many_attached :images
+    
 
     accepts_nested_attributes_for :ingredients, allow_destroy: true
     accepts_nested_attributes_for :categories, allow_destroy: true

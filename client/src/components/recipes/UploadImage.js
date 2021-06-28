@@ -5,15 +5,16 @@ import FormData from 'form-data';
 import END_POINT from "../../actions/recipe/endpoint";
 import { useHistory } from "react-router-dom";
 
-
-
 export default function UploadImage(props) {
     const { register, handleSubmit } = useForm();
     const history = useHistory();
 
     const onSubmit = (e) =>{
+      debugger
         let formData = new FormData()
-        formData.append('image',e.image[0])
+      for (let i = 0; i < e.images.length; i++ ){
+          formData.append(`images[${i}]`,e.images[i]);
+        }
         formData.append('recipeId',e.recipeId)
         axios.patch(`${END_POINT}/recipes/${props.recipeId}/upload_image`,formData,{
             withCredentials:true 
@@ -31,7 +32,7 @@ export default function UploadImage(props) {
             class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 "
             onSubmit={handleSubmit(onSubmit)}
           >
-            <input type="file" ref={register} name="image" />
+            <input type="file" ref={register} multiple name="images" />
             <input
               type="hidden"
               value={props.recipeId}
