@@ -12,9 +12,7 @@ class RecipesController < ApplicationController
       @recipe.build_recipe_attributes(@recipe,recipe_params)
       if @recipe.save
           flash[:success] = "Recipe successfully created"
-          options = {}
-          options[:include] =[:instructions,:ingredients,:categories] 
-          render json: RecipeSerializer.new(@recipe,options).serialized_json
+          render json: RecipeSerializer.new(@recipe).serialized_json
       else
           flash[:error] = "Something went wrong"
           render json: flash,status:500
@@ -30,9 +28,7 @@ class RecipesController < ApplicationController
 
     def update
       if @recipe.update_recipe(@recipe, recipe_params)
-        options = {}
-        options[:include] =[:instructions,:ingredients,:categories] 
-        render json: RecipeSerializer.new(@recipe,options).serialized_json
+        render json: RecipeSerializer.new(@recipe).serialized_json
       else
         flash[:error] = "Something went wrong"
         render json: flash,status:500
@@ -41,18 +37,23 @@ class RecipesController < ApplicationController
 
 
   def upload_image
-    params[:images].each do |f|
+     images = params[:images].each do |f|
+      @recipe.images.attach(f[1])
+      end
+      
+      binding.pry
+      
+     images.each do |image|
+      
+      binding.pry
+    
+      @image = rails_blob_path(image , only_path: true) if @recipe.images.attached?
+      @recipe.photos.build(image_url: @image)
     end
-    if @recipe.image_url
-      @recipe.avatar.purge
-      @recipe.avatar.attach(params[:image])
-      photo = url_for(@recipe.avatar)  
-    else
-      @recipe.avatar.attach(params[:image])
-      photo = url_for(@recipe.avatar)  
-    end
-
-    if @recipe.update(image_url: photo)
+    
+    binding.pry
+    
+    if @recipe.save
       render json: RecipeSerializer.new(@recipe).serialized_json
     else
       flash[:error] = "Something went wrong"

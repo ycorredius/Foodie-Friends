@@ -3,8 +3,7 @@
 # Table name: recipes
 #
 #  id         :integer          not null, primary key
-#  image      :string
-#  image_url  :string
+#  avatar     :string
 #  is_private :boolean          default(FALSE)
 #  name       :string
 #  created_at :datetime         not null
