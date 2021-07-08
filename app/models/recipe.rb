@@ -3,8 +3,7 @@
 # Table name: recipes
 #
 #  id         :integer          not null, primary key
-#  image      :string
-#  image_url  :string
+#  avatar     :string
 #  is_private :boolean          default(FALSE)
 #  name       :string
 #  created_at :datetime         not null
@@ -22,7 +21,7 @@ class Recipe < ApplicationRecord
     has_many :categories, through: :recipe_categories
     has_many :instructions
     has_many :photos
-    has_many_attached :images
+    has_one_attached :image
     
 
     accepts_nested_attributes_for :ingredients, allow_destroy: true

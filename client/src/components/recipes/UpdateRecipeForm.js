@@ -4,7 +4,7 @@ import axios from "axios";
 import END_POINT from "../../actions/recipe/endpoint";
 
 
-//TODO: Refactor to create a smaller file and faster experience.
+//TODO: Refactor to create a smaller file and faster experience.  
 function UpdateRecipeForm(props) {
   const [indexes, setIndexes] = React.useState(
     props.recipe.data.attributes.categories
@@ -52,23 +52,26 @@ function UpdateRecipeForm(props) {
      setIndexes((prevIndexes) => [
        ...prevIndexes.filter((item) => item.id !== id),
      ]);
+     if(id){
      axios.delete(`${END_POINT}/categories/${id}`,{withCredentials:true})
-     .then(res => res.json)
+     .then(res => res.json)}
    };
    const removeInstruction = (id) => () => {
      setInstructionIndexes((prevInstructionIndexes) => [
        ...prevInstructionIndexes.filter((item) => item.id !== id),
      ]);
      setInstructionCounter((prevCounter) => prevCounter - 1);
+     if(id){
      axios.delete(`${END_POINT}/instructions/${id}`)
-     .then((res) => res.json);
+     .then((res) => res.json);}
    };
    const removeIngredient = (id) => () => {
      setIngredientIndexes((prevIngredientIndexes) => [
        ...prevIngredientIndexes.filter((item) => item.id !== id),
      ]);
      setIngredientCounter((prevCounter) => prevCounter - 1);
-     axios.delete(`${END_POINT}/ingredients/${id}`).then((res) => res.json);
+     if(id){
+     axios.delete(`${END_POINT}/ingredients/${id}`).then((res) => res.json);}
    };
 
   const onSubmit = (e) => {
@@ -80,19 +83,19 @@ function UpdateRecipeForm(props) {
   
   return (
     <div class="container w-full max-w-xs object-center mt-32 ">
-      <div class="grid grid-cols-2">
-        <div class="h-full xl:block gap-4">
+      <div class="flex flex-col">
+        <div class="h-full xl:block gap-4 place-self-center">
           <img
-            src={props.recipe.data.attributes.image_url}
+            src={props.recipe.data.attributes.avatar}
             alt="food"
-            class="object-scale-down "
+            class="avatar "
           />
         </div>
-        <div class="flex justify-evenly items-center">
-          <div class="flex flex-col items-center">
-            <div class="overflow-auto h-96 w-96 ">
+        <div class="">
+          <div class="">
+            <div class="">
               <form
-                class="bg-gray-300 shadow-md rounded p-8 "
+                class="max-w-s"
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <input
@@ -118,7 +121,7 @@ function UpdateRecipeForm(props) {
                     required
                   />
                 </div>
-                <h4 class="block text-gray-700 font-bold mb-2 ">Categories</h4>
+                <h4 class="block text-gray-700 font-bold mb-2 place-self-center ">Categories</h4>
                 {indexes.map((category, index) => {
                   const fieldName = `categories[${index}]`;
                   return (
@@ -147,9 +150,9 @@ function UpdateRecipeForm(props) {
                         <button
                           type="button"
                           onClick={removeCategory(category.id)}
-                          class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+                          class="font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
                         >
-                          X
+                          Remove
                         </button>
                       </div>
                     </fieldset>
@@ -171,6 +174,7 @@ function UpdateRecipeForm(props) {
                   const fieldName = `ingredients[${index}]`;
                   return (
                     <fieldset name={fieldName} key={fieldName}>
+                      <div class="grid grid-cols-3 gap-2">
                       <input
                         type="hidden"
                         name={`recipe[${fieldName}.id]`}
@@ -209,6 +213,7 @@ function UpdateRecipeForm(props) {
                         >
                           X
                         </button>
+                      </div>
                       </div>
                     </fieldset>
                   );

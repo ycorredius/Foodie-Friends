@@ -54,8 +54,8 @@ export class RecipeShow extends Component {
                 <div class="grid gap-4">
                   <div class="grid grid-cols-2 items-center gap-4">
                     <img
-                      class="rounded object-contain w-full"
-                      src={this.props.recipe.data.attributes.image_url}
+                      class="rounded object-contain w-full avatar"
+                      src={this.props.recipe.data.attributes.avatar}
                       alt="food"
                     />
                     <div class="flex items-center justify-center">

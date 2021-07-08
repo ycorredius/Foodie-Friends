@@ -37,22 +37,10 @@ class RecipesController < ApplicationController
 
 
   def upload_image
-     images = params[:images].each do |f|
-      @recipe.images.attach(f[1])
-      end
-      
-      binding.pry
-      
-     images.each do |image|
-      
-      binding.pry
-    
-      @image = rails_blob_path(image , only_path: true) if @recipe.images.attached?
-      @recipe.photos.build(image_url: @image)
-    end
-    
-    binding.pry
-    
+      @recipe.image.attach(params[:image])
+      photo = url_for(@recipe.image)
+      @recipe.avatar = photo
+      @recipe.photos.build(image_url: photo)
     if @recipe.save
       render json: RecipeSerializer.new(@recipe).serialized_json
     else
@@ -67,6 +55,6 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find_by_id(params[:id])
     end
     def recipe_params
-      params.require(:recipe).permit(:id,:name,:image,ingredients: [:id,:name,:quantity],instructions: [:id,:content],categories: [:id,:tag])
+      params.require(:recipe).permit(:id,:is_private, :name,:image,ingredients: [:id,:name,:quantity],instructions: [:id,:content],categories: [:id,:tag])
     end
 end
