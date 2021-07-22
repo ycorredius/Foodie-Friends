@@ -48,30 +48,26 @@ function UpdateRecipeForm(props) {
     setIngredientCounter((prevIngredientCounter) => prevIngredientCounter + 1);
   };
    const removeCategory = (id) => () => {
-     debugger
      setIndexes((prevIndexes) => [
        ...prevIndexes.filter((item) => item.id !== id),
      ]);
-     if(id){
      axios.delete(`${END_POINT}/categories/${id}`,{withCredentials:true})
-     .then(res => res.json)}
+     .then(res => res.json)
    };
    const removeInstruction = (id) => () => {
      setInstructionIndexes((prevInstructionIndexes) => [
        ...prevInstructionIndexes.filter((item) => item.id !== id),
      ]);
      setInstructionCounter((prevCounter) => prevCounter - 1);
-     if(id){
      axios.delete(`${END_POINT}/instructions/${id}`)
-     .then((res) => res.json);}
+     .then((res) => res.json);
    };
    const removeIngredient = (id) => () => {
      setIngredientIndexes((prevIngredientIndexes) => [
        ...prevIngredientIndexes.filter((item) => item.id !== id),
      ]);
      setIngredientCounter((prevCounter) => prevCounter - 1);
-     if(id){
-     axios.delete(`${END_POINT}/ingredients/${id}`).then((res) => res.json);}
+     axios.delete(`${END_POINT}/ingredients/${id}`).then((res) => res.json);
    };
 
   const onSubmit = (e) => {
@@ -89,13 +85,13 @@ function UpdateRecipeForm(props) {
             src={props.recipe.data.attributes.avatar}
             alt="food"
             class="avatar "
-          />
+          />`
         </div>
         <div class="">
           <div class="">
             <div class="">
               <form
-                class="max-w-s"
+                class="max-w-s mb-8"
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <input
@@ -122,6 +118,7 @@ function UpdateRecipeForm(props) {
                   />
                 </div>
                 <h4 class="block text-gray-700 font-bold mb-2 place-self-center ">Categories</h4>
+                <div className="flex flex-cols">
                 {indexes.map((category, index) => {
                   const fieldName = `categories[${index}]`;
                   return (
@@ -158,6 +155,7 @@ function UpdateRecipeForm(props) {
                     </fieldset>
                   );
                 })}
+                </div>
                   <div class="flex items-center justify-center">
 
                 <button
