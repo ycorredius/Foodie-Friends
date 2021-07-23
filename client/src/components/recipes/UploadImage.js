@@ -14,7 +14,7 @@ export default function UploadImage(props) {
 
     formData.append('image', e.image[0])
     formData.append('recipeId', e.recipeId)
-    axios.patch(`${END_POINT}/recipes/${props.recipeId}/upload_image`, formData, {
+    axios.post(`${END_POINT}/recipes/${props.recipeId}/photos`, formData, {
       withCredentials: true
     })
       .then(response => response.data)
