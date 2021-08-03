@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_201448) do
+ActiveRecord::Schema.define(version: 2021_08_03_220607) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 2021_07_22_201448) do
   end
 
   create_table "inboxes", force: :cascade do |t|
+    t.integer "messages_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["messages_id"], name: "index_inboxes_on_messages_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -69,11 +71,10 @@ ActiveRecord::Schema.define(version: 2021_07_22_201448) do
   create_table "messages", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "pendings", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.text "content"
+    t.boolean "read"
+    t.integer "reciepient_id"
+    t.integer "sender_id"
   end
 
   create_table "photos", force: :cascade do |t|

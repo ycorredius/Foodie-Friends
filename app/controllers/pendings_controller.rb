@@ -1,2 +1,0 @@
-class PendingsController < ApplicationController
-end
