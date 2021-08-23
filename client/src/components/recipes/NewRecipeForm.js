@@ -42,7 +42,6 @@ function NewRecipeForm(props) {
   };
 
   const onSubmit = (e) => {
-    debugger
     axios
       .post(`${END_POINT}/recipes`,e, {
         withCredentials: true

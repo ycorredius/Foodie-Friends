@@ -4,7 +4,6 @@ import axios from 'axios';
 const API_URL = "http://localhost:3000"
 
 export const authSuccess = (user) => {
-    debugger
     return {
         type: types.AUTHENTICATION_SUCCESS,
         logged_in: user.logged_in,
