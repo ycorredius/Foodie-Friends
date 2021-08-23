@@ -2,8 +2,6 @@ import * as types from './userTypes';
 
 const initialState = {
     logged_in: false,
-    currentUser: {},
-    errors: []
 }
 
 export const userReducer =(state = initialState, action) => {

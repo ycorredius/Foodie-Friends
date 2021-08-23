@@ -4,9 +4,11 @@ import axios from 'axios';
 const API_URL = "http://localhost:3000"
 
 export const authSuccess = (user) => {
+    debugger
     return {
         type: types.AUTHENTICATION_SUCCESS,
-        logged_in: user.logged_in
+        logged_in: user.logged_in,
+        currentUser: user.user
     }
 }
 
@@ -52,7 +54,7 @@ export const authenticate = (credentials) => {
         return axios.post(`${API_URL}/login`, { credentials }, { withCredentials: true })
             .then(({data}) => {
                 if(data.user){
-                    return dispatch(authSuccess(data));
+                    return data.user    ;
                 } else{
                    return dispatch(authFailure(data.errors))
                 }  

@@ -1,13 +1,14 @@
 import React from 'react'
-import RecipeContainer from '../containers/RecipeContainer'
 import {Switch,Route} from 'react-router-dom'
 import NewRecipeForm from './recipes/NewRecipeForm';
 import UploadImage from './recipes/UploadImage'
 import RecipeShow from './recipes/RecipeShow'
 import Signup from './user/Signup'
+import Home from './Home'
 import Login from './user/Login'
 import UpdateRecipeForm from './recipes/UpdateRecipeForm'
 import UserRecipes from './recipes/UserRecipes';
+import RecipeContainer from '../containers/RecipeContainer';
 
 export const Routes = () => (
   <div>
@@ -52,7 +53,12 @@ export const Routes = () => (
         path={"/recipes/:recipeId/edit"}
         render={(props) => <UpdateRecipeForm props={props} />}
       />
-      <Route path={"/"} render={() => <RecipeContainer />} />
+      <Route
+        exact
+        path={"/recipes"}
+        render={()=>{<RecipeContainer/>}}
+      />
+      <Route path={"/"} render={() => <Home/>} />
     </Switch>
   </div>
 );

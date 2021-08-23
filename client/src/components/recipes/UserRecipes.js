@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import { fetchUserRecipes } from '../../actions/recipe/recipeActions';
 import {sessionStatus} from '../../actions/user/userActions'
 import {Recipes} from './Recipes';
-
 class UserRecipes extends Component {
     componentDidMount(){
-        this.props.fetchUserRecipes(this.props.props.match.params.userId);
+        this.props.fetchUserRecipes(this.props.props.match.params.userId)
         this.props.sessionStatus()
     }
     
