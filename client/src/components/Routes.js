@@ -15,8 +15,35 @@ export const Routes = () => (
     <Switch>
       <Route
         exact
+        path={"/recipes"}
+        render={(props) => {
+          <RecipeContainer props={props} />;
+        }}
+      />
+      <Route
+        exact
         path={"/recipes/:recipeId"}
         render={(showProps) => <RecipeShow {...showProps} />}
+      />
+      <Route
+        exact
+        path={"/recipes/:recipeId/upload_image"}
+        render={(props) => (
+          <UploadImage props={props} recipeId={props.match.params.recipeId} />
+        )}
+      />
+      \\TODO: Fix routing between edit and recpie show
+      <Route
+        exact
+        path={"/recipes/:recipeId/edit"}
+        render={(props) => <UpdateRecipeForm props={props} />}
+      />
+      <Route
+        exact
+        path={"/users/:userId/recipes"}
+        render={(props) => (
+          <UserRecipes props={props} userId={props.match.params.userId} />
+        )}
       />
       <Route
         exact
@@ -33,32 +60,7 @@ export const Routes = () => (
         path={"/login"}
         render={(routeProps) => <Login {...routeProps} />}
       />
-      <Route
-        exact
-        path={"/recipes/:recipeId/upload_image"}
-        render={(props) => (
-          <UploadImage props={props} recipeId={props.match.params.recipeId} />
-        )}
-      />
-      <Route
-        exact
-        path={"/users/:userId/recipes"}
-        render={(props) => (
-          <UserRecipes props={props} userId={props.match.params.userId} />
-        )}
-      />
-      \\TODO: Fix routing between edit and recpie show
-      <Route
-        exact
-        path={"/recipes/:recipeId/edit"}
-        render={(props) => <UpdateRecipeForm props={props} />}
-      />
-      <Route
-        exact
-        path={"/recipes"}
-        render={()=>{<RecipeContainer/>}}
-      />
-      <Route path={"/"} render={() => <Home/>} />
+      <Route path={"/"} render={() => <Home />} />
     </Switch>
   </div>
 );

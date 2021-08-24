@@ -1,7 +1,7 @@
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 source 'https://rubygems.org'
 
-ruby '2.7.1'
+ruby '2.6.3'
 
 gem 'bcrypt', '~> 3.1.7'
 # gem "image_processing", "~> 1.0"
