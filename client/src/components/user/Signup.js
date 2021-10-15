@@ -11,7 +11,7 @@ class Signup extends React.Component {
             password: '',
             password_confirmation: '',
             errors: []
-         }
+         } 
     }
 
     handleOnChange = (event) => {
@@ -131,9 +131,4 @@ class Signup extends React.Component {
     }
 }
 
-const mapStateToProps = ({userReducer}) =>{
-    return{
-        error: userReducer.errors.errors
-    }
-}
-export default connect(mapStateToProps, { signup })(Signup)
+export default connect(null, { signup })(Signup)

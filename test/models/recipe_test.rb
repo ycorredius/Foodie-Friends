@@ -2,7 +2,7 @@
 #
 # Table name: recipes
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  avatar     :string
 #  is_private :boolean          default(FALSE)
 #  name       :string

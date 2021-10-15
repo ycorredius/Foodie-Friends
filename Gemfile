@@ -1,9 +1,10 @@
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 source 'https://rubygems.org'
 
-ruby '2.6.3'
+ruby '3.0.2'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'pg'
 # gem "image_processing", "~> 1.0"
 # gem 'jsonapi-serializer'
 # gem 'redis', '~> 4.0'

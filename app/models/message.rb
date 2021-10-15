@@ -2,7 +2,7 @@
 #
 # Table name: messages
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  content       :text
 #  read          :boolean
 #  created_at    :datetime         not null
