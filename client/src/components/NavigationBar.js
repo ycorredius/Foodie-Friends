@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom'
 import {Navbar,Nav,Button,Collapse} from 'bootstrap-4-react'
 
 const NavigationBar = (props) => {
-
-
     if(!props.logged_in && !props.userId){
         return (
           <React.Fragment>

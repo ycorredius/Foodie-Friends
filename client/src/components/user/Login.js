@@ -33,7 +33,9 @@ class Login extends React.Component {
             errors: result.errors
           })
         }else{
-          this.props.history.push("/recipes")}
+          this.props.history.push("/recipes")
+          window.location.reload()
+        }
         }
       )
   }
