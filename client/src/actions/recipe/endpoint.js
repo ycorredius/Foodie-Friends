@@ -1,3 +1,3 @@
-export const END_POINT = 'http://localhost:3000';
+export const RECIPE_END_POINT = "http://localhost:3000/recipes";
 
-export default END_POINT
+export default RECIPE_END_POINT;
