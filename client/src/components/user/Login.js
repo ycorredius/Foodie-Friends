@@ -1,47 +1,45 @@
-import React from 'react';
-import {connect} from 'react-redux'
-import {authenticate,sessionStatus} from '../../actions/user/userActions'
+import React from "react";
+import { connect } from "react-redux";
+import { authenticate, sessionStatus } from "../../actions/user/userActions";
 
 class Login extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      email:'',
-      password:'',
-      errors:[]
-    }
+      email: "",
+      password: "",
+      errors: [],
+    };
   }
 
-  componentDidMount(){
-    this.props.sessionStatus()
+  componentDidMount() {
+    this.props.sessionStatus();
   }
 
   handleOnChange = (event) => {
-    const {name,value} =  event.target
+    const { name, value } = event.target;
     this.setState({
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
   //TODO: Create a password recovery or reset system.
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.authenticate(this.state)
-      .then((result) => {
-        if(result.type === 'AUTHENTICATION_FAILURE'){
-          this.setState({
-            errors: result.errors
-          })
-        }else{
-          this.props.history.push("/recipes")
-          window.location.reload()
-        }
-        }
-      )
-  }
+    this.props.authenticate(this.state).then((result) => {
+      if (result.type === "AUTHENTICATION_FAILURE") {
+        this.setState({
+          errors: result.errors,
+        });
+      } else {
+        this.props.history.push("/recipes");
+        window.location.reload();
+      }
+    });
+  };
 
-  render(){
-    const {email,password} = this.state
+  render() {
+    const { email, password } = this.state;
     return (
       <div class="container w-full max-w-xs object-center mt-32 mb-64 pb-64">
         <div class="flex flex-col justify-center items-center">
@@ -74,7 +72,7 @@ class Login extends React.Component {
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     value={email}
                     name="email"
-                    placeholder="email"
+                    placeholder="Email"
                     onChange={this.handleOnChange}
                   />
                 </div>
@@ -87,7 +85,7 @@ class Login extends React.Component {
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     value={password}
                     onChange={this.handleOnChange}
                   />
@@ -109,4 +107,4 @@ class Login extends React.Component {
     );
   }
 }
- export default connect(null,{authenticate,sessionStatus})(Login);
+export default connect(null, { authenticate, sessionStatus })(Login);
