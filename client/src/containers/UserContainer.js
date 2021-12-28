@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { sessionStatus, logout } from "../actions/user/userActions";
 import NavigationBar from "../components/NavigationBar";
 
@@ -13,23 +14,23 @@ class UserContainer extends React.Component {
   };
 
   render() {
-   
-    return(<div>
-       {this.props.logged_in ? (
-           <div>
-             <NavigationBar
-               logged_in={this.props.logged_in}
-               handleLogout={this.handleLogout}
-               userId={this.props.user.id}
-             />
-           </div>
-         ) : (
-           <div>
-             <NavigationBar logged_in={this.props.logged_in} />
-           </div>
-         )}
-       </div>
-       )
+    return (
+      <div>
+        {this.props.logged_in ? (
+          <div>
+            <NavigationBar
+              logged_in={this.props.logged_in}
+              handleLogout={this.handleLogout}
+              userId={this.props.user.id}
+            />
+          </div>
+        ) : (
+          <div>
+            <NavigationBar logged_in={this.props.logged_in} />
+          </div>
+        )}
+      </div>
+    );
   }
 }
 

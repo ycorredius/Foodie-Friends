@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { authenticate, sessionStatus } from "../../actions/user/userActions";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -39,6 +40,9 @@ class Login extends React.Component {
   };
 
   render() {
+    if (this.props.logged_in) {
+      <Redirect to="/user" />;
+    }
     const { email, password } = this.state;
     return (
       <div class="container w-full max-w-xs object-center mt-32 mb-64 pb-64">

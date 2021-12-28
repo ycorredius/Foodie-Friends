@@ -2,9 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import END_POINT from "../../actions/recipe/endpoint";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
-function NewRecipeForm() {
+function NewRecipeForm(props) {
+  if (!props.userId) {
+    <Redirect to={"/login"} />;
+  }
   const history = useHistory();
 
   const recipeName = React.useState("");
