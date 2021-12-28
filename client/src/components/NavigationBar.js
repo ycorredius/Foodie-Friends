@@ -14,11 +14,14 @@ const NavigationBar = (props) => {
           </Link>
           {props.userId ? (
             <div>
-              <Link to={`/users/${props.userId}/recipes/new_recipe`}>
+              <Link to={`/user/${props.userId}/recipes/new_recipe`}>
                 <div>Create Recipe</div>
               </Link>
-              <Link to={`/users/${props.userId}/recipes`}>
+              <Link to={`/user/${props.userId}/recipes`}>
                 <div>My Recipes</div>
+              </Link>
+              <Link to={`/user`}>
+                <div>Profile</div>
               </Link>
               <div>
                 <button onClick={props.handleLogout}>Logout</button>
