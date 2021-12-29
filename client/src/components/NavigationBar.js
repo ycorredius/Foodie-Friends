@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavigationBar = (props) => {
   return (
     <>
-      <div class="bg-blue-dark text-white">
+      <div>
         <div class="mr-8">
           <div>My Recipe Cookbook</div>
         </div>
@@ -19,6 +19,9 @@ const NavigationBar = (props) => {
               </Link>
               <Link to={`/user/${props.userId}/recipes`}>
                 <div>My Recipes</div>
+              </Link>
+              <Link>
+                <div>Friends</div>
               </Link>
               <Link to={`/user`}>
                 <div>Profile</div>

@@ -90,18 +90,15 @@ function NewRecipeForm(props) {
   };
 
   return (
-    <div class="container w-full max-w-xs object-center">
-      <div class="flex flex-col justify-center items-center gap-4">
+    <div >
         <form
-          class="bg-gray-300 shadow-md rounded p-12"
           onSubmit={handleSubmit(onSubmit)}
         >
           <fieldset name="recipe" key="recipe">
-            <div class="grid grid-cols-1  ">
+            <div >
               <fieldset name={recipeName}>
-                <label class="block text-gray-700 font-bold mb-2 ">Name</label>
+                <label>Name</label>
                 <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="text"
                   ref={register}
                   name={`recipe[name]`}
@@ -117,21 +114,19 @@ function NewRecipeForm(props) {
                     name={`recipe[${fieldName}]`}
                     key={`recipe[${fieldName}]`}
                   >
-                    <label class="block text-gray-700 font-bold mb-2 ">
+                    <label >
                       Tag
                       <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         name={`recipe[${fieldName}.tag]`}
                         ref={register}
                         required
                       />
                     </label>
-                    <div class="flex items-center justify-center">
+                    <div>
                       <button
                         type="button"
                         onClick={removeCategory(index)}
-                        class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                       >
                         Remove
                       </button>
@@ -139,11 +134,10 @@ function NewRecipeForm(props) {
                   </fieldset>
                 );
               })}
-              <div class="grid grid-cols-2 items-center justify-center">
+              <div >
                 <button
                   type="button"
                   onClick={addCategory}
-                  class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 >
                   Add Category
                 </button>
@@ -151,7 +145,6 @@ function NewRecipeForm(props) {
                 <button
                   type="button"
                   onClick={clearCategories}
-                  class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 >
                   Clear Categories
                 </button>
@@ -165,11 +158,10 @@ function NewRecipeForm(props) {
                     name={`recipe[${fieldName}]`}
                     key={`recipe[${fieldName}]`}
                   >
-                    <div class="grid grid-cols-2 gap-2">
-                      <label class="block text-gray-700 font-bold mb-2 ">
+                    <div >
+                      <label >
                         Item
                         <input
-                          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           type="text"
                           name={`recipe[${fieldName}.name]`}
                           ref={register}
@@ -177,10 +169,9 @@ function NewRecipeForm(props) {
                         />
                       </label>
 
-                      <label class="block text-gray-700 font-bold mb-2 ">
+                      <label >
                         Quantiy
                         <input
-                          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           type="text"
                           name={`recipe[${fieldName}.quantity]`}
                           ref={register}
@@ -188,11 +179,10 @@ function NewRecipeForm(props) {
                         />
                       </label>
                     </div>
-                    <div class="flex items-center justify-center">
+                    <div >
                       <button
                         type="button"
                         onClick={removeIngredient(index)}
-                        class="bg-blue-dark hover:bg-gray-700 text-white font-bold px-4 py-2 m-2 rounded focus:outline-none focus:shadow-outline items-center justify-center"
                       >
                         Remove
                       </button>
@@ -200,11 +190,10 @@ function NewRecipeForm(props) {
                   </fieldset>
                 );
               })}
-              <div class="grid grid-cols-2 items-center justify-center">
+              <div >
                 <button
                   type="button"
                   onClick={addIngredient}
-                  class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 >
                   Add Ingredient
                 </button>
@@ -212,7 +201,6 @@ function NewRecipeForm(props) {
                 <button
                   type="button"
                   onClick={clearIngredient}
-                  class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 >
                   Clear Ingredients
                 </button>
@@ -226,21 +214,19 @@ function NewRecipeForm(props) {
                     name={`recipe[${fieldName}]`}
                     key={`recipe[${fieldName}]`}
                   >
-                    <label class="block text-gray-700 font-bold mb-2 ">
+                    <label >
                       Step
                       <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         name={`recipe[${fieldName}.content]`}
                         ref={register}
                         required
                       />
                     </label>
-                    <div class="flex items-center justify-center">
+                    <div >
                       <button
                         type="button"
                         onClick={removeInstruction(index)}
-                        class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                       >
                         Remove
                       </button>
@@ -248,11 +234,10 @@ function NewRecipeForm(props) {
                   </fieldset>
                 );
               })}
-              <div class="grid grid-cols-2 items-center justify-center">
+              <div>
                 <button
                   type="button"
                   onClick={addInstruction}
-                  class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 >
                   Add Instruction
                 </button>
@@ -260,15 +245,13 @@ function NewRecipeForm(props) {
                 <button
                   type="button"
                   onClick={clearInstructions}
-                  class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 >
                   Clear Instructions
                 </button>
               </div>
             </div>
-            <div class="flex items-center justify-center">
+            <div >
               <button
-                class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Create
@@ -277,7 +260,6 @@ function NewRecipeForm(props) {
           </fieldset>
         </form>
       </div>
-    </div>
   );
 }
 

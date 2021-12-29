@@ -40,95 +40,70 @@ class Signup extends React.Component {
     const { userName, email, password, password_confirmation } = this.state;
     return (
       <div class="container object-center mt-36 mb-32pb-64">
-        <div class="flex flex-col justify-center items-center">
-          <div class="flex font-bold text-blue-dark justify-center">
-            <h1>New User</h1>
+        <h1>New User</h1>
+        <form
+          class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          onSubmit={this.handleOnSubmit}
+        >
+          {this.state.errors ? (
+            this.state.errors.map((error) => (
+              <div>
+                <ul>
+                  <li>{error}</li>
+                </ul>
+              </div>
+            ))
+          ) : (
+            <div></div>
+          )}
+          <div>
+            <label>User Name</label>
+            <input
+              type="text"
+              name="userName"
+              value={userName}
+              placeholder="User Name"
+              onChange={this.handleOnChange}
+            />
           </div>
-          <div class="flex flex-col item-center">
-            <div class="w-96 ">
-              <form
-                class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
-                onSubmit={this.handleOnSubmit}
-              >
-                {this.state.errors ? (
-                  this.state.errors.map((error) => (
-                    <div>
-                      <ul>
-                        <li>{error}</li>
-                      </ul>
-                    </div>
-                  ))
-                ) : (
-                  <div></div>
-                )}
-                <div>
-                  <label class="block text-gray-700 text-sm font-bold mb-2 ">
-                    User Name
-                  </label>
-                  <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    name="userName"
-                    value={userName}
-                    placeholder="User Name"
-                    onChange={this.handleOnChange}
-                  />
-                </div>
-                <br />
-                <div>
-                  <label class="block text-gray-700 text-sm font-bold mb-2 ">
-                    Email
-                  </label>
-                  <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    name="email"
-                    value={email}
-                    placeholder="Email"
-                    onChange={this.handleOnChange}
-                  />
-                </div>
-                <br />
-                <div>
-                  <label class="block text-gray-700 text-sm font-bold mb-2 ">
-                    Password
-                  </label>
-                  <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="password"
-                    name="password"
-                    value={password}
-                    placeholder="Password"
-                    onChange={this.handleOnChange}
-                  />
-                </div>
-                <br />
-                <div>
-                  <label class="block text-gray-700 text-sm font-bold mb-2 ">
-                    Password Confirmation:
-                  </label>
-                  <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="password"
-                    name="password_confirmation"
-                    value={password_confirmation}
-                    placeholder="Confirm Password"
-                    onChange={this.handleOnChange}
-                  />
-                </div>
-                <br />
-                <div class="flex items-center justify-center">
-                  <button
-                    class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit"
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              </form>
-            </div>
+          <br />
+          <div>
+            <label>Email</label>
+            <input
+              type="text"
+              name="email"
+              value={email}
+              placeholder="Email"
+              onChange={this.handleOnChange}
+            />
           </div>
-        </div>
+          <br />
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              onChange={this.handleOnChange}
+            />
+          </div>
+          <br />
+          <div>
+            <label>Password Confirmation:</label>
+            <input
+              type="password"
+              name="password_confirmation"
+              value={password_confirmation}
+              placeholder="Confirm Password"
+              onChange={this.handleOnChange}
+            />
+          </div>
+          <br />
+          <div>
+            <button type="submit">Sign Up</button>
+          </div>
+        </form>
       </div>
     );
   }

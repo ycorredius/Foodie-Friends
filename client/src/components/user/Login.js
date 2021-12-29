@@ -45,15 +45,11 @@ class Login extends React.Component {
     }
     const { email, password } = this.state;
     return (
-      <div class="container w-full max-w-xs object-center mt-32 mb-64 pb-64">
-        <div class="flex flex-col justify-center items-center">
-          <div class="flex font-bold text-blue-dark justify-center">
+      <div>
+          <div >
             <h1>Login Here!</h1>
           </div>
-          <div class="flex flex-col item-center">
-            <div class="w-96 ">
               <form
-                class="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
                 onSubmit={this.handleSubmit}
               >
                 {this.state.errors ? (
@@ -67,13 +63,12 @@ class Login extends React.Component {
                 ) : (
                   <div></div>
                 )}
-                <div class="mb-4">
-                  <label class="block text-gray-700 text-sm font-bold mb-2 ">
-                    Email:{" "}
+                <div >
+                  <label >
+                    Email:
                   </label>
                   <input
                     type="text"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     value={email}
                     name="email"
                     placeholder="Email"
@@ -82,11 +77,10 @@ class Login extends React.Component {
                 </div>
                 <br />
                 <div>
-                  <label class="block text-gray-700 text-sm font-bold mb-2 ">
+                  <label >
                     Password:{" "}
                   </label>
                   <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="password"
                     name="password"
                     placeholder="Password"
@@ -95,9 +89,8 @@ class Login extends React.Component {
                   />
                 </div>
                 <br />
-                <div class="flex items-center justify-center">
+                <div >
                   <button
-                    class="bg-blue-dark hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                   >
                     Login
@@ -105,9 +98,6 @@ class Login extends React.Component {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
     );
   }
 }
