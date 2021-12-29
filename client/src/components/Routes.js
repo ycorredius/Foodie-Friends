@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import NewRecipeForm from "./recipes/NewRecipeForm";
+import NewRecipeForm from "./recipes/recipeForm/NewRecipeForm";
 import UploadImage from "./recipes/UploadImage";
 import RecipeShow from "./recipes/RecipeShow";
 import Signup from "./user/Signup";
 import Home from "./Home";
 import Login from "./user/Login";
-import UpdateRecipeForm from "./recipes/UpdateRecipeForm";
+import UpdateRecipeForm from "./recipes/recipeForm/UpdateRecipeForm";
 import UserRecipes from "./recipes/UserRecipes";
 import RecipeContainer from "../containers/RecipeContainer";
 import Profile from "./user/Profile";

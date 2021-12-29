@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm} from "react-hook-form";
 import axios from "axios";
-import END_POINT from "../../actions/recipe/endpoint";
+import END_POINT from "../../../actions/recipe/endpoint";
 
 
 //TODO: Refactor to create a smaller file and faster experience.  
