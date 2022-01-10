@@ -1,15 +1,14 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import NewRecipeForm from "./recipes/recipeForm/NewRecipeForm";
 import UploadImage from "./recipes/UploadImage";
 import RecipeShow from "./recipes/RecipeShow";
 import Signup from "./user/Signup";
 import Home from "./Home";
 import Login from "./user/Login";
-import UpdateRecipeForm from "./recipes/recipeForm/UpdateRecipeForm";
 import UserRecipes from "./recipes/UserRecipes";
 import RecipeContainer from "../containers/RecipeContainer";
 import Profile from "./user/Profile";
+import RecipeForm from "./recipes/RecipeForm";
 
 export const Routes = () => (
   <div>
@@ -36,11 +35,6 @@ export const Routes = () => (
       \\TODO: Fix routing between edit and recpie show
       <Route
         exact
-        path={"/recipe/:recipeId/edit"}
-        render={(props) => <UpdateRecipeForm props={props} />}
-      />
-      <Route
-        exact
         path={"/user"}
         render={(props) => <Profile props={props} />}
       />
@@ -54,7 +48,7 @@ export const Routes = () => (
       <Route
         exact
         path={"/user/:userId/recipes/new_recipe"}
-        render={(props) => <NewRecipeForm userId={props.match.params.userId} />}
+        render={(props) => <RecipeForm userId={props.match.params.userId} />}
       />
       <Route exact path={"/user/:userId"} />
       <Route

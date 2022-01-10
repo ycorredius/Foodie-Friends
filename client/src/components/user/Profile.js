@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 
 class Profile extends Component {
   render() {
-    return <div>{this.props.user.email}</div>;
+    return (
+      <div>
+        <h1>{this.props.user.email}</h1>
+      </div>
+    );
   }
 }
 
