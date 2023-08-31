@@ -5,7 +5,7 @@
 #  id          :bigint           not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  messages_id :integer
+#  messages_id :bigint
 #
 # Indexes
 #
