@@ -7,3 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # @recipes = Recipe.find_recipie_by_main_ingredient('beef')
+
+User.create!(email: "test@example.com",username: 'test', password: 'test')
