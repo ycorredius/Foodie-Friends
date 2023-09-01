@@ -1,20 +1,40 @@
 import {useForm} from 'react-hook-form'
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import { useEffect } from 'react'
 
 export default function Login () {
   const {register, handleSubmit, formState:{errors}} = useForm()
+  const navigate = useNavigate()
 
   //TODO: Create a password recovery or reset system.
 
   const onSubmit = (data) => {
-    axios.post('http://localhost:3000/login', {data}, {withCredentials: true})
+   const {email, password} = data
+    axios.post('http://localhost:3001/auth/sign_in',{email: email, password: password} )
     .then((res) => {
-      console.log(res)
+      if (res.status === 200 && res.statusText === "OK") {
+        localStorage.setItem('accessToken', res.headers['access-token'])
+        navigate('/')
+      }else {
+        console.log(res.data.errors)
+      }
+      return null;
+    })
+    .catch((err) => {
+      console.log(err)
     })
   };
+
+    useEffect(() => {
+      if (localStorage.getItem('accessToken')) {
+        navigate('/')
+      }
+    })
+    
     return (
       <div>
-        {errors.username && <span>Username required</span>}
+        {errors.email && <span>email required</span>}
         {errors.password && <span>Password required</span>}
         <div>
           <h1>Login Here!</h1>
@@ -22,13 +42,13 @@ export default function Login () {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label >
-              Username:
+              Email:
             </label>
             <input
               type="text"
-              name="username"
-              placeholder="username"
-              {...register("username", {required: true})}
+              name="email"
+              placeholder="email"
+              {...register("email", {required: true})}
             />
           </div>
           <br />

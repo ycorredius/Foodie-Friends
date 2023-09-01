@@ -1,5 +1,7 @@
 import {useForm} from 'react-hook-form'
+import {navigate} from 'react-router-dom'
 import axios from 'axios'
+import { useEffect } from 'react';
 
 const Signup = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -9,12 +11,24 @@ const Signup = () => {
   const onSubmit = (user) => {
     axios.post(`${API_URL}/users`, {user}, {withCredentials: true})
     .then((res) => {
-      console.log(res)
+      if(res.data.status === 'created'){
+        localStorage.setItem('accessToken', res.headers['access-token'])
+        navigate('/')
+      }else {
+        console.log(res.data.errors)
+      }
     })
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      navigate('/')
+    }
+  })
+
   return (
     <div className="container object-center mt-36 mb-32pb-64">
-      {errors.userName && <span>User Name required</span>}
+      {errors.username && <span>User Name required</span>}
       {errors.email && <span>Email required</span>}
       {errors.password && <span>Password required</span>}
       <h1>New User</h1>
@@ -23,12 +37,12 @@ const Signup = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>
-          <label>User Name</label>
+          <label>Username</label>
           <input
             type="text"
-            name="userName"
+            name="username"
             placeholder="User Name"
-            {...register("userName", { required: true })}
+            {...register("username", { required: true })}
           />
         </div>
         <br />
