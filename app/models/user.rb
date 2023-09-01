@@ -3,19 +3,23 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  image                  :string
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string
 #  name                   :string
 #  nickname               :string
-#  password_digest        :string
 #  provider               :string           default("email"), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  sign_in_count          :integer
 #  tokens                 :json
 #  uid                    :string           default(""), not null
-#  userName               :string
+#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -26,27 +30,22 @@
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
 class User < ApplicationRecord
-            # Include default devise modules.
-            devise :database_authenticatable, :registerable,
-                    :recoverable, :rememberable, :trackable, :validatable,
-                    :confirmable, :omniauthable
-            include DeviseTokenAuth::Concerns::User
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-    has_secure_password
+    # Include default devise modules.
+    devise :database_authenticatable, :registerable,
+            :recoverable, :rememberable, :trackable, :validatable,
+            :omniauthable
+    include DeviseTokenAuth::Concerns::User
+
     has_one_attached :avatar
 
     has_many :recipes
-    has_many :invitations   
+    has_many :invitations
     has_many :pending_invitations, -> {where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id"
 
-    validates :userName, presence: true
-    validates :userName, uniqueness: true
+    validates :username, presence: true
+    validates :username, uniqueness: true
     validates :email, presence: true
     validates :email, uniqueness: true	
-    validates :password_digest, presence: true   
 
     def friends
         friend_i_sent_invitation = Invitation.where(user_id: id, confirmed: true).pluck(:friend_id)

@@ -8,4 +8,8 @@
 
 # @recipes = Recipe.find_recipie_by_main_ingredient('beef')
 
-User.create!(email: "test@example.com",username: 'test', password: 'test')
+User.find_or_create_by(email: "test@example.com") do |user|
+  # user.skip_confirmation!
+  user.password = "password"
+  user.username = "test"
+end
