@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def create
         @user = User.new(user_params)
       if @user.valid? && @user.save
-        render json: UserSerializer.new(@user).serialized_json
+        render json:  @user
       else
         render :json => {
           errors: @user.errors.full_messages
