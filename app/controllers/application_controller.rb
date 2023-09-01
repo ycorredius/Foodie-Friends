@@ -1,31 +1,10 @@
 class ApplicationController < ActionController::Base
     include DeviseTokenAuth::Concerns::SetUserByToken
     skip_before_action :verify_authenticity_token
-    helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
-    
-    def login!
-      session[:user_id] = @user.id
-    end
-  
-    def logged_in?
-      !!session[:user_id]
-    end
-  
-    def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
-  
-    def authorized_user?
-      @user == current_user
-    end
-  
-    def logout!
-      session.clear
-    end
+    before_action :configure_permitted_parameters, if: :devise_controller?
+    private 
 
-  private
-  
-    def logged_in?
-      !!current_user
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
     end
 end
