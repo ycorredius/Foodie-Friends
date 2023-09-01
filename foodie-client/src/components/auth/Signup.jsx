@@ -9,7 +9,7 @@ const Signup = () => {
   //TODO: CREATE AN ERROR MESSAGE FOR INVALID EMAIL. AND PASSWORD CONFIRMATION AND PASSWORD DONT MATCH
   //POTENTIALLY INCORPORATE A HOOK TO HANDLE ERRORS FOR US.
   const onSubmit = (user) => {
-    axios.post(`${API_URL}/users`, {user}, {withCredentials: true})
+    axios.post(`${API_URL}/auth`, {user}, {withCredentials: true})
     .then((res) => {
       if(res.data.status === 'created'){
         localStorage.setItem('accessToken', res.headers['access-token'])
