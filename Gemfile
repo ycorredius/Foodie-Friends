@@ -48,3 +48,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise", "~> 4.9"
 
 gem "devise_token_auth", "~> 1.2"
+
+gem "omniauth", "~> 2.1"

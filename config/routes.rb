@@ -1,7 +1,7 @@
   Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
-  devise_for :users
-  resources :users,only: [:show,:create] do
+  # devise_for :users
+  resources :user do
     resources :friends
     resources :recipes, only: [:index]
   end
