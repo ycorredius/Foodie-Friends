@@ -26,7 +26,9 @@ gem 'webpacker', '~> 5.0'
  
 group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
+  gem "factory_bot_rails", "~> 6.2"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "rspec-rails", "~> 6.0"
 end
 
 group :development do
@@ -50,3 +52,4 @@ gem "devise", "~> 4.9"
 gem "devise_token_auth", "~> 1.2"
 
 gem "omniauth", "~> 2.1"
+
