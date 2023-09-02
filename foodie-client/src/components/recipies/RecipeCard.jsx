@@ -1,15 +1,15 @@
-import React from 'react'
 import {Link} from 'react-router-dom'
 
-const RecipeCard = (props) =>{
-  // const {id} = props.recipe
-  // const{name,avatar} = props.recipe.attributes
+const RecipeCard = ({recipe}) =>{
+  const {id} = recipe
+  const{name,avatar} = recipe.attributes
   return (
     <div>
       <div className="container w-full max-w-xs p-4 mb-4">
         <div className="flex flex-col justify-center items-center">
           <div className="bg-gray-500">
             <div className="flex flex-col place-items-center">
+              <img src={avatar} alt={name}  />
               <p className="text-xl"> Name: {name}</p>
               <Link to={`/recipes/${id}`}>
                 <button
