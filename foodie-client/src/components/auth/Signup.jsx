@@ -1,10 +1,11 @@
 import {useForm} from 'react-hook-form'
-import {navigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { useEffect } from 'react';
 
 const Signup = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
   const API_URL = 'http://localhost:3001'
   //TODO: CREATE AN ERROR MESSAGE FOR INVALID EMAIL. AND PASSWORD CONFIRMATION AND PASSWORD DONT MATCH
   //POTENTIALLY INCORPORATE A HOOK TO HANDLE ERRORS FOR US.
