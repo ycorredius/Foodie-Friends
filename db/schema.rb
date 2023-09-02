@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_01_205714) do
+ActiveRecord::Schema.define(version: 2023_09_02_004550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,8 @@ ActiveRecord::Schema.define(version: 2023_09_01_205714) do
     t.integer "user_id"
     t.boolean "is_private", default: false
     t.string "avatar"
+    t.text "instructions"
+    t.text "ingredients"
   end
 
   create_table "sessions", force: :cascade do |t|
