@@ -12,6 +12,6 @@
 #  index_inboxes_on_messages_id  (messages_id)
 #
 class Inbox < ApplicationRecord
-	belongs_to :user
-	has_many :messages
+  belongs_to :user
+  has_many :messages
 end

@@ -9,6 +9,6 @@
 #  recipe_id   :integer
 #
 class RecipeCategory < ApplicationRecord
-    belongs_to :category
-    belongs_to :recipe
+  belongs_to :category
+  belongs_to :recipe
 end

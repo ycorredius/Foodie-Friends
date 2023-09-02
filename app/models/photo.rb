@@ -9,6 +9,5 @@
 #  recipe_id  :string
 #
 class Photo < ApplicationRecord
-    belongs_to :recipe
+  belongs_to :recipe
 end
-

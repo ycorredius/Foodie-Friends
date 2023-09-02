@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
- before_action :set_user, only: [:show, :update]
+  before_action :set_user, only: [:show, :update]
 
   def create
-        @user = User.new(user_params)
-      if @user.valid? && @user.save
-        render json:  @user
-      else
-        render :json => {
-          errors: @user.errors.full_messages
-        }
-      end
+    @user = User.new(user_params)
+    if @user.valid? && @user.save
+      render json: @user
+    else
+      render json: {
+        errors: @user.errors.full_messages
+      }
+    end
   end
 
   def show
@@ -30,11 +30,11 @@ class UsersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find_by(id: params[:id])
-    end
+  def set_user
+    @user = User.find_by(id: params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:userName,:email,:password,:password_confirmation)
-    end 
+  def user_params
+    params.require(:user).permit(:userName, :email, :password, :password_confirmation)
+  end
 end

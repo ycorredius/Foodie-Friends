@@ -7,5 +7,5 @@
 #  updated_at :datetime         not null
 #
 class RecipeAvatar < ApplicationRecord
-    has_one_attached :image
+  has_one_attached :image
 end

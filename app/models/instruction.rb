@@ -10,5 +10,5 @@
 #  recipe_id  :integer
 #
 class Instruction < ApplicationRecord
-    belongs_to :recipe
+  belongs_to :recipe
 end
