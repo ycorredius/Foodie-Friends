@@ -22,3 +22,9 @@ Rails Verison
 * Deployment instructions
 
 * ...
+
+primary color palatee:
+ primary: 1D5B79
+ secondary: 468B97
+ tertiary: EF6262
+ quantary: F3AA60

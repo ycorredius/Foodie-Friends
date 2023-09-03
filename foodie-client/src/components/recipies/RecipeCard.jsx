@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 
 const RecipeCard = ({recipe}) =>{
-  const {id} = recipe
+  const {id} = recipe.attributes
   const{name,avatar} = recipe.attributes
   return (
     <div>

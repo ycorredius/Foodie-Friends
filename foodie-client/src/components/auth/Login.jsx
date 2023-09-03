@@ -33,45 +33,50 @@ export default function Login () {
     })
     
     return (
-      <div>
-        {errors.email && <span>email required</span>}
-        {errors.password && <span>Password required</span>}
-        <div>
-          <h1>Login Here!</h1>
+      <div className='h-screen flex justify-center items-center bg-[#f9f9f9]'>
+        <div className='bg-[#EF6262] p-8 rounded-md shadow-xl lg:w-1/3 '>
+          {errors.email && <span>email required</span>}
+          {errors.password && <span>Password required</span>}
+          <h1 className='text-white text-2xl text-center pb-8'>Login Here!</h1>
+          <div className='bg-[#EF6262]'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='flex justify-between'>
+                <label className='text-white items-center py-1' >
+                  Email:
+                </label>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="email"
+                  {...register("email", {required: true})}
+                  className='p-1 mx-4 border-2 border-[#468B97] lg:w-2/3'
+                />
+              </div>
+              <br />
+              <div className='flex justify-between'>
+                <label className='text-white py-1' >
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  {...register("password", {required: true})}
+                  className='p-1 mx-4 border-2 border-[#468B97] w-2/3'
+                />
+              </div>
+              <br />
+              <div className='flex justify-center'>
+                <button
+                  className='text-[#468B97] bg-[#F3AA60] py-2 px-3 rounded-md'
+                  type="submit"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label >
-              Email:
-            </label>
-            <input
-              type="text"
-              name="email"
-              placeholder="email"
-              {...register("email", {required: true})}
-            />
-          </div>
-          <br />
-          <div>
-            <label >
-              Password:
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              {...register("password", {required: true})}
-            />
-          </div>
-          <br />
-          <div >
-            <button
-              type="submit"
-            >
-              Login
-            </button>
-          </div>
-        </form>
       </div>
     );
 }
