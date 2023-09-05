@@ -29,7 +29,6 @@ const Signup = () => {
 
   return (
     <div className="container object-center mt-36 mb-32pb-64">
-      {errors.username && <span>User Name required</span>}
       {errors.email && <span>Email required</span>}
       {errors.password && <span>Password required</span>}
       <h1>New User</h1>
@@ -37,15 +36,6 @@ const Signup = () => {
         className="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="User Name"
-            {...register("username", { required: true })}
-          />
-        </div>
         <br />
         <div>
           <label>Email</label>

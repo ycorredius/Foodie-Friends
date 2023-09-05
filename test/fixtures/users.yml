@@ -30,11 +30,9 @@
 #
 
 one:
-  userName: MyString
   email: MyString
   password_digest: MyString
 
 two:
-  userName: MyString
   email: MyString
   password_digest: MyString

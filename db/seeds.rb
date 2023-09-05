@@ -11,8 +11,8 @@
 User.find_or_create_by(email: "test@example.com") do |user|
   # user.skip_confirmation!
   user.password = "password"
-  user.username = "test"
 end
+
 %w[indian chinese italian mexican].each do |category|
   Category.find_or_create_by(tag: category)
 end

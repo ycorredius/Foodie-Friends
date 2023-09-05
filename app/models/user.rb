@@ -41,8 +41,6 @@ class User < ApplicationRecord
   has_many :invitations
   has_many :pending_invitations, -> { where confirmed: false }, class_name: "Invitation", foreign_key: "friend_id"
 
-  validates :username, presence: true
-  validates :username, uniqueness: true
   validates :email, presence: true
   validates :email, uniqueness: true
 
