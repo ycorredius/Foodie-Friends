@@ -19,7 +19,6 @@
 #  sign_in_count          :integer
 #  tokens                 :json
 #  uid                    :string           default(""), not null
-#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
