@@ -5,12 +5,20 @@ import { useEffect } from 'react';
 
 export default function Recipes () {
   const [recipes,setRecipes] = useState([])
+  const [errors, setErrors] = useState([])
 
   useEffect(() => {
     const fetchData = async () =>{
-      const result = await axios.get('http://localhost:3001/recipes')
-      console.log(result.data.data)
-      setRecipes(result.data.data)
+      try{
+        const result = await axios.get('http://localhost:3001/recipes')
+        console.log(result.data.data)
+        setRecipes(result.data.data)
+      } catch(err){
+        setErrors(err)
+        console.log("Some error occurred", err)
+      } finally {
+        console.log("finally")
+      }
    }
     fetchData()
   },[])

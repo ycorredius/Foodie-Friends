@@ -1,10 +1,22 @@
 import { useForm } from "react-hook-form";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
 
 function RecipeForm() {
-  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate()
 
-  const onSubmit = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/");
+    }})
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = async (data) => {
+    await axios.post("http://localhost:3001/recipes", data)
+          .then((res) => {
+            console.log(res);
+          })
   }
   return (
     <div>
