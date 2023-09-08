@@ -11,6 +11,7 @@
 #  last_sign_in_ip    :string
 #  name               :string
 #  nickname           :string
+#  password_digest    :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
