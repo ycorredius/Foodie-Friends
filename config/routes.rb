@@ -7,10 +7,11 @@ Rails.application.routes.draw do
     resources :photos, only: [:create]
   end
   resources :recipes
-  resources :categories, only: [:destroy, :index]
-  resources :instructions, only: [:destroy]
-  resources :ingredients, only: [:destroy, :index]
 
   # custom routes for sessions
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  get "/logged_in", to: "sessions#is_logged_in?"
+  # TODO: Create controller that handles the upload of images
   patch "/recipes/:id/upload_image", to: "recipes#upload_image"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_08_175352) do
+ActiveRecord::Schema.define(version: 2023_09_08_195910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,16 +41,6 @@ ActiveRecord::Schema.define(version: 2023_09_08_175352) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "api_keys", force: :cascade do |t|
-    t.integer "bearer_id"
-    t.string "bearer_type"
-    t.string "token"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bearer_id", "bearer_type"], name: "index_api_keys_on_bearer_id_and_bearer_type", unique: true
-    t.index ["token"], name: "index_api_keys_on_token", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
@@ -158,6 +148,7 @@ ActiveRecord::Schema.define(version: 2023_09_08_175352) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

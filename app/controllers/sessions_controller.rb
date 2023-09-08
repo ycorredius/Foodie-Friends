@@ -3,10 +3,12 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
     if @user && @user.authenticate(session_params[:password])
       login!
+      #TODO: Update to return user and a token
       render json: {
-        logged_in: true,
-        user: @user
-      }
+        user: @user,
+        logged_in: true
+
+      }, status: :ok
     else
       render json: {
         errors: ["User not found.", "Verify info and try again or signup."]
@@ -42,6 +44,6 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:credentials).permit(:email, :password)
+    params.permit(:email, :password)
   end
 end
