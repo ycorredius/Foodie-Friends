@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_08_195910) do
+ActiveRecord::Schema.define(version: 2023_09_12_135855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 2023_09_08_195910) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "api_tokens", force: :cascade do |t|
+    t.datetime "expires_at"
+    t.datetime "last_used_at"
+    t.jsonb "metada"
+    t.string "name"
+    t.string "token"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_api_tokens_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -149,11 +161,16 @@ ActiveRecord::Schema.define(version: 2023_09_08_195910) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "password_digest"
+    t.string "encrypted_password"
+    t.string "reset_password_token"
+    t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "api_tokens", "users"
   add_foreign_key "categories", "recipes"
   add_foreign_key "invitations", "users"
 end
