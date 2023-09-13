@@ -21,7 +21,8 @@ Rails.application.routes.draw do
       resources :auths, only: %i[create]
       delete "/auths", to: "auths#destroy"
       resource :me, controller: :me, only: :show
-      resources :users, only: %i[create]
+      resources :friends
+      resources :recipes, only: %i[create update destroy show index]
     end
   end
 end

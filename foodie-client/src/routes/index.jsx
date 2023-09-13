@@ -6,6 +6,7 @@ import RecipeDetail from '../components/recipies/RecipeDetail.jsx';
 import ErrorPage from '../error-page.jsx';
 import {createBrowserRouter} from 'react-router-dom'
 import RecipeLayout from '../components/recipies/RecipeLayout.jsx';
+import Profile from '../components/profile/Profile.jsx';
 
 const Routes = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ const Routes = createBrowserRouter([
       {
         path: "/recipes/:id",
         element: <RecipeDetail/>,
+        errorElement: <ErrorPage/>
+      },
+      {
+        path: "/profile",
+        element: <Profile/>,
         errorElement: <ErrorPage/>
       }
     ]

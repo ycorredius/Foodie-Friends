@@ -1,6 +1,8 @@
-class RecipesController < ApplicationController
+class Api::V1::RecipesController < Api::BaseController
   before_action :set_recipe, only: %i[show update upload_image]
   before_action :recipe_params, only: [:create]
+  skip_before_action :authenticate_api_token!, only: %i[show index]
+
 
   def index
     recipes = Recipe.all
@@ -8,11 +10,15 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = current_user.recipes.build(name: recipe_params[:name])
-    @recipe.build_recipe_attributes(@recipe, recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       flash[:success] = "Recipe successfully created"
-      render json: RecipeSerializer.new(@recipe).serialized_json
+      render json: {
+        recipe: {
+          id: @recipe.id,
+          name: @recipe.name
+        },
+      }, status: :created
     else
       flash[:error] = "Something went wrong"
       render json: flash, status: 500
@@ -35,11 +41,10 @@ class RecipesController < ApplicationController
   private
 
   def set_recipe
-    @recipe = Recipe.find_by_id(params[:id])
+    @recipe = Recipe.find(params[:id])
   end
 
   def recipe_params
-    params.require(:recipe).permit(:id, :is_private, :name, :image, ingredients: %i[id name quantity],
-                                                                    instructions: %i[id content], categories: %i[id tag])
+    params.require(:recipe).permit(:name, :ingredients, :instructions, :image)
   end
 end
