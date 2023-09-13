@@ -13,7 +13,6 @@ class Api::V1::AuthsController < Api::BaseController
   end
 
   def destroy
-    notification_token&.destroy
     sign_out(current_user)
     render json: {}
   end
