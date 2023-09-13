@@ -10,10 +10,11 @@ const Signup = () => {
   //TODO: CREATE AN ERROR MESSAGE FOR INVALID EMAIL. AND PASSWORD CONFIRMATION AND PASSWORD DONT MATCH
   //POTENTIALLY INCORPORATE A HOOK TO HANDLE ERRORS FOR US.
   const onSubmit = (user) => {
-    axios.post(`${API_URL}/auth`, {user}, {withCredentials: true})
+    axios.post(`${API_URL}/api/v1/users`, {user})
     .then((res) => {
-      if(res.data.status === 'created'){
-        localStorage.setItem('accessToken', res.headers['access-token'])
+      if(res.status === 201){
+        const token = res.data.user.api_tokens.pop()
+        localStorage.setItem('accessToken', token.token)
         navigate('/')
       }else {
         console.log(res.data.errors)
@@ -36,6 +37,26 @@ const Signup = () => {
         className="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <br />
+        <div>
+          <label>First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="Joe"
+            {...register("first_name", { required: true })}
+          />
+        </div>
+        <br />
+        <div>
+          <label>Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Smith"
+            {...register("last_name", { required: true })}
+          />
+        </div>
         <br />
         <div>
           <label>Email</label>

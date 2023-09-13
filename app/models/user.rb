@@ -7,14 +7,16 @@
 #  current_sign_in_ip   :string
 #  email                :string
 #  encrypted_password   :string
+#  first_name           :string
 #  image                :string
+#  last_name            :string
 #  last_sign_in_at      :datetime
 #  last_sign_in_ip      :string
-#  name                 :string
 #  nickname             :string
 #  password_digest      :string
 #  remember_created_at  :datetime
 #  reset_password_token :string
+#  sign_in_count        :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
@@ -24,12 +26,15 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  has_secure_password
+  devise :database_authenticatable, :registerable,
+    :recoverable, :rememberable, :trackable, :validatable
+
   has_one_attached :avatar
 
   has_many :recipes
   has_many :invitations
   has_many :pending_invitations, -> { where confirmed: false }, class_name: "Invitation", foreign_key: "friend_id"
+  has_many :api_tokens, dependent: :destroy
 
   validates :email, presence: true
   validates :email, uniqueness: true
@@ -47,5 +52,9 @@ class User < ApplicationRecord
 
   def sent_invitation(user)
     invitations.create(friend_id: user.id)
+  end
+
+  def full_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
 end

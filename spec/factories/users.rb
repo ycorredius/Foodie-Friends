@@ -7,14 +7,16 @@
 #  current_sign_in_ip   :string
 #  email                :string
 #  encrypted_password   :string
+#  first_name           :string
 #  image                :string
+#  last_name            :string
 #  last_sign_in_at      :datetime
 #  last_sign_in_ip      :string
-#  name                 :string
 #  nickname             :string
 #  password_digest      :string
 #  remember_created_at  :datetime
 #  reset_password_token :string
+#  sign_in_count        :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #

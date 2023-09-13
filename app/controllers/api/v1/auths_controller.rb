@@ -6,12 +6,7 @@ class Api::V1::AuthsController < Api::BaseController
   # Returns an API token for the user if valid
   def create
     if user&.valid_password?(params[:password])
-      if turbo_native_app?
-        sign_in_user
-        render json: {token: token_by_name(ApiToken::APP_NAME)}
-      else
-        render json: {token: token_by_name(ApiToken::DEFAULT_NAME)}
-      end
+      render json: {token: token_by_name(ApiToken::DEFAULT_NAME)}
     else
       render json: {error: error_message}, status: :unauthorized
     end
@@ -31,7 +26,7 @@ class Api::V1::AuthsController < Api::BaseController
 
   def sign_in_user
     user.remember_me = true
-    sign_in user
+    sign_in @user
   end
 
   def token_by_name(name)

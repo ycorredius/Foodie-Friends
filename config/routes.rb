@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :user do
     resources :friends
     resources :recipes, only: [:index]
@@ -17,7 +18,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :auth
+      resources :auths, only: %i[create]
+      delete "/auths", to: "auths#destroy"
+      resource :me, controller: :me, only: :show
+      resources :users, only: %i[create]
     end
   end
 end

@@ -6,7 +6,7 @@ class Api::BaseController < ApplicationController
 
   def authenticate_api_token!
     if (user = user_from_token)
-      sign_in user, store: false
+      sign_in(user, store: false)
     else
       head :unauthorized
     end

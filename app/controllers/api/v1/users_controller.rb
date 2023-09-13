@@ -4,11 +4,6 @@ class Api::V1::UsersController < Api::BaseController
 
   def create
     user = User.new(devise_parameter_sanitizer.sanitize(:sign_up))
-    user.skip_confirmation!
-
-    # If registering with an account, add the AccountUser with admin role
-    
-
     if user.save
       api_token = user.api_tokens.first_or_create(name: ApiToken::DEFAULT_NAME)
       render json: {
@@ -22,7 +17,7 @@ class Api::V1::UsersController < Api::BaseController
             token: api_token.token
           }]
         }
-      }
+      }, status: :created
     else
       render json: {
         errors: user.errors,
