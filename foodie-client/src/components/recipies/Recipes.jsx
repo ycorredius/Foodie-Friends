@@ -10,7 +10,7 @@ export default function Recipes () {
   useEffect(() => {
     const fetchData = async () =>{
       try{
-        const result = await axios.get('http://localhost:3001/recipes')
+        const result = await axios.get('http://localhost:3001/api/v1/recipes')
         console.log(result.data.data)
         setRecipes(result.data.data)
       } catch(err){
@@ -25,7 +25,7 @@ export default function Recipes () {
   return(
     <div>
       <h1>Recipes</h1>
-      <div>
+      <div className='grid grid-cols-3'>
         {recipes.map((recipe) => {
           return <RecipeCard recipe={recipe} key={recipe.id}/>
         })}

@@ -38,7 +38,10 @@ export default function RecipeLayout() {
       <div>
         {
           accessToken ? 
-            (<a onClick={logout} id="logout">Logout</a>) : 
+            (<div> 
+              <button onClick={logout} id="logout">Logout</button>
+              <NavLink to="/profile">Profile</NavLink>
+            </div>) : 
             (<NavLink to="/login">Login</NavLink>)
         }
       </div>
