@@ -14,8 +14,8 @@ export default function RecipeLayout() {
     }
   }, [])
   const logout = async () => {
-   await axios.delete('http://localhost:3001/auth/sign_out.json', 
-          {accessToken: localStorage.getItem('accessToken')})
+    const token = localStorage.getItem('accessToken')
+   await axios.delete('http://localhost:3001/api/v1/auths', { headers: {'Content-Type' :'application/json', 'Authorization': `Bearer ${token}`}})
           .then((res) => {
             if (res.status === 200 && res.statusText === "OK") {
               localStorage.removeItem('accessToken')

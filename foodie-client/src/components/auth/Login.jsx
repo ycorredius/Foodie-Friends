@@ -11,10 +11,10 @@ export default function Login () {
 
   const onSubmit = (data) => {
    const {email, password} = data
-    axios.post('http://localhost:3001/auth/sign_in',{email: email, password: password} )
+    axios.post('http://localhost:3001/api/v1/auths',{email: email, password: password} )
     .then((res) => {
       if (res.status === 200 && res.statusText === "OK") {
-        localStorage.setItem('accessToken', res.headers['access-token'])
+        localStorage.setItem('accessToken', res.data.token)
         navigate('/')
       }else {
         console.log(res.data.errors)
