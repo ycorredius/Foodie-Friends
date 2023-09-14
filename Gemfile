@@ -28,7 +28,6 @@ group :development, :test do
   gem "pry-rails", "~> 0.3.9"
   gem "factory_bot_rails", "~> 6.2"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  gem "rspec-rails", "~> 6.0"
 end
 
 group :development do
@@ -42,9 +41,13 @@ group :test do
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "rspec-rails", "~> 6.0"
+ gem "database_cleaner-active_record"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise", "~> 4.9"
+
+gem "faker", "~> 3.2"

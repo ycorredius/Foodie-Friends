@@ -50,8 +50,13 @@ class User < ApplicationRecord
     Invitation.confirmed_record?(id, user.id)
   end
 
-  def sent_invitation(user)
-    invitations.create(friend_id: user.id)
+  def send_invitation(user)
+    invitations.create!(friend_id: user.id)
+  end
+
+  def accept_invitation(user)
+    invitation = Invitation.find_by(user_id: user.id, friend_id: id)
+    invitation.accept
   end
 
   def full_name
