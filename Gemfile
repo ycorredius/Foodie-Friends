@@ -8,12 +8,11 @@ gem "pg"
 gem "annotate", "~> 3.1", ">= 3.1.1"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "fast_jsonapi", "~> 1.5"
-gem "foreman", "~> 0.87.1"
 gem "image_processing", "~> 1.2"
 gem "jbuilder", "~> 2.7"
 gem "puma", "~> 5.0"
 gem "rack-cors"
-gem "rails", "~> 6.1.3"
+gem "rails", "~> 7.0.8"
 gem "sass-rails", ">= 6"
 gem "activerecord-session_store"
 
