@@ -6,7 +6,7 @@ class Api::V1::RecipesController < Api::BaseController
 
   def index
     recipes = Recipe.all
-    render json: RecipeSerializer.new(recipes).serializable_hash
+    render json: recipes
   end
 
   def create
