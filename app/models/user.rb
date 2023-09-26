@@ -2,23 +2,16 @@
 #
 # Table name: users
 #
-#  id                   :bigint           not null, primary key
-#  current_sign_in_at   :datetime
-#  current_sign_in_ip   :string
-#  email                :string
-#  encrypted_password   :string
-#  first_name           :string
-#  image                :string
-#  last_name            :string
-#  last_sign_in_at      :datetime
-#  last_sign_in_ip      :string
-#  nickname             :string
-#  password_digest      :string
-#  remember_created_at  :datetime
-#  reset_password_token :string
-#  sign_in_count        :integer
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id                     :bigint           not null, primary key
+#  email                  :string
+#  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  last_name              :string
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #
@@ -27,13 +20,13 @@
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable
 
   has_one_attached :avatar
 
   has_many :recipes
   has_many :invitations
-  has_many :pending_invitations, -> { where confirmed: false }, class_name: "Invitation", foreign_key: "friend_id"
+  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: 'friend_id'
   has_many :api_tokens, dependent: :destroy
 
   validates :email, presence: true

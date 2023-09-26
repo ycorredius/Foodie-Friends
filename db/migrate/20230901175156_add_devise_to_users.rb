@@ -4,7 +4,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[6.1]
   def self.up
     change_table :users do |t|
       ## Database authenticatable
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string :reset_password_token
@@ -33,6 +33,9 @@ class AddDeviseToUsers < ActiveRecord::Migration[6.1]
 
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false
+
+      t.string :first_name
+      t.string :last_name
     end
 
     add_index :users, :email, unique: true
