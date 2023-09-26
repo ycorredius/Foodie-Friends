@@ -16,7 +16,7 @@
 # TODO: Build out a recipe search for category and ingredients separately.
 # TODO: Building recipe associations to able to be use without manual iteration through each param
 class Recipe < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, class_name: 'User', foreign_key: 'user_id'
   has_many :recipe_categories
   has_many :categories, through: :recipe_categories
   has_one_attached :image

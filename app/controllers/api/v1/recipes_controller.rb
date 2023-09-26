@@ -3,24 +3,23 @@ class Api::V1::RecipesController < Api::BaseController
   before_action :recipe_params, only: [:create]
   skip_before_action :authenticate_api_token!, only: %i[show index]
 
-
   def index
     recipes = Recipe.all
-    render json: recipes
+    render json: RecipeSerializer.new(recipes).serialized_json
   end
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
-      flash[:success] = "Recipe successfully created"
+      flash[:success] = 'Recipe successfully created'
       render json: {
         recipe: {
           id: @recipe.id,
           name: @recipe.name
-        },
+        }
       }, status: :created
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = 'Something went wrong'
       render json: flash, status: 500
     end
   end
@@ -33,7 +32,7 @@ class Api::V1::RecipesController < Api::BaseController
     if @recipe.update_recipe(@recipe, recipe_params)
       render json: RecipeSerializer.new(@recipe).serialized_json
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = 'Something went wrong'
       render json: flash, status: 500
     end
   end

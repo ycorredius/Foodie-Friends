@@ -14,8 +14,11 @@
 #
 class RecipeSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :name, :instructions, :categories, :ingredients, :avatar
+  attributes :id, :name, :instructions, :categories, :ingredients, :avatar, :user
 
+  cache_options enabled: true, cache_length: 12.hours
+
+  belongs_to :user
   has_many :recipe_categories
   has_many :categories, through: :recipe_categories
 end
