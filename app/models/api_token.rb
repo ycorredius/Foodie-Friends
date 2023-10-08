@@ -33,6 +33,8 @@ class ApiToken < ApplicationRecord
 
   validates :name, presence: true
 
+  after_create :set_expiration
+
   def can?(permission)
     Array.wrap(data("permissions")).include?(permission)
   end
@@ -59,5 +61,9 @@ class ApiToken < ApplicationRecord
       self.token = SecureRandom.hex(16)
       break unless ApiToken.where(token: token).exists?
     end
+  end
+
+  def set_expiration
+    update(expires_at: Time.current + 12.hours)
   end
 end

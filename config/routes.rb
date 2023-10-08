@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :auths, only: %i[create]
+      resources :auths, only: %i[create show]
       delete "/auths", to: "auths#destroy"
       resource :me, controller: :me, only: :show
       resource :user do
