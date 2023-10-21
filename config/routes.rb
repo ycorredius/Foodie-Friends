@@ -27,4 +27,6 @@ Rails.application.routes.draw do
       resources :recipes, only: %i[create update destroy show index]
     end
   end
+
+  root to: "recipes#index", defaults: { format: :html}
 end

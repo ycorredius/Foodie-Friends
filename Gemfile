@@ -15,6 +15,7 @@ gem "rack-cors"
 gem "rails", "~> 7.0.8"
 gem "sass-rails", ">= 6"
 gem "activerecord-session_store"
+gem "sprockets-rails"
 
 group :development, :test do
   gem "pry-rails", "~> 0.3.9"
@@ -47,3 +48,7 @@ gem "faker", "~> 3.2"
 gem "jsbundling-rails", "~> 1.2"
 
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "turbo-rails", "~> 1.5"
+
+gem "stimulus-rails", "~> 1.3"
