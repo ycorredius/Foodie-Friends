@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :photos, only: [:create]
   end
-  resources :recipes
+  resources :recipes, only: [:show, :create, :update, :destroy]
 
   # custom routes for sessions
   post "/login", to: "sessions#create"
