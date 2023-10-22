@@ -1,5 +1,7 @@
 <div>
+  <ul class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 lg:p-8 sm:p-4 p-2">
   <% @recipes. each do |recipe| %>
-    <div class="text-2xl"><%= recipe.name %> </div>
+    <%= render "recipe_card", recipe: recipe %>
   <% end %>
+  </ul>
 </div>
