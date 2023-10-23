@@ -52,3 +52,8 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "turbo-rails", "~> 1.5"
 
 gem "stimulus-rails", "~> 1.3"
+
+gem "pagy", "~> 6.1"
+
+# Use Redis for Action Cable
+gem "redis", "~> 4.0"
