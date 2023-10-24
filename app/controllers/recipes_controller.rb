@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show update upload_image]
   def index
-    @recipes = Recipe.all
+    @pagy, @recipes = pagy(Recipe.all.includes(:categories, :user))
   end
 
   def show
