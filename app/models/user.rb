@@ -60,4 +60,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
+
+  def image 
+    avatar.blob
+  end
 end
