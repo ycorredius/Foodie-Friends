@@ -4,11 +4,12 @@
     "postcss-cli": "^8.3.1"
   },
   "scripts": {
-    "build": "bun bun.config.js"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
+    "esbuild": "^0.19.5",
     "tailwindcss-stimulus-components": "^4.0.4"
   }
 }

@@ -57,3 +57,5 @@ gem "pagy", "~> 6.1"
 
 # Use Redis for Action Cable
 gem "redis", "~> 4.0"
+
+gem "foreman", "~> 0.87.2"
