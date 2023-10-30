@@ -21,5 +21,13 @@ class Recipe < ApplicationRecord
   has_many :categories, through: :recipe_categories
   has_one_attached :image
 
+  validates :name, presence: true
+  validates :ingredients, presence: true, length: { minimum: 10, maximum: 500 }
+  validates :instructions, presence: true, length: { minimum: 10, maximum: 500 }
+
   accepts_nested_attributes_for :categories, allow_destroy: true
+
+  def has_category?(category)
+    categories.include?(category)
+  end
 end
