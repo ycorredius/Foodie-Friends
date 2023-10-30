@@ -11,6 +11,21 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def create
+    @recipe = current_user.recipes.new(recipe_params.except(:categories))
+    categories = params[:recipe][:categories].reject(&:blank?).map do |category|
+      Category.find(category)
+    end if params[:recipe][:categories]
+    @recipe.categories = categories
+    if @recipe.save
+      redirect_to @recipe, notice: 'Recipe was successfully updated.'
+    else
+      respond_to do |format|
+       format.turbo_stream {render :errors}
+      end
+    end
+  end
+
   def edit
   end
 
@@ -22,8 +37,9 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params.except(:categories))
       redirect_to @recipe, notice: 'Recipe was successfully updated.'
     else
-      render :edit
-      flash[:alert] = 'Recipe was not updated.'
+      respond_to do |format|
+       format.turbo_stream {render :errors}
+      end
     end
   end
   private

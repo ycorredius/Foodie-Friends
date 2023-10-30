@@ -1,0 +1,9 @@
+<% if @recipe.errors.full_messages %>
+  <ul>
+    <% @recipe.errors.full_messages.each do |error| %>
+    <li>
+      <p class="text-red"><%= error %></p>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
