@@ -4,10 +4,8 @@ Rails.application.routes.draw do
     resources :friends
     resources :recipes, only: [:index]
   end
-  resources :recipes do
-    resources :photos, only: [:create]
-  end
-  # resources :recipes, only: [:show, :create, :update, :destroy]
+  
+  resources :recipes, except: [ :index ]
 
   # custom routes for sessions
   # post "/login", to: "sessions#create"
