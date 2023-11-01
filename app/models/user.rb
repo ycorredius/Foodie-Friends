@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  about                  :text
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  email                  :string
@@ -15,6 +16,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer
+#  title                  :string           default("Food Enthusiast"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -37,6 +39,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  scope :exclude_current_user, -> (user) {where.not(id: user.id)}
+  
   def friends
     friend_i_sent_invitation = Invitation.where(user_id: id, confirmed: true).pluck(:friend_id)
     friend_i_got_invitation = Invitation.where(friend_id: id, confirmed: true).pluck(:user_id)

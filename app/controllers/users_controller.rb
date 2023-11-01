@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
 
+  def index
+    @cooks = current_user ? User.exclude_current_user(current_user) : User.all
+  end
+
   def create
     @user = User.new(user_params)
     if @user.valid? && @user.save
@@ -13,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @user
+    # render json: @user
   end
 
   def update

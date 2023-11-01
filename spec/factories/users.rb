@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  about                  :text
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  email                  :string
@@ -15,6 +16,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer
+#  title                  :string           default("Food Enthusiast"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

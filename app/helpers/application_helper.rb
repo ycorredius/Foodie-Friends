@@ -2,10 +2,10 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def avatar_url(resource)
-    if resource.class == User
+    if resource.avatar.blob.present?
       resource.avatar.blob
     else
-      resource.image.attached? ? resource.image.blob : resource.avatar
+      "/default-profile-photo.jpg"
     end
   end
 

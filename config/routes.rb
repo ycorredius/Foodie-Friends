@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :user do
+  resources :users, only: [:index, :show]
+  namespace :user do
     resources :friends
     resources :recipes, only: [:index]
   end
