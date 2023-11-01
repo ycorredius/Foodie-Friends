@@ -3,7 +3,7 @@ module RecipesHelper
     if recipe.image.blob.present? || recipe.avatar.present?
       recipe.image.attached? ? recipe.image.blob : recipe.avatar
     else
-      "/default.jpg"
+      "/default-food.jpg"
     end
   end
 end
