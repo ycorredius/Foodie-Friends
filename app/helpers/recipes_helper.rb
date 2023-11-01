@@ -1,7 +1,7 @@
 module RecipesHelper
   def recipe_image(recipe)
-    unless recipe.image.nil?
-      recipe.image.attached? ? recipe.blob : recipe.avatar
+    if recipe.image.blob.present? || recipe.avatar.present?
+      recipe.image.attached? ? recipe.image.blob : recipe.avatar
     else
       "/default.jpg"
     end
