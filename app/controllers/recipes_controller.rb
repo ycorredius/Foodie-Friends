@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show update edit update]
   def index
-    @pagy, @recipes = pagy(Recipe.all.where( "lower(name) LIKE ?", "%#{params[:name]}%").includes(:categories, :user))
+    @pagy, @recipes = pagy(Recipe.search(params[:name]).includes(:categories, :user))
   end
 
   def show

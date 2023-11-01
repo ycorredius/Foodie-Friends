@@ -24,6 +24,8 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :ingredients, presence: true, length: { minimum: 10, maximum: 500 }
   validates :instructions, presence: true, length: { minimum: 10, maximum: 500 }
+  
+  scope :search , -> (search) { where("lower(name) LIKE ?", "%#{search}%") }
 
   accepts_nested_attributes_for :categories, allow_destroy: true
 
