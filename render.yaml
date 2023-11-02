@@ -1,7 +1,5 @@
 databases:
   - name: postgres
-    databaseName: foodie-friends-prod
-    user: foodie-friends
 
 services:
   - type: web
