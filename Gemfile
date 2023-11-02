@@ -13,7 +13,6 @@ gem "jbuilder", "~> 2.7"
 gem 'puma', '~> 6.4'
 gem "rack-cors"
 gem "rails", "~> 7.1.1"
-gem "sass-rails", ">= 6"
 gem "activerecord-session_store"
 gem "sprockets-rails"
 
@@ -59,3 +58,9 @@ gem "pagy", "~> 6.1"
 gem "redis", "~> 4.0"
 
 gem "foreman", "~> 0.87.2"
+
+gem "dockerfile-rails", "~> 1.5"
+
+gem "sentry-ruby", "~> 5.12"
+
+gem "sentry-rails", "~> 5.12"
