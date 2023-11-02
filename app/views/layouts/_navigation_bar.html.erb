@@ -11,7 +11,8 @@
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
             <%= link_to "Recipes",root_path, class: active_tab(root_path ) %>
             <%= link_to "Create Recipe",new_recipe_path, class: active_tab(new_recipe_path) %>
-            <%= link_to "Friends", user_friends_path, class: active_tab(user_friends_path)%>
+            #TODO: Will implement after I deploy to a platform
+            <%#= link_to "Friends", user_friends_path, class: active_tab(user_friends_path)%>
             <%= link_to "Cooks", users_path, class: active_tab(users_path) %>
           <% else %>
             <%#= link_to "Dashboard", "#", class: "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"  %>
