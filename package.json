@@ -9,7 +9,9 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
+    "@rails/actiontext": "^7.1.1",
     "esbuild": "^0.19.5",
-    "tailwindcss-stimulus-components": "^4.0.4"
+    "tailwindcss-stimulus-components": "^4.0.4",
+    "trix": "^2.0.7"
   }
 }
