@@ -19,6 +19,7 @@ class Recipe < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
   has_many :recipe_categories
   has_many :categories, through: :recipe_categories
+  has_many :comments, class_name: 'Comment'
   has_one_attached :image
 
   validates :name, presence: true
@@ -28,6 +29,8 @@ class Recipe < ApplicationRecord
   scope :search , -> (search) { where("lower(name) LIKE ?", "%#{search}%") }
 
   accepts_nested_attributes_for :categories, allow_destroy: true
+
+  after_update_commit { broadcast_update }
 
   def has_category?(category)
     categories.include?(category)

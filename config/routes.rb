@@ -5,9 +5,9 @@ Rails.application.routes.draw do
     resources :friends
     resources :recipes, only: [:index]
   end
-  
-  resources :recipes, except: [ :index ]
 
+  resources :recipes, except: [ :index ]
+  resources :comments, only: [:show, :update, :destroy, :create]
   # custom routes for sessions
   # post "/login", to: "sessions#create"
   # delete "/logout", to: "sessions#destroy"
