@@ -1,6 +1,6 @@
 databases:
   - name: foodie-friends
-    databaseName: foodie-friends-prod
+    database: foodie-friends-prod
     user: foodie-friends
 
 services:
