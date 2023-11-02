@@ -10,9 +10,9 @@ gem "bootsnap", ">= 1.4.4", require: false
 gem "fast_jsonapi", "~> 1.5"
 gem "image_processing", "~> 1.2"
 gem "jbuilder", "~> 2.7"
-gem "puma", "~> 5.0"
+gem 'puma', '~> 6.4'
 gem "rack-cors"
-gem "rails", "~> 7.0.8"
+gem "rails", "~> 7.1.1"
 gem "sass-rails", ">= 6"
 gem "activerecord-session_store"
 gem "sprockets-rails"
