@@ -13,7 +13,6 @@ gem "jbuilder", "~> 2.7"
 gem 'puma', '~> 6.4'
 gem "rack-cors"
 gem "rails", "~> 7.1.1"
-gem "activerecord-session_store"
 gem "sprockets-rails"
 
 group :development, :test do
