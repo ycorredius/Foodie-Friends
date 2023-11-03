@@ -18,7 +18,7 @@ local:
 google:
   service: GCS
   project: foodie-friends
-  credentials: <%= Rails.root.join("etc/secrets/gcs.keyfile")
+  credentials: <%= Rails.root.join("etc/secrets/gcs.keyfile") %>
   bucket: image-bucket-foodie-friends-404013
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
