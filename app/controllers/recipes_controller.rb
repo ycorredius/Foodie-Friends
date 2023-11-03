@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show update edit update]
   def index
-    @pagy, @recipes = pagy(Recipe.search(params[:name]).includes(:user))
+    @pagy, @recipes = pagy(Recipe.search(params[:name]).includes(:user, image_attachment: :blob))
   end
 
   def show
@@ -48,7 +48,7 @@ class RecipesController < ApplicationController
 
   def set_recipe
     id = params[:recipe_id] ? params[:recipe_id] : params[:id]
-    @recipe = Recipe.includes(:user, :categories, :comments).find(id)
+    @recipe = Recipe.includes(:user, :categories, :comments, image_attachment: :blob).find(id)
   end
 
   def recipe_params
