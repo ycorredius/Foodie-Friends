@@ -6,6 +6,6 @@
   
   <%= turbo_stream_from @recipe, :comments %>
   <div id="comments">
-    <%= render "comments/comments", {comments: @comments, recipe_id: @recipe.id} %>
+    <%= render "comments/comments", {comments: @comments, recipe_id: @recipe.id, user: @user } %>
   </div>
 </div>

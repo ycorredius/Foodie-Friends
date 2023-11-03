@@ -1,6 +1,6 @@
 <div class="px-6">
-  <% if current_user %>
-    <%= link_to "Edit Recipe", edit_recipe_path(recipe) if recipe.user == current_user %>
+  <% if @user %>
+    <%= link_to "Edit Recipe", edit_recipe_path(recipe) if recipe.user == @user %>
   <% end %>
 </div>
 <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">

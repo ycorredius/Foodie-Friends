@@ -63,3 +63,7 @@ gem "dockerfile-rails", "~> 1.5"
 gem "sentry-ruby", "~> 5.12"
 
 gem "sentry-rails", "~> 5.12"
+
+gem "google-cloud-storage", "~> 1.44"
+
+gem "dotenv", "~> 2.8"

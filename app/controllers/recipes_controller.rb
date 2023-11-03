@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
   def show
     @comments = @recipe.comments.order(created_at: :desc)
+    @user = current_user
   end
 
   def new
@@ -36,7 +37,7 @@ class RecipesController < ApplicationController
     end
     @recipe.categories = categories
     if @recipe.update(recipe_params.except(:categories))
-      redirect_to @recipe, notice: 'Recipe was successfully updated.'
+      redirect_to @recipe, notice: 'Recipe was successfully updated.', current_user: current_user
     else
       respond_to do |format|
        format.turbo_stream {render :errors}

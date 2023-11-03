@@ -45,3 +45,6 @@ yarn-debug.log*
 /clien/src/style/tailwind.css
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+/config/gcs.keyfile
+.env
