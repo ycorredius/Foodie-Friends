@@ -1,0 +1,11 @@
+<% unless comments.empty? %>
+  <ul class="container">
+    <% comments.each do |comment| %>
+      <%= render "comments/comment", comment: comment %>
+    <% end %>
+  </ul>
+<% else %>
+  <h1> No comments </h1>
+<% end %>
+
+<%= render "recipes/comments/form", recipe_id: recipe_id %>

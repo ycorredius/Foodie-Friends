@@ -2,29 +2,10 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application";
+import { application } from "./application"
 
-import {
-  Alert,
-  Autosave,
-  ColorPreview,
-  Dropdown,
-  Modal,
-  Tabs,
-  Popover,
-  Toggle,
-  Slideover,
-} from "tailwindcss-stimulus-components";
-application.register("alert", Alert);
-application.register("autosave", Autosave);
-application.register("color-preview", ColorPreview);
-application.register("dropdown", Dropdown);
-application.register("modal", Modal);
-application.register("popover", Popover);
-application.register("slideover", Slideover);
-application.register("tabs", Tabs);
-application.register("toggle", Toggle);
-application.register("toggle", Toggle);
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)
 
-import HelloController from "./hello_controller";
-application.register("hello", HelloController);
+import RecipesController from "./recipes_controller"
+application.register("recipes", RecipesController)

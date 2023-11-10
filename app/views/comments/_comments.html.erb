@@ -1,9 +1,0 @@
-<% unless comments.empty? %>
-  <% comments.each do |comment| %>
-    <%= render "comments/comment", comment: comment %>
-  <% end %>
-<% else %>
-  <h1> No comments </h1>
-<% end %>
-
-<%= render "comments/form", recipe_id: recipe_id %>

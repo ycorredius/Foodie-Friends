@@ -1,0 +1,8 @@
+<% if current_user %>
+  <%= turbo_frame_tag "comments_form" do %>
+    <%= form_with( model: Comment.new , url: recipe_comments_path(recipe_id: recipe_id) , remote: true) do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -24,6 +24,4 @@ class Comment < ApplicationRecord
   belongs_to :recipe
 
   after_create_commit { broadcast_prepend_to( recipe, :comments)}
-
-  has_rich_text :content
 end
