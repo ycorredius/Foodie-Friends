@@ -12,5 +12,4 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :update, :destroy, :create]
   end
   root to: "recipes#index", defaults: { format: :html}
-  get "/about-dev", to: "pages#about_dev"
 end

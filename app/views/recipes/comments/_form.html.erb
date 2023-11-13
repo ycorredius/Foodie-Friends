@@ -1,8 +1,7 @@
 <% if current_user %>
   <%= turbo_frame_tag "comments_form" do %>
-    <%= form_with( model: Comment.new , url: recipe_comments_path(recipe_id: recipe_id) , remote: true) do |f| %>
-      <%= f.text_field :content %>
-      <%= f.submit %>
+    <%= form_with( model: Comment.new , url: recipe_comments_path(recipe_id: recipe_id), class: "flex flex row p-10") do |f| %>
+      <%= f.text_field :content, class: "block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4" %>
     <% end %>
   <% end %>
 <% end %>

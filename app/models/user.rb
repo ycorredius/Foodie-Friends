@@ -29,7 +29,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one_attached :avatar
+  has_one_attached :avatar do |attachable|
+    attachable.variant :icon, resize_to_limit: [58, 58]
+    attachable.variant :thumb, resize_to_limit: [330, 300]
+    attachable.variant :jumbo, resize_to_limit: [680, 550]
+  end
 
   has_many :recipes
   has_many :invitations
@@ -67,5 +71,9 @@ class User < ApplicationRecord
 
   def image 
     avatar.blob
+  end
+
+  def name_initials
+    "#{first_name.slice(0)}#{last_name.slice(0)}"
   end
 end

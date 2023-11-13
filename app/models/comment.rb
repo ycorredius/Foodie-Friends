@@ -23,5 +23,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :recipe
 
-  after_create_commit { broadcast_prepend_to( recipe, :comments)}
+  validates :content, length: { minimum: 2, maximum: 250}
+
+  after_create_commit { broadcast_prepend_to( recipe, :comments, partial: "recipes/comments/comment")}
 end
