@@ -9,12 +9,14 @@
 # See https://ddnexus.github.io/pagy/docs/api/pagy#variables
 # All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
+require "pagy/extras/support"
+require "pagy/extras/countless"
 
 
 # Instance variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#instance-variables
 # Pagy::DEFAULT[:page]   = 1                                  # default
-Pagy::DEFAULT[:items]  = 16                                 # default
+Pagy::DEFAULT[:items]  = 8                                # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
 
 

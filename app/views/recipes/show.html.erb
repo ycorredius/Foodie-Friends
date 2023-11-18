@@ -1,10 +1,47 @@
 <div>
   <%= turbo_stream_from @recipe %>
   <div id="<%=dom_id(@recipe)%>">
-    <%= render @recipe, recipe: @recipe %>
+    <div class="px-6">
+      <% if @user %>
+        <%= link_to "Edit Recipe", edit_recipe_path(@recipe) if @recipe.user == @user %>
+      <% end %>
+    </div>
+    <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div class="aspect-[3/1] ">
+          <%= image_tag recipe_image(@recipe)%>
+      </div>
+      <div class="flex flex-col justify-start items-start">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
+            <%= @recipe.name %>
+          </h1>
+          <p class="text-gray-600 text-sm">
+            by <%= @recipe.user.full_name%>
+          </p>
+        </div>
+      <div class="justify-start items-start">
+        <div class="flex flex-col items-start col-span-2 py-2">
+          <h5 class="text-xl py-2 font-semibold">Categories</h5>
+          <ul class="grid grid-cols-2">
+            <% @recipe.categories.each do |category|%>
+              <li class="text-sm">
+                <%= category.tag %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="col-span-2 col-start-4 py-2">
+          <h5 class="font-semibold text-xl py-2">Ingredients</h5>
+          <p class="text-sm"> <%= @recipe.ingredients %></p>
+        </div>
+        <div class="col-start-2 col-span-3 py-2">
+          <h5 class="font-semibold text-xl py-2">Instructions</h5>
+          <p class="text-sm"> <%= @recipe.instructions %></p>
+        </div>
+      </div>
+    </div>
   </div>
   
-  <%#= turbo_stream_from @recipe, :comments %>
   <div id="comments">
     <h1 class="text-center text-xl py-2">Comments</h1>
     <%= render "recipes/comments/comments", {comments: @comments, recipe_id: @recipe.id, user: @user } %>

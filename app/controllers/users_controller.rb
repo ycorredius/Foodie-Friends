@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
 
   def index
-    @cooks = current_user ? User.exclude_current_user(current_user) : User.all
+    @cooks = User.all
   end
 
   def create
