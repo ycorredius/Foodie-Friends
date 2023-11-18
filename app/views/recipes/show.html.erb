@@ -4,7 +4,7 @@
     <%= render @recipe, recipe: @recipe %>
   </div>
   
-  <%= turbo_stream_from @recipe, :comments %>
+  <%#= turbo_stream_from @recipe, :comments %>
   <div id="comments">
     <h1 class="text-center text-xl py-2">Comments</h1>
     <%= render "recipes/comments/comments", {comments: @comments, recipe_id: @recipe.id, user: @user } %>
