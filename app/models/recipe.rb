@@ -4,13 +4,15 @@
 #
 #  id           :bigint           not null, primary key
 #  avatar       :string
-#  cook_time    :integer
+#  cook_time    :integer          default(0)
+#  difficulty   :integer          default("easy")
 #  ingredients  :text
 #  instructions :text
 #  is_private   :boolean          default(FALSE)
-#  meal_type    :integer
+#  meal_type    :integer          default("other")
 #  name         :string
-#  prep_time    :integer
+#  prep_time    :integer          default(0)
+#  yield        :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :integer
@@ -31,4 +33,5 @@ class Recipe < ApplicationRecord
   after_update_commit { broadcast_update }
 
   enum :meal_type, [ :dinner, :lunch, :breakfast, :desert, :appetizer, :brunch, :side_dish, :other]
+  enum :difficulty, [ :easy, :novice, :hard, :master]
 end
