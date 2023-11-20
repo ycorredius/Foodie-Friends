@@ -4,35 +4,31 @@
 #
 #  id           :bigint           not null, primary key
 #  avatar       :string
+#  cook_time    :integer
 #  ingredients  :text
 #  instructions :text
 #  is_private   :boolean          default(FALSE)
+#  meal_type    :integer
 #  name         :string
+#  prep_time    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :integer
 #
 
-# TODO: Build out a recipe search for category and ingredients separately.
-# TODO: Building recipe associations to able to be use without manual iteration through each param
 class Recipe < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
-  has_many :recipe_categories, strict_loading: true
-  has_many :categories, through: :recipe_categories, strict_loading: true
   has_many :comments, class_name: 'Comment'
   has_one_attached :image
 
   validates :name, presence: true
   validates :ingredients, presence: true, length: { minimum: 10, maximum: 500 }
   validates :instructions, presence: true, length: { minimum: 10, maximum: 500 }
-  
-  scope :search , -> (search) { where("lower(name) LIKE ?", "%#{search}%") }
+  validates :meal_type, presence: true
 
-  accepts_nested_attributes_for :categories, allow_destroy: true
+  scope :search , -> (search) { where("lower(name) LIKE ?", "%#{search}%") }
 
   after_update_commit { broadcast_update }
 
-  def has_category?(category)
-    categories.include?(category)
-  end
+  enum :meal_type, [ :dinner, :lunch, :breakfast, :desert, :appetizer, :brunch, :side_dish, :other]
 end

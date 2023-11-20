@@ -28,20 +28,16 @@
         </div>
 
         <div class="col-span-full">
-          <%= f.label :iamge, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :image, class: "block text-sm font-medium leading-6 text-gray-900" %>
           <div class="mt-2 flex items-center gap-x-3">
             <%= f.file_field :image , class: "apperance-none rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
           </div>
         </div>
 
         <div class="col-span-full">
-          <%= f.label :categories, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :meal_type, class: "block text-sm font-medium leading-6 text-gray-900" %>
           <div class="mt-2 flex items-center gap-x-3">
-            <%= f.collection_check_boxes(:categories, Category.all,:id, :tag, {include_blank: false}) do |b|%>
-              <%= b.label %>
-              
-              <%= b.check_box checked: recipe.has_category?(b.object)%>
-            <% end %>
+            <%= f.select :meal_type,options_for_select(Recipe.meal_types.map { |key, value| [key.humanize,key]}, selected: recipe.meal_type)  %>
           </div>
         </div>
       </div>
