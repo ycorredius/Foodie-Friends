@@ -11,6 +11,11 @@ class Ingredient < ApplicationRecord
   has_many :recipe_ingredients
   has_many :recipes, through: :recipe_ingredients
 
-  attr_accessor :quantity, :unit
   validates :name, presence: true, uniqueness: true
+
+  before_save :downcase_name
+
+  def downcase_name
+    name.downcase
+  end
 end

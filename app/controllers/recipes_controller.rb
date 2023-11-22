@@ -12,13 +12,13 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     3.times do
-      @recipe.ingredients.build
+      @recipe.recipe_ingredients.build
     end
   end
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
-    @result = AddRecipeIngredients.new(@recipe, ingredients_params[:ingredients_attributes]).perform
+    @result = AddRecipeIngredients.new(@recipe, ingredients_params[:recipe_ingredients_attributes]).perform
     if @recipe.save && @result.success?
       redirect_to @recipe, notice: "Recipe was successfully updated."
     else
@@ -32,6 +32,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+    @result = AddRecipeIngredients.new(@recipe, ingredients_params[:recipe_ingredients_attributes]).perform
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Recipe was successfully updated.", current_user: current_user
     else
@@ -45,7 +46,7 @@ class RecipesController < ApplicationController
 
   def set_recipe
     id = params[:recipe_id] || params[:id]
-    @recipe = Recipe.includes(:user, :comments, image_attachment: :blob).find(id)
+    @recipe = Recipe.includes(:user, :comments,:recipe_ingredients, :ingredients, image_attachment: :blob).find(id)
   end
 
   def recipe_params
@@ -53,6 +54,6 @@ class RecipesController < ApplicationController
   end
 
   def ingredients_params
-    params.require(:recipe).permit(ingredients_attributes: [:quantity, :unit, :name, :_destroy])
+    params.require(:recipe).permit(recipe_ingredients_attributes: [:id, :quantity, :unit, :name, :_destroy])
   end
 end

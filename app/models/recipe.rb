@@ -35,7 +35,7 @@ class Recipe < ApplicationRecord
   enum :meal_type, [:dinner, :lunch, :breakfast, :desert, :appetizer, :brunch, :side_dish, :other]
   enum :difficulty, [:easy, :novice, :hard, :master]
 
-  accepts_nested_attributes_for :ingredients, reject_if: :all_blank
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank
 
   def total_time
     cook_time + prep_time

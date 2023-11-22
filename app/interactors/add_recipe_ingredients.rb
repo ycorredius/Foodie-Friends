@@ -7,6 +7,8 @@ class AddRecipeIngredients
 
   def perform
     @ingredients.each do |ingredient|
+      puts "Ingredient: #{ingredient[1]}"
+      ingredient[1].key?("id") ? @result << UpdateRecipeIngredient.new.perform(@recipe, ingredient[1]) :
       @result << CreateRecipeIngredients.new.perform(@recipe, ingredient[1])
     end
     @result
