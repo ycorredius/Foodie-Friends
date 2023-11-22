@@ -2,7 +2,8 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "./application";
+import NestedForm from "stimulus-rails-nested-form";
 
 import {
   Alert,
@@ -24,10 +25,10 @@ application.register("popover", Popover);
 application.register("slideover", Slideover);
 application.register("tabs", Tabs);
 application.register("toggle", Toggle);
-application.register("toggle", Toggle);
+application.register("nested-form", NestedForm);
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import HelloController from "./hello_controller";
+application.register("hello", HelloController);
 
-import RecipesController from "./recipes_controller"
-application.register("recipes", RecipesController)
+import RecipesController from "./recipes_controller";
+application.register("recipes", RecipesController);

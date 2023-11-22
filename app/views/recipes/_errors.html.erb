@@ -1,0 +1,21 @@
+<% if @recipe.errors.full_messages %>
+  <ul>
+    <% @recipe.errors.full_messages.each do |error| %>
+    <li>
+      <p class="text-red"><%= error %></p>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @result.errors %>
+  <ul>
+    <% @result.errors.each do |error| %>
+      <% error.full_messages.each do |err| %>
+        <li>
+          <%= err %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
