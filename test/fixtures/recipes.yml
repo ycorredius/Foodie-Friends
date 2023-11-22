@@ -6,7 +6,6 @@
 #  avatar       :string
 #  cook_time    :integer          default(0)
 #  difficulty   :integer          default("easy")
-#  ingredients  :text
 #  instructions :text
 #  is_private   :boolean          default(FALSE)
 #  meal_type    :integer          default("other")
