@@ -1,4 +1,4 @@
-<div>
+<div class="container max-w-2xl">
   <%= turbo_stream_from @recipe %>
   <div id="<%=dom_id(@recipe)%>">
     <div class="px-6">
@@ -6,26 +6,56 @@
         <%= link_to "Edit Recipe", edit_recipe_path(@recipe) if @recipe.user == @user %>
       <% end %>
     </div>
-    <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-      <div class="aspect-[3/1] ">
-          <%= image_tag recipe_image(@recipe)%>
+    <div class="flex flex-col max-w-2xl px-4 py-8 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8 justify-center items-center z-20">
+      <div class="relative pb-10 flex justify-center items-center">
+        <%= image_tag recipe_image(@recipe), class: "aspect-[7/5]  w-2/3 rounded-md"%>
+        <%= image_tag avatar_url(@recipe.user), class: "absolute hover:w-28 hover:h-28 hover:shadow-lg rounded-full w-24 h-24 bottom-[-20px] p-1 bg-white z-10 ease-out duration-300" %>
       </div>
-      <div class="flex flex-col justify-start items-start">
-        <div>
-          <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
-            <%= @recipe.name %>
-          </h1>
-          <p class="text-gray-600 text-sm">
-            by <%= @recipe.user.full_name%>
-          </p>
+    </div>
+    <div class="flex flex-col">
+      <p class="text-gray-900 text-sm text-center pb-8">
+        RECIPE BY <%= link_to @recipe.user.full_name.upcase, users_path(@recipe.user), class: "hover:text-gray-300" %>
+      </p>
+      <p class="text-3xl text-center font-bold"> <%= @recipe.name.upcase %></p>
+      <span class="mt-6 mb-10 p-4 border-t-2 border-b-2 border-gray-300 w-full">
+        <div class="grid grid-cols-3 text-xs ">
+          <div class="flex flex-col justify-self-start place-content-start border-r-2 border-gray-300 h-full text-left px-12 py-1">
+            <div class="py-1 ">
+              LEVEL: <%= @recipe.difficulty.upcase %>
+            </div>
+            <div class="py-1">
+              TOTAL: <%= pluralize(@recipe.total_time, "minute") %>
+            </div>
+          </div>
+          <div class="flex flex-col border-r-2 border-gray-300 text-left px-14  py-1">
+            <div class="py-1">
+              PREP: <%= pluralize(@recipe.prep_time, "minute") %>
+            </div>
+            <div class="py-1">
+              COOK: <%= pluralize(@recipe.cook_time, "minute") %>
+            </div>
+          </div>
+          <div class="flex flex-col text-left px-14  py-1">
+            <div class="py-1">
+              YIELD: <%= pluralize(@recipe.yield, "serving") %>
+            </div>
+            <div class="py-1">
+              Nutrition Facts
+            </div>
+          </div>
         </div>
-      <div class="justify-start items-start">
-        <div class="col-span-2 col-start-4 py-2">
-          <h5 class="font-semibold text-xl py-2">Ingredients</h5>
-          <p class="text-sm"> <%= @recipe.ingredients %></p>
+      </span>
+      <div class="grid grid-cols-2 gap-x-4 mb-10">
+        <div class="">
+          <h5 class="font-semibold text-xl py-2 text-center">Ingredients</h5>
+          <ul>
+            <% @recipe.recipe_ingredients.each do |ingredient| %>
+              <li><%= ingredient.recipe_ingredient %></li>
+            <% end %>
+          </ul>
         </div>
-        <div class="col-start-2 col-span-3 py-2">
-          <h5 class="font-semibold text-xl py-2">Instructions</h5>
+        <div class="">
+          <h5 class="font-semibold text-xl py-2 text-center">Instructions</h5>
           <p class="text-sm"> <%= @recipe.instructions %></p>
         </div>
       </div>

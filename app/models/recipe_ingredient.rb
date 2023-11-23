@@ -14,7 +14,18 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :ingredient
   belongs_to :recipe
 
-  validates :quantity,:unit, presence: true
+  validates :quantity, presence: true
 
-  UNITS = %W[tablespoon teaspon cup ounces fluid_ounces gram pounds quart pint gallon liter milliliter pint]
+  UNITS = %W[tablespoon teaspoon cup ounces fluid_ounces gram pounds quart pint gallon liter milliliter pint]
+
+  attr_accessor :name
+
+
+  def name
+    ingredient&.name
+  end
+
+  def recipe_ingredient
+    "#{quantity} #{unit} #{ingredient.name}"
+  end
 end

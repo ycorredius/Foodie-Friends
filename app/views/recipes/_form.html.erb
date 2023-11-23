@@ -19,19 +19,52 @@
             <%= f.text_area :instructions, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"%>
           </div>
         </div>
-          
+        <div class="grid grid-cols-2 col-span-full w-full">
+          <div class="flex flex-col justify-center items-start">
+            <div class="mb-2">
+              <%= f.label :meal_type, class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <div class="mt-2 flex items-center gap-x-3">
+                <%= f.select :meal_type,options_for_select(Recipe.meal_types.map { |key, value| [key.humanize,key]}, selected: recipe.meal_type), {}, class: "mt-2 block rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"  %>
+              </div>
+            </div>
+            <div>
+              <%= f.label :cook_time, class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <div class="mt-2 flex items-center gap-x-3">
+                <%= f.number_field :cook_time, class: "mt-2 block rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center items-start">
+            <div class="mb-2">
+              <%= f.label :difficulty, class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <div class="mt-2 flex items-center gap-x-3">
+                <%= f.select :difficulty, options_for_select(Recipe.difficulties.map { |key, value| [key.humanize,key]}, selected: recipe.meal_type), {}, class: "mt-2 block  rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"  %>
+              </div>
+            </div>
+            <div>
+              <%= f.label :prep_time, class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <div class="mt-2 flex items-center gap-x-3">
+                <%= f.number_field :prep_time, class: "mt-2 block rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-span-full">
           <%=f.label :ingredients, class: "block text-sm font-medium leading-6 text-gray-900" %>
           <template data-nested-form-target="template">
-            <%= f.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
-              <%= render "ingredient_form", f: ingredient_fields %>
+            <%= f.fields_for :recipe_ingredients, RecipeIngredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
+              <%= render "recipe_ingredient_form", f: ingredient_fields %>
             <%end%>
           </template>
-          <%= f.fields_for :ingredients do |ingredient_fields| %>
-            <%= render "ingredient_form", f: ingredient_fields %>
+          <%= f.fields_for :recipe_ingredients do |ingredient_fields| %>
+            <%= render "recipe_ingredient_form", f: ingredient_fields %>
           <% end %>
           <div data-nested-form-target="target"></div>
-          <button type="button" data-action="nested-form#add">Add ingredient</button>
+          <div class="flex justify-end">
+            <button type="button" data-action="nested-form#add" class="mt-4 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Add ingredient
+            </button>
+          </div>
         </div>
 
         <div class="col-span-full">
@@ -41,18 +74,7 @@
           </div>
         </div>
 
-        <div class="col-span-full">
-          <%= f.label :meal_type, class: "block text-sm font-medium leading-6 text-gray-900" %>
-          <div class="mt-2 flex items-center gap-x-3">
-            <%= f.select :meal_type,options_for_select(Recipe.meal_types.map { |key, value| [key.humanize,key]}, selected: recipe.meal_type)  %>
-          </div>
-        </div>
-        <div class="col-span-full">
-          <%= f.label :meal_type, class: "block text-sm font-medium leading-6 text-gray-900" %>
-          <div class="mt-2 flex items-center gap-x-3">
-            <%= f.select :difficulty, options_for_select(Recipe.difficulties.map { |key, value| [key.humanize,key]}, selected: recipe.meal_type)  %>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>
