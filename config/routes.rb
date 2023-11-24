@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :user do
     resources :friends
     resources :recipes, only: [:index]
+    resources :invitations
   end
 
   resources :recipes, except: [ :index ] do 
