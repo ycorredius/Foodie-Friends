@@ -1,4 +1,4 @@
-<div class="relative inline-block text-left" >
+<div class="hidden relative sm:inline-block text-left" >
   <div role="button" data-action="click->dropdown#toggle click@window->dropdown#hide">
     <button type="button" class="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="menu-button" aria-expanded="true" aria-haspopup="true" data-dropdown-target="button" tabindex-="0" id="dropdown-button">
       <% if current_user.image %>
@@ -27,4 +27,5 @@
     <div class="py-1" role="none">
       <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-700 block w-full px-4 py-2 text-left text-sm" %>
     </div> 
+  </div>
 </div>
