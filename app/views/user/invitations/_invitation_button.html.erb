@@ -1,5 +1,5 @@
 <% if current_user.friends_with?(@user) %>
-  <%= button_to unfriend_or_cancel(@user), user_invitation_path(user_id: @user), method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= button_to "Unfriend", user_invitation_path(user_id: @user), method: :delete, data: {confirm: "Are you sure?"} %>
 <% elsif Invitation.pending_invitation(current_user, @user) %>
   <%= button_to "Cancel Friend Request", user_invitation_path(user_id: @user), method: :delete, data: {confirm: "Are you sure?"}  %>
 <% else %>

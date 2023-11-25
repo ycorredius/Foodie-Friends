@@ -29,11 +29,12 @@
       -->
       </div>
       <div class="py-1" role="none">
-      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-        <%= link_to "Profile Settings", edit_user_registration_path, class: "text-gray-700 block px-4 py-2 text-sm",role: "menuitem", tabindex:"-1" ,id: "menu-item-0" %>
+        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
         <%= link_to "Create Recipe",new_recipe_path, class: "text-gray-700 block px-4 py-2 text-sm",role: "menuitem", tabindex:"-1" ,id: "menu-item-0" %>
-        <%= link_to "My Recipes", user_recipes_path, class: "text-gray-700 block px-4 py-2 text-sm",role: "menuitem", tabindex:"-1" ,id: "menu-item-0" %>
-        </div>
+        <%= link_to "Profile", user_path(current_user), class: "text-gray-700 block px-4 py-2 text-sm",role: "menuitem", tabindex:"-1" ,id: "menu-item-0" %>
+        <%= link_to "Profile Settings", edit_user_registration_path, class: "text-gray-700 block px-4 py-2 text-sm",role: "menuitem", tabindex:"-1" ,id: "menu-item-0" %>
+        <%= link_to "Friends", user_friends_path, class: "text-gray-700 block px-4 py-2 text-sm",role: "menuitem", tabindex:"-1" ,id: "menu-item-0" %>
+      </div>
         <div class="py-1" role="none">
           <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-700 block w-full px-4 py-2 text-left text-sm" %>
         </div> 
