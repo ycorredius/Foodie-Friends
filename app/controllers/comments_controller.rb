@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @recipe.comments.build(user: current_user, content: comments_params[:content])
     if @comment.save
-      render turbo_stream: turbo_stream.replace("comments_form", partial: "recipes/comments/form", locals: {recipe_id: @recipe.id})
+      render turbo_stream: turbo_stream.replace("comments", partial: "recipes/comments/comments", locals: {recipe_id: @recipe.id, comments: @recipe.comments.order(created_at: :desc)})
     else 
       @errors = @comment.errors.full_messages
     end
