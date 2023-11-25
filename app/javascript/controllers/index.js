@@ -30,5 +30,6 @@ application.register("nested-form", NestedForm);
 import HelloController from "./hello_controller";
 application.register("hello", HelloController);
 
-import RecipesController from "./recipes_controller";
-application.register("recipes", RecipesController);
+import ResetFormController from "./reset_form_controller"
+application.register("reset-form", ResetFormController)
+
