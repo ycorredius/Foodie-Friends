@@ -3,7 +3,7 @@ module ApplicationHelper
 
   def avatar_url(resource)
     if resource.avatar.blob.present?
-      resource.avatar.blob
+      url_for(resource.avatar.blob)
 else
       "/default-profile-photo.jpg"
     end
