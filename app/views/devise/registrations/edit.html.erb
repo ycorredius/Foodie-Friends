@@ -55,7 +55,7 @@
 <% end %>
 
 
-<div class="text-sm font-semibold leading-6 text-gray-900">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div class="text-sm font-semibold leading-6 text-gray-900">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { turbo_confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
 <%= link_to "Back", :back %>
 </div>
