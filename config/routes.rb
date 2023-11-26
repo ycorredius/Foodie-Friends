@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :show]
   namespace :user do
-    resources :friends
+    resources :friends, only: [ :index, :destroy]
     resources :recipes, only: [:index]
     resources :invitations
   end

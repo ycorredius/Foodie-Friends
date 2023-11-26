@@ -9,7 +9,12 @@ class User::InvitationsController < ApplicationController
 	end
 
 	def update
-
+		if params[:response] == "accept"
+			@invitation.accept
+		else
+			@invitation.destroy
+		end
+		render turbo_stream: turbo_stream.replace("invitations", partial: "invitations", pending_invitations: @user.pending_invitations)
 	end
 
 	def destroy
@@ -20,7 +25,7 @@ class User::InvitationsController < ApplicationController
 	private
 
 	def set_user
-		@user = current_user
+		@user = User.includes(:invitations).find(current_user.id)
 	end
 
 	def set_friend
@@ -28,6 +33,6 @@ class User::InvitationsController < ApplicationController
 	end
 
 	def find_invitation
-		@invitation = Invitation.find_invitation(current_user, params[:user_id])
+		@invitation = params[:id] ? Invitation.find_invitation(current_user, params[:id]) : Invitation.find_invitation(current_user, params[:user_id])
 	end
 end
