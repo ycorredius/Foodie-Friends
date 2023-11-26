@@ -18,7 +18,7 @@ admin = User.find_or_create_by(email: 'test@example.com') do |user|
 end
 
 5.times do
-  admin.recipes.create(name: Faker::Food.dish, ingredients: Faker::Food.description, instructions: Faker::Food.description)
+  admin.recipes.create(name: Faker::Food.dish, instructions: Faker::Food.description)
 end
 
 %w[indian chinese italian mexican].each do |category|
@@ -35,7 +35,7 @@ end
     password_confirmation: 'password'
   )
   5.times do
-    user.recipes.create(name: Faker::Food.dish, ingredients: Faker::Food.description, instructions: Faker::Food.description)
+    user.recipes.create(name: Faker::Food.dish, instructions: Faker::Food.description)
   end
 end
 
