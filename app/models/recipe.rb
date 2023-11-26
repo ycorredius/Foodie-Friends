@@ -29,7 +29,7 @@ class Recipe < ApplicationRecord
   validates :instructions, presence: true, length: {minimum: 10, maximum: 500}
   validates :meal_type, presence: true
 
-  scope :search, ->(search) { where("lower(name) LIKE ?", "%#{search}%").where(is_private: false) }
+  scope :search, ->(search) { where("lower(name) LIKE ?", "%#{search}%").where(is_private: false).order(updated_at: :desc) }
 
   after_update_commit { broadcast_update }
 
