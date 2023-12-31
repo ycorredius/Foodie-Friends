@@ -9,7 +9,7 @@
     <div class="flex flex-col max-w-2xl px-4 py-8 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8 justify-center items-center z-20">
       <div class="relative pb-10 flex justify-center items-center">
         <%= image_tag recipe_image(@recipe), class: "aspect-[7/5]  w-2/3 rounded-md"%>
-        <%= image_tag avatar_url(@recipe.user), class: "absolute hover:w-28 hover:h-28 hover:shadow-lg rounded-full w-24 h-24 bottom-[-20px] p-1 bg-white z-10 ease-out duration-300" %>
+        <%= image_tag avatar_url(@recipe.user), class: "object-cover absolute hover:w-28 hover:h-28 hover:shadow-lg rounded-full w-24 h-24 bottom-[-20px] p-1 bg-white z-10 ease-out duration-300" %>
       </div>
     </div>
     <div class="flex flex-col">
