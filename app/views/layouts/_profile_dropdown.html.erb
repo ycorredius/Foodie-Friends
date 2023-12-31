@@ -2,7 +2,7 @@
   <div role="button" data-action="click->dropdown#toggle click@window->dropdown#hide">
     <button type="button" class="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="menu-button" aria-expanded="true" aria-haspopup="true" data-dropdown-target="button" tabindex-="0" id="dropdown-button">
       <% if current_user.image %>
-        <%= image_tag current_user.image, class: "rounded-full h-12 w-12" %>
+        <%= image_tag current_user.image, class: "object-cover rounded-full h-12 w-12" %>
       <% else %>
         <span class="absolute -inset-1.5"></span>
         <span class="sr-only">Open user menu</span>
