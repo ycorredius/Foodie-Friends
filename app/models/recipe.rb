@@ -31,8 +31,6 @@ class Recipe < ApplicationRecord
 
   scope :search, ->(search) { where("lower(name) LIKE ?", "%#{search}%").where(is_private: false).order(updated_at: :desc) }
 
-  after_update_commit { broadcast_update }
-
   enum :meal_type, [:dinner, :lunch, :breakfast, :desert, :appetizer, :brunch, :side_dish, :other]
   enum :difficulty, [:easy, :novice, :hard, :master]
 

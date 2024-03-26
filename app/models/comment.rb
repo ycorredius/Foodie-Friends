@@ -24,6 +24,4 @@ class Comment < ApplicationRecord
   belongs_to :recipe, counter_cache: true
 
   validates :content, length: { minimum: 2, maximum: 250}
-
-  # after_create_commit { broadcast_update_to( recipe, :comments, partial: "comments", recipe_id: recipe.id)}
 end
