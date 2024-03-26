@@ -1,16 +1,19 @@
 databases:
-  - name: postgres
+  - name: foodiefriends
 
 services:
   - type: web
     name: foodie-friends
     runtime: ruby
+    plan: free
     buildCommand: "./bin/render-build.sh"
-    startCommand: bundle exec rails s
+    startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: postgres
+          name: foodiefriends
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+      - key: WEB_CONCURRENCY
+        value: 2
