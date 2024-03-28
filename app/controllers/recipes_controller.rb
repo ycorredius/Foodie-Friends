@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Recipe was successfully updated.", current_user: current_user
     else
-      respond_to do |format|
+    respond_to do |format|
         format.turbo_stream { render :errors }
       end
     end
@@ -50,7 +50,8 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :ingredients, :instructions, :image, :meal_type, :diffculty)
+    params.require(:recipe).permit(:name, :ingredients, :instructions, :image, :meal_type, :diffculty,
+      :cook_time, :difficulty, :prep_time)
   end
 
   def ingredients_params

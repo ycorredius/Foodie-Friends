@@ -2,7 +2,7 @@
   <ul>
     <% @recipe.errors.full_messages.each do |error| %>
     <li>
-      <p class="text-red"><%= error %></p>
+      <p style="color: red;"><%= error %></p>
     </li>
     <% end %>
   </ul>
@@ -11,10 +11,12 @@
 <% if @result.errors %>
   <ul>
     <% @result.errors.each do |error| %>
-      <% error.full_messages.each do |err| %>
-        <li>
-          <%= err %>
-        </li>
+      <% unless error.empty? %>
+        <% error.full_messages.each do |err| %>
+          <li>
+            <%= err %>
+          </li>
+        <% end %>
       <% end %>
     <% end %>
   </ul>

@@ -26,7 +26,7 @@ class Recipe < ApplicationRecord
   has_one_attached :image
 
   validates :name, presence: true
-  validates :instructions, presence: true, length: {minimum: 10, maximum: 500}
+  validates :instructions, presence: true, length: {minimum: 10}
   validates :meal_type, presence: true
 
   scope :search, ->(search) { where("lower(name) LIKE ?", "%#{search}%").where(is_private: false).order(updated_at: :desc) }
