@@ -4,6 +4,7 @@
 		<% if pending_invitations.count > 0 %>
 			<ul class="w-full">
 					<% pending_invitations.each do |invite| %>
+						<% unless invite.user == current_user %>
 						<span class="flex flex-row items-center justify-around ">
 							<p class="py-2 "><%= invite.user.full_name %></p>
 							<div class="inline-flex flex-row ">
@@ -11,6 +12,7 @@
 								<%= button_to "Ignore", user_invitation_path(invite.user, response: "ignore"), method: :patch, class: "px-2" %>
 							</div>
 						</span>
+						<% end %>
 					<%end%>
 			</ul>
 		<% else %>
