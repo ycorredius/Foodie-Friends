@@ -68,3 +68,5 @@ gem "sentry-rails", "~> 5.12"
 gem "google-cloud-storage", "~> 1.44"
 
 gem "dotenv", "~> 2.8"
+
+gem "mailtrap", "~> 2.0"
