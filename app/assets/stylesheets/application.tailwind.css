@@ -1,3 +1,6 @@
+@import 'actiontext.css';
+@import 'form.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,4 +14,3 @@
 }
 
 */
-@import 'actiontext.css';
