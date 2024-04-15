@@ -21,12 +21,12 @@
 class Recipe < ApplicationRecord
   belongs_to :user, class_name: "User", foreign_key: "user_id"
   has_many :comments, class_name: "Comment"
-  has_many :recipe_ingredients
-  has_many :ingredients, through: :recipe_ingredients
+  has_many :recipe_ingredients, strict_loading: true
+  has_many :ingredients, through: :recipe_ingredients, strict_loading: true
   has_one_attached :image do |attachable|
     attachable.variant :icon, resize_to_limit: [58, 58]
-    attachable.variant :thumb, resize_to_limit: [330, 300]
-    attachable.variant :jumbo, resize_to_limit: [680, 550]
+    attachable.variant :thumb, resize_to_limit: [300, 300], resize_to_fit: [300,300]
+    attachable.variant :jumbo, resize_to_limit: [500, 500], resize_to_fit: [500,500]
   end
 
   validates :name, presence: true
