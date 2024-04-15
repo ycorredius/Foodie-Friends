@@ -1,5 +1,5 @@
 class Api::V1::MeController < Api::BaseController
   def show
-    render partial: 'users/user', locals: { user: current_user }
+    render json: UserSerializer.new(@user).serialized_json
   end
 end

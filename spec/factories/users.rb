@@ -30,7 +30,6 @@ FactoryBot.define do
     sequence(:email) { |n| "email#{n}@example.com" }
     first_name { "Test" }
     last_name { "User" }
-    image { "https://robohash.org/my-own-slug.png" }
     password { "password" }
   end
 
@@ -38,7 +37,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    image { "https://robohash.org/my-own-slug.png" }
     password { "password" }
   end
 

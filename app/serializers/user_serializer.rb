@@ -27,5 +27,13 @@
 #
 class UserSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :first_name, :last_name, :email
+  attributes :full_name, :email, :avatar_url
+
+  attribute :avatar_url do |user|
+    Rails.application.routes.url_helpers.rails_blob_url(user.avatar, host: 'http://10.0.2.2:3000') if user.avatar.attached?
+  end
+
+  attribute :full_name do |user|
+    "#{user.first_name}  #{user.last_name}"
+  end
 end

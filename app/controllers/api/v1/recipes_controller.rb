@@ -1,11 +1,11 @@
 class Api::V1::RecipesController < Api::BaseController
-  before_action :set_recipe, only: %i[show update upload_image]
+  before_action :set_recipe, only: %i[show update]
   before_action :recipe_params, only: [:create]
   skip_before_action :authenticate_api_token!, only: %i[show index]
 
   def index
-    recipes = Recipe.all
-    render json: RecipeSerializer.new(recipes).serialized_json
+    recipes = Recipe.includes(:recipe_ingredients, :ingredients).all
+    render json: RecipeSerializer.new(recipes).serializable_hash
   end
 
   def create

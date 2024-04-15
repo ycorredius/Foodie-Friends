@@ -3,9 +3,13 @@ namespace :api, defaults: {format: :json} do
     resources :auths, only: %i[create show]
     delete "/auths", to: "auths#destroy"
     resource :me, controller: :me, only: :show
+    resources :registration, only: :create
     resource :user do
       resources :friends, only: %i[create destroy index]
     end
-    resources :recipes, only: %i[create update destroy show index]
+    namespace :user do
+      resources :recipes, only: [:index]
+    end
+    resources :recipes, only: %i[show index]
   end
 end

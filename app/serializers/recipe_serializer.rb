@@ -12,18 +12,20 @@
 #  meal_type      :integer          default("other")
 #  name           :string
 #  prep_time      :integer          default(0)
-#  yield          :integer
+#  yield          :integere
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :integer
 #
 class RecipeSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :name, :instructions, :categories, :ingredients, :avatar, :user
+  attributes :id, :name, :instructions, :ingredients, :avatar, :user, :image_url
 
   cache_options enabled: true, cache_length: 12.hours
 
   belongs_to :user
-  has_many :recipe_categories
-  has_many :categories, through: :recipe_categories
+
+  attribute :image_url do |recipe|
+    Rails.application.routes.url_helpers.rails_blob_url(recipe.image.variant(:jumbo), host: 'http://10.0.2.2:3000') if recipe.image.attached?
+  end
 end
