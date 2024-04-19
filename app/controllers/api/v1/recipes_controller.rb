@@ -4,7 +4,8 @@ class Api::V1::RecipesController < Api::BaseController
   skip_before_action :authenticate_api_token!, only: %i[show index]
 
   def index
-    recipes = Recipe.includes(:recipe_ingredients, :ingredients).all
+    # TODO: Update this route to only return required information to reduce the about of Kbs being sent. Currently everything including relationships that aren't necessary on initial call.
+    recipes = Recipe.search(params[:name]).includes(:recipe_ingredients, :ingredients)
     render json: RecipeSerializer.new(recipes).serializable_hash
   end
 
@@ -29,7 +30,7 @@ class Api::V1::RecipesController < Api::BaseController
   end
 
   def update
-    if @recipe.update_recipe(@recipe, recipe_params)
+    if @recipe.update(@recipe, recipe_params)
       render json: RecipeSerializer.new(@recipe).serialized_json
     else
       flash[:error] = 'Something went wrong'
@@ -40,7 +41,7 @@ class Api::V1::RecipesController < Api::BaseController
   private
 
   def set_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.includes(:recipe_ingredients, :ingredients).find(params[:id])
   end
 
   def recipe_params

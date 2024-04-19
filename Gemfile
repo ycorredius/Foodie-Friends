@@ -73,3 +73,5 @@ gem 'google-cloud-storage', '~> 1.44'
 gem 'dotenv', '~> 2.8'
 
 gem 'mailtrap', '~> 2.0'
+
+gem 'mini_magick'
