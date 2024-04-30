@@ -9,6 +9,7 @@ namespace :api, defaults: {format: :json} do
     end
     namespace :user do
       resources :recipes, only: [:index]
+      resources :favorites, only: %i[create destroy]
     end
     resources :recipes, only: %i[show index]
   end

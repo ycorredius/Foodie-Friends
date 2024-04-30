@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_03_173025) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_29_011611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_173025) do
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_comments_on_recipe_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "inboxes", force: :cascade do |t|
@@ -201,5 +210,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_173025) do
   add_foreign_key "categories", "recipes"
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "recipes"
+  add_foreign_key "favorites", "users"
   add_foreign_key "invitations", "users"
 end
