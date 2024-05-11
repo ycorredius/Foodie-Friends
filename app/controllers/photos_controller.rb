@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
     @recipe.avatar = photo
     @recipe.photos.build(image_url: photo)
     if @recipe.save
-      render json: RecipeSerializer.new(@recipe).serialized_json
+      render json: RecipeSerializer.new(@recipe).serializable_hash.to_json
     else
       flash[:error] = "Something went wrong"
       render json: flash, status: 500

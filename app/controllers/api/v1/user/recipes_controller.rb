@@ -4,7 +4,7 @@ class Api::V1::User::RecipesController < Api::BaseController
   before_action :set_recipes, only: %i[index]
 
   def index
-    render json: RecipeSerializer.new(@recipes).serialized_json, cached: true, status: :ok
+    render json: RecipeSerializer.new(@recipes).serializable_hash.to_json, cached: true, status: :ok
   end
 
   private
