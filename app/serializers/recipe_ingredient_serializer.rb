@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: recipe_ingredients
@@ -10,15 +12,8 @@
 #  ingredient_id :integer
 #  recipe_id     :integer
 #
-class RecipeIngredient < ApplicationRecord
-  belongs_to :ingredient
-  belongs_to :recipe
+class RecipeIngredientSerializer
+  include FastJsonapi::ObjectSerializer
 
-  validates :quantity, presence: true
-
-  UNITS = %w[tablespoon teaspoon cup ounces fluid_ounces gram pounds quart pint gallon liter milliliter pint].freeze
-
-  def name
-    "#{quantity} #{unit} #{ingredient.name}"
-  end
+  attributes :name, &:name
 end

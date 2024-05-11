@@ -12,23 +12,21 @@
 #  meal_type      :integer          default("other")
 #  name           :string
 #  prep_time      :integer          default(0)
-#  yield          :integer
+#  serving_size   :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :integer
 #
 
 class Recipe < ApplicationRecord
-  include Rails.application.routes.url_helpers
-
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
   has_many :comments, class_name: 'Comment'
   has_many :recipe_ingredients, strict_loading: true
   has_many :ingredients, through: :recipe_ingredients, strict_loading: true
   has_one_attached :image do |attachable|
     attachable.variant :icon, resize_to_limit: [58, 58]
-    attachable.variant :thumb, resize_to_fill: [8550, 440]
-    attachable.variant :jumbo, resize_to_fit: [1200, 1200], format: 'webp'
+    attachable.variant :thumbnail, resize_to_fit: [360, 780], format: 'webp'
+    attachable.variant :jumbo, resize_to_fit: [900, 1200], format: 'webp'
   end
 
   validates :name, presence: true
@@ -46,9 +44,5 @@ class Recipe < ApplicationRecord
 
   def total_time
     cook_time + prep_time
-  end
-
-  def convert_image
-    ImageProcessing::MiniMagick.source(url_for(recipe.image))
   end
 end

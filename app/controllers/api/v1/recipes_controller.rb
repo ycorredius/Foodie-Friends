@@ -26,7 +26,10 @@ class Api::V1::RecipesController < Api::BaseController
   end
 
   def show
-    render json: RecipeSerializer.new(@recipe).serialized_json
+    options = {}
+    options[:include] = %i[recipe_ingredients]
+    options[:fields] = { recipe: %i[name instructions prep_time cook_time difficulty user_avatar thumbnail_url jumbo_url recipe_ingredients user] }
+    render json: RecipeSerializer.new(@recipe, options).serializable_hash.to_json
   end
 
   def update
