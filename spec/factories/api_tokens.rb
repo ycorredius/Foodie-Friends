@@ -23,10 +23,10 @@
 FactoryBot.define do
   factory :api_token do
     association :user
-    expires_at { "2023-09-12 09:51:23" }
-    last_used_at { "2023-09-12 09:51:23" }
-    metada { "" }
-    name { "MyString" }
-    token { "MyString" }
+    expires_at { '2023-09-12 09:51:23' }
+    last_used_at { '2023-09-12 09:51:23' }
+    metada { '' }
+    name { Faker::Lorem.word }
+    token { Faker::Lorem.word }
   end
 end
