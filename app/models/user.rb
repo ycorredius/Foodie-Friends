@@ -43,7 +43,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
 
-  scope :exclude_current_user, -> (user) {where.not(id: user.id)}
+  scope :exclude_current_user, ->(user) { where.not(id: user.id) }
 
   def friends
     friend_i_sent_invitation = Invitation.where(user_id: id, confirmed: true).pluck(:friend_id)
@@ -58,6 +58,7 @@ class User < ApplicationRecord
 
   def send_invitation(user)
     return if friends_with?(user) || Invitation.pending_invitation(self.id, user.id) || user == self
+
     invitations.create!(friend_id: user.id)
   end
 
