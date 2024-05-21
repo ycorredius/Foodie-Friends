@@ -22,12 +22,12 @@
 #
 
 class ApiToken < ApplicationRecord
-  DEFAULT_NAME = I18n.t("Default")
-  APP_NAME = I18n.t("App")
+  DEFAULT_NAME = I18n.t('Default')
+  APP_NAME = I18n.t('App')
 
   belongs_to :user
 
-  scope :sorted, -> { order("last_used_at DESC NULLS LAST, created_at DESC") }
+  scope :sorted, -> { order('last_used_at DESC NULLS LAST, created_at DESC') }
 
   has_secure_token :token
 
@@ -36,7 +36,7 @@ class ApiToken < ApplicationRecord
   after_create :set_expiration
 
   def can?(permission)
-    Array.wrap(data("permissions")).include?(permission)
+    Array.wrap(data('permissions')).include?(permission)
   end
 
   def cant?(permission)
@@ -53,13 +53,14 @@ class ApiToken < ApplicationRecord
 
   def touch_last_used_at
     return if transient?
+
     update(last_used_at: Time.current)
   end
 
   def generate_token
     loop do
       self.token = SecureRandom.hex(16)
-      break unless ApiToken.where(token: token).exists?
+      break unless ApiToken.where(token:).exists?
     end
   end
 

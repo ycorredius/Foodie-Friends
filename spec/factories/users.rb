@@ -28,21 +28,21 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "email#{n}@example.com" }
-    first_name { "Test" }
-    last_name { "User" }
-    password { "password" }
+    first_name { 'Test' }
+    last_name { 'User' }
+    password { 'password' }
   end
 
   factory :random_user, class: User do
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    password { "password" }
+    password { 'password' }
   end
 
   trait :with_api_token do
     after(:create) do |user|
-      create(:api_token, user: user)
+      create(:api_token, user:)
     end
   end
 end

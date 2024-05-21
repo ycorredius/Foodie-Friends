@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
     if @recipe.save
       render json: RecipeSerializer.new(@recipe).serializable_hash.to_json
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = 'Something went wrong'
       render json: flash, status: 500
     end
   end

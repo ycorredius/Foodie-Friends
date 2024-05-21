@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.new(recipe_params)
     @result = AddRecipeIngredients.new(@recipe, ingredients_params[:recipe_ingredients_attributes]).perform
     if @recipe.save && @result.success?
-      redirect_to @recipe, notice: "Recipe was successfully updated."
+      redirect_to @recipe, notice: 'Recipe was successfully updated.'
     else
       respond_to do |format|
         format.turbo_stream { render :errors }
@@ -33,11 +33,11 @@ class RecipesController < ApplicationController
   def update
     @result = AddRecipeIngredients.new(@recipe, ingredients_params[:recipe_ingredients_attributes]).perform
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: "Recipe was successfully updated.", current_user: current_user
+      redirect_to(@recipe, notice: 'Recipe was successfully updated.', current_user:)
     else
       respond_to do |format|
-          format.turbo_stream { render :errors }
-        end
+        format.turbo_stream { render :errors }
+      end
     end
   end
 
@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
 
   def set_recipe
     id = params[:recipe_id] || params[:id]
-    @recipe = Recipe.includes(:user, :comments,:recipe_ingredients, :ingredients).find(id)
+    @recipe = Recipe.includes(:user, :comments, :recipe_ingredients, :ingredients).find(id)
   end
 
   def recipe_params
@@ -54,6 +54,6 @@ class RecipesController < ApplicationController
   end
 
   def ingredients_params
-    params.require(:recipe).permit(recipe_ingredients_attributes: [:id, :quantity, :unit, :name, :_destroy])
+    params.require(:recipe).permit(recipe_ingredients_attributes: %i[id quantity unit name _destroy])
   end
 end

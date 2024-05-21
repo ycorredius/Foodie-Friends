@@ -83,7 +83,7 @@ end
 #   { strMeal: 'Salmon Prawn Risotto',
 #     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/xxrxux1503070723.jpg", idMeal: '52823' },
 #   { strMeal: 'Saltfish and Ackee',
-#     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/vytypy1511883765.jpg", idMeal: '52936' }, 
+#     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/vytypy1511883765.jpg", idMeal: '52936' },
 #   { strMeal: "Seafood fideu\u00e0",
 #     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/wqqvyq1511179730.jpg", idMeal: '52836' },
 #   { strMeal: 'Shrimp Chow Fun',

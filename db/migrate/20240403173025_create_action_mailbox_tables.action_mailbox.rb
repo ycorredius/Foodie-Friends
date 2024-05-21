@@ -8,13 +8,14 @@ class CreateActionMailboxTables < ActiveRecord::Migration[6.0]
 
       t.timestamps
 
-      t.index [ :message_id, :message_checksum ], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
+      t.index %i[message_id message_checksum], name: 'index_action_mailbox_inbound_emails_uniqueness', unique: true
     end
   end
 
   private
-    def primary_key_type
-      config = Rails.configuration.generators
-      config.options[config.orm][:primary_key_type] || :primary_key
-    end
+
+  def primary_key_type
+    config = Rails.configuration.generators
+    config.options[config.orm][:primary_key_type] || :primary_key
+  end
 end

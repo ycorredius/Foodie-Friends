@@ -8,7 +8,7 @@
 #  category_id :integer
 #  recipe_id   :integer
 #
-require "test_helper"
+require 'test_helper'
 
 class RecipeCategoryTest < ActiveSupport::TestCase
   # test "the truth" do

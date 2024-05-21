@@ -8,8 +8,8 @@ class FavoritesController < ApplicationController
     @favorites = current_user.favorites
     @recipe = Recipe.find(params[:recipe_id])
     render turbo_stream: turbo_stream.replace('favorite_button', partial: 'favorite_button',
-                                              locals: { recipe: @recipe, recipe_id: @recipe_id,
-                                                        favorites: @favorites })
+                                                                 locals: { recipe: @recipe, recipe_id: @recipe_id,
+                                                                           favorites: @favorites })
   end
 
   def destroy
@@ -19,8 +19,8 @@ class FavoritesController < ApplicationController
     favorite.destroy!
 
     render turbo_stream: turbo_stream.replace('favorite_button', partial: 'favorite_button',
-                                              locals: { recipe: @recipe, recipe_id: @recipe_id,
-                                                        favorites: @favorites })
+                                                                 locals: { recipe: @recipe, recipe_id: @recipe_id,
+                                                                           favorites: @favorites })
   end
 
   private

@@ -8,13 +8,13 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource)
   end
 
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(_resource)
     new_user_session_path
   end
 
   def configure_permitted_parameters
-    signup_keys = [:first_name, :last_name, :email, :password, :password_confirmation, :avatar]
-    extra_keys = [:first_name, :last_name, :avatar, :email]
+    signup_keys = %i[first_name last_name email password password_confirmation avatar]
+    extra_keys = %i[first_name last_name avatar email]
     devise_parameter_sanitizer.permit(:sign_up, keys: signup_keys)
     devise_parameter_sanitizer.permit(:account_update, keys: signup_keys)
   end

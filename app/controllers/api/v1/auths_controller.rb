@@ -30,7 +30,7 @@ class Api::V1::AuthsController < Api::BaseController
   end
 
   def token_by_name(name)
-    user.api_tokens.find_or_create_by(name: name).token
+    user.api_tokens.find_or_create_by(name:).token
   end
 
   def error_message

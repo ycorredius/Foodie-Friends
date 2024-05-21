@@ -16,7 +16,7 @@
 #
 #  fk_rails_...  (recipe_id => recipes.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
   # test "the truth" do

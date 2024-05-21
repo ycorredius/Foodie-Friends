@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
     if @user && @user.authenticate(session_params[:password])
       login!
-      #TODO: Update to return user and a token
+      # TODO: Update to return user and a token
       render json: {
         user: @user,
         logged_in: true
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       }, status: :ok
     else
       render json: {
-        errors: ["User not found.", "Verify info and try again or signup."]
+        errors: ['User not found.', 'Verify info and try again or signup.']
       }
     end
   end
@@ -25,20 +25,20 @@ class SessionsController < ApplicationController
     else
       render json: {
         logged_in: false,
-        message: "no such user"
+        message: 'no such user'
       }
     end
   end
 
   def destroy
     user = User.find_by_id(session[:user_id])
-    if user && session.clear
-      render json: {
-        status: 200,
-        logged_in: false,
-        user: current_user
-      }
-    end
+    return unless user && session.clear
+
+    render json: {
+      status: 200,
+      logged_in: false,
+      user: current_user
+    }
   end
 
   private
