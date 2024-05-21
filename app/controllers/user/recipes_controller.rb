@@ -1,15 +1,11 @@
-# frozen_string_literal: true
+class User::RecipesController < ApplicationController
+  before_action :set_user
 
-module User
-  class RecipesController < ApplicationController
-    before_action :set_user
+  def index; end
 
-    def index; end
+  private
 
-    private
-
-    def set_user
-      @user = User.includes(:recipes).find(current_user.id)
-    end
+  def set_user
+    @user = User.includes(:recipes).find(current_user.id)
   end
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ApiTokensController < ApplicationController
   before_action :authenticate_user!
   before_action :set_api_token, only: %i[show edit update destroy]

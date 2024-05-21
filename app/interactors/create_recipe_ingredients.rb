@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateRecipeIngredients
   def perform(recipe, recipe_ingredient)
     ingredient = Ingredient.find_or_create_by(name: recipe_ingredient['name'])

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class InstructionsController < ApplicationController
   def destroy
     @instructions = Instruction.find_by_id(params[:id])

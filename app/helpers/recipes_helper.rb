@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module RecipesHelper
   def recipe_image(recipe)
     if recipe.image.attached?

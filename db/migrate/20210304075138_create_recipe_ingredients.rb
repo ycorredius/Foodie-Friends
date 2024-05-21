@@ -1,7 +1,7 @@
-# frozen_string_literal: true
-
 class CreateRecipeIngredients < ActiveRecord::Migration[6.1]
   def change
-    create_table :recipe_ingredients, &:timestamps
+    create_table :recipe_ingredients do |t|
+      t.timestamps
+    end
   end
 end

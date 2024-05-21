@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddRecipeIngredients
   def initialize(recipe, ingredients)
     @recipe = recipe
