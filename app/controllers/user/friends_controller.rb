@@ -1,25 +1,29 @@
-class User::FriendsController < ApplicationController
-  before_action :set_invitation, only: :destroy
+# frozen_string_literal: true
 
-  def index
-    @friends = current_user.friends
-    @pending_invitations = current_user.pending_invitations
-  end
+module User
+  class FriendsController < ApplicationController
+    before_action :set_invitation, only: :destroy
 
-  def destroy
-    @invitation.destroy
-    render turbo_stream: turbo_stream.update('friends', partial: 'friends', locals: { friends: current_user.friends })
-  end
+    def index
+      @friends = current_user.friends
+      @pending_invitations = current_user.pending_invitations
+    end
 
-  private
+    def destroy
+      @invitation.destroy
+      render turbo_stream: turbo_stream.update('friends', partial: 'friends', locals: { friends: current_user.friends })
+    end
 
-  def set_invitation
-    @invitation = if params[:id]
-                    Invitation.find_invitation(current_user,
-                                               params[:id])
-                  else
-                    Invitation.find_invitation(current_user,
-                                               params[:user_id])
-                  end
+    private
+
+    def set_invitation
+      @invitation = if params[:id]
+                      Invitation.find_invitation(current_user,
+                                                 params[:id])
+                    else
+                      Invitation.find_invitation(current_user,
+                                                 params[:user_id])
+                    end
+    end
   end
 end

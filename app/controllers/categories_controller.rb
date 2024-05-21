@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   def destroy
     @category = Category.find_by_id(params[:id])

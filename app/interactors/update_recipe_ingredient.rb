@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateRecipeIngredient
   def perform(recipe, recipe_ingredient)
     if recipe_ingredient['_destroy'] == '1'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IngredientsController < ApplicationController
   def destroy
     @ingredient = Ingredient.find_by_id(params[:id])

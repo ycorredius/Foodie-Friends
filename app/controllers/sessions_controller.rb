@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: session_params[:email])
-    if @user && @user.authenticate(session_params[:password])
+    if @user&.authenticate(session_params[:password])
       login!
       # TODO: Update to return user and a token
       render json: {
