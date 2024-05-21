@@ -27,7 +27,7 @@
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
 
   has_one_attached :avatar do |attachable|
     attachable.variant :icon, resize_to_limit: [58, 58]
@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
   has_many :recipes
   has_many :invitations
-  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: 'friend_id'
+  has_many :pending_invitations, -> { where confirmed: false }, class_name: "Invitation", foreign_key: "friend_id"
   has_many :api_tokens, dependent: :destroy
 
   validates :email, presence: true
@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def send_invitation(user)
-    return if friends_with?(user) || Invitation.pending_invitation(self.id, user.id) || user == self
+    return if friends_with?(user) || Invitation.pending_invitation(id, user.id) || user == self
 
     invitations.create!(friend_id: user.id)
   end

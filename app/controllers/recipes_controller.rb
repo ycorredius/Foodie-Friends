@@ -28,7 +28,8 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     @result = AddRecipeIngredients.new(@recipe, ingredients_params[:recipe_ingredients_attributes]).perform
@@ -36,8 +37,8 @@ class RecipesController < ApplicationController
       redirect_to @recipe, notice: "Recipe was successfully updated.", current_user: current_user
     else
       respond_to do |format|
-          format.turbo_stream { render :errors }
-        end
+        format.turbo_stream { render :errors }
+      end
     end
   end
 
@@ -45,12 +46,12 @@ class RecipesController < ApplicationController
 
   def set_recipe
     id = params[:recipe_id] || params[:id]
-    @recipe = Recipe.includes(:user, :comments,:recipe_ingredients, :ingredients).find(id)
+    @recipe = Recipe.includes(:user, :comments, :recipe_ingredients, :ingredients).find(id)
   end
 
   def recipe_params
     params.require(:recipe).permit(:name, :ingredients, :instructions, :image, :meal_type, :difficulty,
-                                   :cook_time, :difficulty, :prep_time)
+      :cook_time, :difficulty, :prep_time)
   end
 
   def ingredients_params

@@ -1,6 +1,6 @@
 class Api::V1::FriendsController < Api::BaseController
   def index
-    render json:{
+    render json: {
       friends: @user.friends
     }, status: :ok
   end

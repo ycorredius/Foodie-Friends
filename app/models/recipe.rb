@@ -19,14 +19,14 @@
 #
 
 class Recipe < ApplicationRecord
-  belongs_to :user, class_name: 'User', foreign_key: 'user_id'
-  has_many :comments, class_name: 'Comment'
+  belongs_to :user, class_name: "User", foreign_key: "user_id"
+  has_many :comments, class_name: "Comment"
   has_many :recipe_ingredients, strict_loading: true
   has_many :ingredients, through: :recipe_ingredients, strict_loading: true
   has_one_attached :image do |attachable|
     attachable.variant :icon, resize_to_limit: [58, 58]
-    attachable.variant :thumbnail, resize_to_fit: [360, 780], format: 'webp'
-    attachable.variant :jumbo, resize_to_fit: [900, 1200], format: 'webp'
+    attachable.variant :thumbnail, resize_to_fit: [360, 780], format: "webp"
+    attachable.variant :jumbo, resize_to_fit: [900, 1200], format: "webp"
   end
 
   validates :name, presence: true
@@ -34,7 +34,7 @@ class Recipe < ApplicationRecord
   validates :meal_type, presence: true
 
   scope :search, lambda { |search|
-                   where('lower(name) LIKE ?', "%#{search}%").where(is_private: false).order(updated_at: :desc)
+                   where("lower(name) LIKE ?", "%#{search}%").where(is_private: false).order(updated_at: :desc)
                  }
 
   enum :meal_type, %i[dinner lunch breakfast desert appetizer brunch side_dish other]

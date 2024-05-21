@@ -47,7 +47,6 @@ class Invitation < ApplicationRecord
     end
   end
 
-
   def accept
     update(confirmed: true)
   end

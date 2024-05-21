@@ -13,7 +13,7 @@ class Api::V1::User::FavoritesController < Api::BaseController
       favorite.destroy
       head :no_content, status: :ok
     else
-      render json: { message: 'recipe not a favorite', status: :unprocessable_entity }
+      render json: {message: "recipe not a favorite", status: :unprocessable_entity}
     end
   end
 

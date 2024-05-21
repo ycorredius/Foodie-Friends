@@ -6,10 +6,10 @@ class Api::V1::AuthsController < Api::BaseController
   # Returns an API token for the user if valid
   def create
     if user&.valid_password?(params[:password])
-      render json: { token: token_by_name(ApiToken::DEFAULT_NAME),
-                     user: UserSerializer.new(user, root: false) }
+      render json: {token: token_by_name(ApiToken::DEFAULT_NAME),
+                    user: UserSerializer.new(user, root: false)}
     else
-      render json: { error: error_message }, status: :unauthorized
+      render json: {error: error_message}, status: :unauthorized
     end
   end
 
@@ -35,7 +35,7 @@ class Api::V1::AuthsController < Api::BaseController
 
   def error_message
     keys = User.authentication_keys.join(I18n.translate(:"support.array.words_connector"))
-    I18n.t('devise.failure.invalid', authentication_keys: keys)
+    I18n.t("devise.failure.invalid", authentication_keys: keys)
   end
 
   def notification_token

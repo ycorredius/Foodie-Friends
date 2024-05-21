@@ -1,5 +1,5 @@
 class UpdateRecipeIngredient
-	def perform(recipe, recipe_ingredient)
+  def perform(recipe, recipe_ingredient)
     if recipe_ingredient["_destroy"] == "1"
       RecipeIngredient.find(recipe_ingredient["id"]).destroy
     else
@@ -9,9 +9,9 @@ class UpdateRecipeIngredient
         unit: recipe_ingredient["unit"], recipe: recipe, ingredient: ingredient)
       Result.new(recipe_ingredient)
     end
-	end
+  end
 
-	class Result
+  class Result
     attr_reader :recipe_ingredient
     def initialize(recipe_ingredient)
       @recipe_ingredient = recipe_ingredient

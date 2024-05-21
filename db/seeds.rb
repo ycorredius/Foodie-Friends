@@ -8,13 +8,13 @@
 
 # @recipes = Recipe.find_recipie_by_main_ingredient('beef')
 
-admin = User.find_or_create_by(email: 'test@example.com') do |user|
+admin = User.find_or_create_by(email: "test@example.com") do |user|
   # user.skip_confirmation!
   user.first_name = Faker::Name.first_name
   user.about = Faker::Lorem.paragraph(sentence_count: 8)
   user.last_name = Faker::Name.last_name
-  user.password = 'password'
-  user.password_confirmation = 'password'
+  user.password = "password"
+  user.password_confirmation = "password"
 end
 
 5.times do
@@ -31,8 +31,8 @@ end
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     about: Faker::Lorem.paragraph(sentence_count: 8),
-    password: 'password',
-    password_confirmation: 'password'
+    password: "password",
+    password_confirmation: "password"
   )
   5.times do
     user.recipes.create(name: Faker::Food.dish, instructions: Faker::Food.description)
@@ -83,7 +83,7 @@ end
 #   { strMeal: 'Salmon Prawn Risotto',
 #     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/xxrxux1503070723.jpg", idMeal: '52823' },
 #   { strMeal: 'Saltfish and Ackee',
-#     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/vytypy1511883765.jpg", idMeal: '52936' }, 
+#     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/vytypy1511883765.jpg", idMeal: '52936' },
 #   { strMeal: "Seafood fideu\u00e0",
 #     strMealThumb: "https:\/\/www.themealdb.com\/images\/media\/meals\/wqqvyq1511179730.jpg", idMeal: '52836' },
 #   { strMeal: 'Shrimp Chow Fun',

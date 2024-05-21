@@ -21,9 +21,9 @@ class RecipeSerializer
   include FastJsonapi::ObjectSerializer
 
   attributes :id, :name, :instructions, :cook_time, :difficulty, :prep_time, :avatar, :thumbnail_url, :jumbo_url, :updated_at,
-             :user_avatar, :user
+    :user_avatar, :user
 
-  cache_options store: Rails.cache, namespace: 'recipe-serializer', expires_in: 1.hours
+  cache_options store: Rails.cache, namespace: "recipe-serializer", expires_in: 1.hours
 
   has_many :recipe_ingredients
   belongs_to :user
@@ -31,21 +31,21 @@ class RecipeSerializer
   attribute :thumbnail_url do |recipe|
     if recipe.image.attached?
       Rails.application.routes.url_helpers.rails_blob_url(recipe.image.variant(:thumbnail),
-                                                          host: 'http://10.0.2.2:3000')
+        host: "http://10.0.2.2:3000")
     end
   end
 
   attribute :jumbo_url do |recipe|
     if recipe.image.attached?
       Rails.application.routes.url_helpers.rails_blob_url(recipe.image.variant(:jumbo),
-                                                          host: 'http://10.0.2.2:3000')
+        host: "http://10.0.2.2:3000")
     end
   end
 
   attribute :user_avatar do |recipe|
     if recipe.user.avatar.attached?
       Rails.application.routes.url_helpers.rails_blob_url(recipe.user.avatar.variant(:jumbo),
-                                                          host: 'http://10.0.2.2:3000')
+        host: "http://10.0.2.2:3000")
     end
   end
 end
