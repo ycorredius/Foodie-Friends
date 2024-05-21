@@ -3,7 +3,7 @@ module RecipesHelper
     if recipe.image.attached?
       recipe.image.variant(:jumbo)
     else
-      '/default-food.jpg'
+      "/default-food.jpg"
     end
   end
 end

@@ -1,14 +1,13 @@
 class CreateRecipeIngredients
   def perform(recipe, recipe_ingredient)
-    ingredient = Ingredient.find_or_create_by(name: recipe_ingredient['name'])
-    recipe_ingredient = RecipeIngredient.create(quantity: recipe_ingredient['quantity'],
-                                                unit: recipe_ingredient['unit'], recipe:, ingredient:)
+    ingredient = Ingredient.find_or_create_by(name:recipe_ingredient["name"])
+    recipe_ingredient = RecipeIngredient.create(quantity: recipe_ingredient["quantity"],
+      unit: recipe_ingredient["unit"], recipe: recipe, ingredient: ingredient)
     Result.new(recipe_ingredient)
   end
 
   class Result
     attr_reader :recipe_ingredient
-
     def initialize(recipe_ingredient)
       @recipe_ingredient = recipe_ingredient
     end

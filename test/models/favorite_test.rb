@@ -18,7 +18,7 @@
 #  fk_rails_...  (recipe_id => recipes.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require 'test_helper'
+require "test_helper"
 
 class FavoriteTest < ActiveSupport::TestCase
   # test "the truth" do

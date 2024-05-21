@@ -30,7 +30,7 @@ class Recipe < ApplicationRecord
   end
 
   validates :name, presence: true
-  validates :instructions, presence: true, length: { minimum: 10 }
+  validates :instructions, presence: true, length: {minimum: 10}
   validates :meal_type, presence: true
 
   scope :search, lambda { |search|

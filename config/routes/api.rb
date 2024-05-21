@@ -1,7 +1,7 @@
-namespace :api, defaults: { format: :json } do
+namespace :api, defaults: {format: :json} do
   namespace :v1 do
     resources :auths, only: %i[create show]
-    delete '/auths', to: 'auths#destroy'
+    delete "/auths", to: "auths#destroy"
     resource :me, controller: :me, only: :show
     resources :registration, only: :create
     resource :user do

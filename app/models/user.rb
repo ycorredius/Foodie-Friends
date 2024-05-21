@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def send_invitation(user)
-    return if friends_with?(user) || Invitation.pending_invitation(id, user.id) || user == self
+    return if friends_with?(user) || Invitation.pending_invitation(self.id, user.id) || user == self
 
     invitations.create!(friend_id: user.id)
   end

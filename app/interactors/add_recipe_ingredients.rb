@@ -9,17 +9,13 @@ class AddRecipeIngredients
     return unless @ingredients
 
     @ingredients.each do |ingredient|
-      @result << (if ingredient[1].key?('id')
-                    UpdateRecipeIngredient.new.perform(@recipe,
-                                                       ingredient[1])
-                  else
-                    CreateRecipeIngredients.new.perform(
-                      @recipe, ingredient[1]
-                    )
-                  end)
+      ingredient[1].key?("id") ? @result << UpdateRecipeIngredient.new.perform(@recipe, ingredient[1]) :
+      @result << CreateRecipeIngredients.new.perform(@recipe, ingredient[1])
     end
     @result
   end
+
+  private 
 
   class Result
     attr_reader :recipe_ingredient
