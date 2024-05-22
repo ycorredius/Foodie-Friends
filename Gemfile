@@ -75,3 +75,5 @@ gem "mailtrap", "~> 2.0"
 gem "mini_magick"
 
 gem "importmap-rails", "~> 2.0"
+
+gem "standardrb", "~> 1.0"
