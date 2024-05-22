@@ -35,8 +35,6 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         run: bundle install
-      - name: Build Yarn
-        run: yarn build
       - name: Run tests
         run: rspec
 
