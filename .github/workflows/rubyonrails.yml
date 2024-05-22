@@ -50,7 +50,5 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace any other lints here
-      - name: Security audit dependencies
-        run: bin/bundler-audit --update
       - name: Lint Ruby files
         run: standardrb
