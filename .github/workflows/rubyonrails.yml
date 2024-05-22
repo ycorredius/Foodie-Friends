@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: bundle install
       - name: Run tests
-        run: rspec
+        run: bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
@@ -49,4 +49,4 @@ jobs:
           bundler-cache: true
       # Add or replace any other lints here
       - name: Lint Ruby files
-        run: standardrb
+        run: bundle exec standardrb
