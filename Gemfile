@@ -47,8 +47,6 @@ gem "devise", "~> 4.9"
 
 gem "faker", "~> 3.2"
 
-gem "jsbundling-rails", "~> 1.2"
-
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "turbo-rails", "~> 1.5"
@@ -75,3 +73,5 @@ gem "dotenv", "~> 2.8"
 gem "mailtrap", "~> 2.0"
 
 gem "mini_magick"
+
+gem "importmap-rails", "~> 2.0"
