@@ -24,7 +24,7 @@ RSpec.describe Invitation, type: :model do
 
   context "pending invitation" do
     it "should only show pending invitation to receiver" do
-      user1.send_invitation(user1)
+      user1.send_invitation(user2)
       expect(user1&.pending_invitations&.count).to eq(0)
       invitation = Invitation.find_invitation(user1.id, user2.id)
       expect(invitation.persisted?).to eq(true)
