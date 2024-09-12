@@ -22,7 +22,7 @@ jobs:
           ruby-version: .ruby-version
           autofix: false
   rspec:
-    name: RSpec
+    name: test
     runs-on: ubuntu-latest
     services:
       postgres:
