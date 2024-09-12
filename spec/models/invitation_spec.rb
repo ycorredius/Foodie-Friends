@@ -1,11 +1,30 @@
-require 'rails_helper'
+# == Schema Information
+#
+# Table name: invitations
+#
+#  id         :bigint           not null, primary key
+#  confirmed  :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  friend_id  :integer
+#  user_id    :bigint           not null
+#
+# Indexes
+#
+#  index_invitations_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+require "rails_helper"
 
 RSpec.describe Invitation, type: :model do
   let(:user1) { FactoryBot.create(:random_user) }
   let(:user2) { FactoryBot.create(:random_user) }
   let(:user3) { create(:random_user) }
 
-  it 'should not allow a user to befriend themself' do
+  it "should not allow a user to befriend themself" do
     invitation = user1.send_invitation(user1)
 
     expect(invitation).to eq(nil)
