@@ -34,7 +34,7 @@ jobs:
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
     env:
-      RAILS_ENV: test
+      RAILS_ENV: RSpec
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
 
     steps:
