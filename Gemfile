@@ -56,7 +56,7 @@ gem "stimulus-rails", "~> 1.3"
 gem "pagy", "~> 6.1"
 
 # Use Redis for Action Cable
-gem "redis", "~> 4.0"
+# gem "redis", "~> 4.0"
 
 gem "foreman", "~> 0.87.2"
 
@@ -79,3 +79,5 @@ gem "importmap-rails", "~> 2.0"
 gem "standardrb", "~> 1.0"
 
 gem "cssbundling-rails", "~> 1.4"
+
+gem "solid_cache", "~> 0.7.0"

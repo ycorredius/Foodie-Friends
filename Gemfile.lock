@@ -312,7 +312,6 @@ GEM
       ffi (~> 1.0)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    redis (4.8.1)
     regexp_parser (2.9.2)
     reline (0.5.7)
       io-console (~> 0.5)
@@ -378,6 +377,10 @@ GEM
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    solid_cache (0.7.0)
+      activejob (>= 7)
+      activerecord (>= 7)
+      railties (>= 7)
     spring (4.2.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -474,12 +477,12 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler (~> 2.0)
   rails (~> 7.1.1)
-  redis (~> 4.0)
   rspec-rails (~> 6.0)
   rubocop
   selenium-webdriver
   sentry-rails (~> 5.12)
   sentry-ruby (~> 5.12)
+  solid_cache (~> 0.7.0)
   spring
   sprockets-rails
   standardrb (~> 1.0)

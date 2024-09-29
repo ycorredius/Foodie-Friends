@@ -19,6 +19,6 @@ class RecipeIngredient < ApplicationRecord
   UNITS = %w[tablespoon teaspoon cup ounces fluid_ounces gram pounds quart pint gallon liter milliliter pint].freeze
 
   def name
-    "#{quantity} #{unit} #{ingredient.name}"
+    "#{quantity} #{unit} #{ingredient&.name}"
   end
 end

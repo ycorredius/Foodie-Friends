@@ -30,12 +30,11 @@ class Recipe < ApplicationRecord
   end
 
   validates :name, presence: true
-  validates :instructions, presence: true, length: {minimum: 10}
+  validates :instructions, presence: true, length: { minimum: 10 }
   validates :meal_type, presence: true
 
-  scope :search, lambda { |search|
-                   where("lower(name) LIKE ?", "%#{search}%").where(is_private: false).order(updated_at: :desc)
-                 }
+  scope :search, -> (search) { where("lower(name) LIKE ?", "%#{search}%").where(is_private: false).order(updated_at: :desc) }
+                 
 
   enum :meal_type, %i[dinner lunch breakfast desert appetizer brunch side_dish other]
   enum :difficulty, %i[easy novice hard master]
