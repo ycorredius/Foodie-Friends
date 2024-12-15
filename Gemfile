@@ -5,7 +5,6 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
-gem "annotate", "~> 3.1", ">= 3.1.1"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "fast_jsonapi", "~> 1.5"
@@ -14,7 +13,7 @@ gem "jbuilder", "~> 2.7"
 gem "pg"
 gem "puma", "~> 6.4"
 gem "rack-cors"
-gem "rails", "~> 7.1.1"
+gem "rails", "~> 8.0.1"
 gem "sprockets-rails"
 
 group :development, :test do
@@ -25,6 +24,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "annotate"
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.3"
   gem "rack-mini-profiler", "~> 2.0"
