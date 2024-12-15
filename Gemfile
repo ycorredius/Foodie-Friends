@@ -81,3 +81,5 @@ gem "standardrb", "~> 1.0"
 gem "cssbundling-rails", "~> 1.4"
 
 gem "solid_cache", "~> 0.7.0"
+
+gem "solid_cable", "~> 3.0"
